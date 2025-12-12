@@ -34,7 +34,9 @@ import {
   FileText,
   Calendar,
   User,
-  X
+  X,
+  BookOpen,
+  Home
 } from "lucide-react";
 
 type WindowState = "maximized" | "minimized" | "closed" | "normal";
@@ -45,6 +47,7 @@ type Category = {
   count: string;
   size: string;
   images: string[];
+  projects: Project[];
 };
 
 type FileItem = {
@@ -57,6 +60,184 @@ type FileItem = {
   impact: string;
   meta: string;
 };
+
+type Project = {
+  name: string;
+  url: string;
+  image: string;
+  scope: string;
+  year: string;
+  impact: string;
+  meta: string;
+  tags: string[];
+};
+
+const liveCategories: Category[] = [
+  {
+    name: "Campus OS",
+    count: "01",
+    size: "Live",
+    images: [
+      "https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.kampus.fun/",
+      "https://image.thum.io/get/width/1000/crop/760/noanimate/https://www.kampus.fun/",
+      "https://image.thum.io/get/width/800/crop/640/noanimate/https://www.kampus.fun/"
+    ],
+    projects: [
+      {
+        name: "Kampus",
+        url: "https://www.kampus.fun/",
+        image: "https://image.thum.io/get/width/1400/crop/900/noanimate/https://www.kampus.fun/",
+        scope: "Student marketplace hub",
+        year: "2025",
+        impact: "250+ verified users",
+        meta: "UF student marketplace for textbooks, rides, housing, and events with verified .edu users.",
+        tags: ["Campus", "Marketplace"]
+      }
+    ]
+  },
+  {
+    name: "Restaurant OS",
+    count: "02",
+    size: "Live",
+    images: [
+      "https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.menuos.app/",
+      "https://image.thum.io/get/width/1000/crop/760/noanimate/https://www.menuos.app/",
+      "https://image.thum.io/get/width/800/crop/640/noanimate/https://www.menuos.app/"
+    ],
+    projects: [
+      {
+        name: "MenuOS",
+        url: "https://www.menuos.app/",
+        image: "https://image.thum.io/get/width/1400/crop/900/noanimate/https://www.menuos.app/",
+        scope: "Restaurant operating system",
+        year: "2025",
+        impact: "10+ restaurants",
+        meta: "QR ordering, captain app, KDS, and analytics—live in under 24 hours.",
+        tags: ["Restaurant", "SaaS", "QR"]
+      }
+    ]
+  },
+  {
+    name: "Home & Services",
+    count: "02",
+    size: "Live",
+    images: [
+      "https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.homevisor.co/",
+      "https://image.thum.io/get/width/1200/crop/900/noanimate/https://shaadiverse.app/",
+      "https://image.thum.io/get/width/1000/crop/760/noanimate/https://www.homevisor.co/"
+    ],
+    projects: [
+      {
+        name: "Homevisor",
+        url: "https://www.homevisor.co/",
+        image: "https://image.thum.io/get/width/1400/crop/900/noanimate/https://www.homevisor.co/",
+        scope: "Home maintenance OS",
+        year: "2025",
+        impact: "Waitlist live",
+        meta: "Proactive home management with lifecycle tracking and sinking-fund planning.",
+        tags: ["Home", "Maintenance", "SaaS"]
+      },
+      {
+        name: "ShaadiVerse",
+        url: "https://shaadiverse.app/",
+        image: "https://image.thum.io/get/width/1400/crop/900/noanimate/https://shaadiverse.app/",
+        scope: "Wedding vendor marketplace",
+        year: "2025",
+        impact: "10k+ verified vendors",
+        meta: "Tier-2/3 India focus with transparent pricing and escrow protection.",
+        tags: ["Marketplace", "Services", "Booking"]
+      }
+    ]
+  },
+  {
+    name: "Content & Growth",
+    count: "01",
+    size: "Live",
+    images: [
+      "https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.distrohq.xyz/",
+      "https://image.thum.io/get/width/1000/crop/760/noanimate/https://www.distrohq.xyz/",
+      "https://image.thum.io/get/width/800/crop/640/noanimate/https://www.distrohq.xyz/"
+    ],
+    projects: [
+      {
+        name: "DistroHQ",
+        url: "https://www.distrohq.xyz/",
+        image: "https://image.thum.io/get/width/1400/crop/900/noanimate/https://www.distrohq.xyz/",
+        scope: "Content operations studio",
+        year: "2025",
+        impact: "Multi-M views case studies",
+        meta: "Algorithm-optimized video, carousels, demos, and distribution for growth teams.",
+        tags: ["Content", "Production", "SaaS"]
+      }
+    ]
+  },
+  {
+    name: "Education",
+    count: "01",
+    size: "Live",
+    images: [
+      "https://image.thum.io/get/width/1200/crop/900/noanimate/https://letsvibe.dev/",
+      "https://image.thum.io/get/width/1000/crop/760/noanimate/https://letsvibe.dev/",
+      "https://image.thum.io/get/width/800/crop/640/noanimate/https://letsvibe.dev/"
+    ],
+    projects: [
+      {
+        name: "LetsVibe",
+        url: "https://letsvibe.dev/",
+        image: "https://image.thum.io/get/width/1400/crop/900/noanimate/https://letsvibe.dev/",
+        scope: "AI-native developer education",
+        year: "2025",
+        impact: "2.4k+ builders",
+        meta: "Gemini + Google AI Studio + Supabase curriculum with interactive demos.",
+        tags: ["Education", "AI", "DevTools"]
+      }
+    ]
+  },
+  {
+    name: "Studios",
+    count: "01",
+    size: "Live",
+    images: [
+      "https://image.thum.io/get/width/1200/crop/900/noanimate/https://productjoy.co/",
+      "https://image.thum.io/get/width/1000/crop/760/noanimate/https://productjoy.co/",
+      "https://image.thum.io/get/width/800/crop/640/noanimate/https://productjoy.co/"
+    ],
+    projects: [
+      {
+        name: "ProductJoy",
+        url: "https://productjoy.co/",
+        image: "https://image.thum.io/get/width/1400/crop/900/noanimate/https://productjoy.co/",
+        scope: "Design & engineering studio",
+        year: "2025",
+        impact: "Active client work",
+        meta: "Strategic design and engineering studio delivering product, identity, WebGL, and growth.",
+        tags: ["Design Agency", "Creative", "Web"]
+      }
+    ]
+  },
+  {
+    name: "AI Agents",
+    count: "01",
+    size: "Live",
+    images: [
+      "https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.workfloai.com/",
+      "https://image.thum.io/get/width/1000/crop/760/noanimate/https://www.workfloai.com/",
+      "https://image.thum.io/get/width/800/crop/640/noanimate/https://www.workfloai.com/"
+    ],
+    projects: [
+      {
+        name: "WorkfloAI",
+        url: "https://www.workfloai.com/",
+        image: "https://image.thum.io/get/width/1400/crop/900/noanimate/https://www.workfloai.com/",
+        scope: "No-config AI agents",
+        year: "2025",
+        impact: "2.3k+ leads handled",
+        meta: "Industry-specific agents for real estate, construction, and hospitality—deploy instantly.",
+        tags: ["AI Agents", "Automation", "No-Code"]
+      }
+    ]
+  }
+];
 
 const liveCategories: Category[] = [
   {
@@ -604,39 +785,15 @@ const FolderWindow = ({
     setTimeout(onClose, 300);
   };
 
-  const handleFileClick = (file: FileItem) => {
-    setSelectedFile(file);
-  };
-
-  const getMockData = (index: number, type: "image" | "doc" = "image") => {
-    const clients: Record<string, string[]> = {
-      FinTech: ["Stripe", "Mercury", "Brex", "Coinbase"],
-      "E-Commerce": ["Shopify", "Nike", "Aesop", "Glossier"],
-      SaaS: ["Vercel", "Linear", "Notion", "Figma"],
-      Consumer: ["Spotify", "Airbnb", "Uber", "Duolingo"]
-    };
-
-    const categoryClients = clients[category.name] || clients["SaaS"];
-    const client = categoryClients[index % categoryClients.length];
-
-    return {
-      client,
-      scope: type === "image" ? "Product Design & System" : "Brand Strategy",
-      year: "2024",
-      impact: type === "image" ? "+40% Conversion" : "Market Leader",
-      meta:
-        type === "image"
-          ? `High-fidelity interface design for ${client}'s core platform dashboard.`
-          : `Strategic documentation outlining ${client}'s market positioning.`
-    };
-  };
-
   const CategoryIcon =
     {
-      FinTech: CreditCard,
-      "E-Commerce": ShoppingBag,
-      SaaS: Cloud,
-      Consumer: Smartphone
+      "Campus OS": Smartphone,
+      "Restaurant OS": ShoppingBag,
+      "Home & Services": Home,
+      "Content & Growth": BarChart3,
+      Education: BookOpen,
+      Studios: LayoutGrid,
+      "AI Agents": Cpu
     }[category.name] || Folder;
 
   return (
@@ -710,67 +867,42 @@ const FolderWindow = ({
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 relative z-10">
-              {category.images.map((img, i) => {
-                const mockData = getMockData(i, "image");
-                return (
-                  <div
-                    key={img}
-                    className="group cursor-pointer"
-                    onClick={() =>
-                      handleFileClick({
-                        name: `${mockData.client}_UI_v${i + 1}.jpg`,
-                        src: img,
-                        type: "image",
-                        ...mockData
-                      })
-                    }
-                  >
-                    <div className="aspect-square rounded-xl bg-white dark:bg-zinc-800 overflow-hidden border border-black/5 dark:border-white/5 mb-3 relative shadow-sm dark:shadow-lg group-hover:ring-2 ring-blue-500/50 transition-all">
-                      <img
-                        src={img}
-                        alt={`Project ${i}`}
-                        className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
-                        <ImageIcon className="w-4 h-4 text-white" />
-                      </div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-sm text-zinc-900 dark:text-white font-medium group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors truncate">
-                        {mockData.client}
-                      </div>
-                      <div className="text-[10px] text-zinc-500">{category.size} • JPG</div>
+              {category.projects.map((project, i) => (
+                <div
+                  key={project.name}
+                  className="group cursor-pointer"
+                  onClick={() =>
+                    setSelectedFile({
+                      name: project.name,
+                      src: project.image,
+                      type: "image",
+                      client: project.name,
+                      scope: project.scope,
+                      year: project.year,
+                      impact: project.impact,
+                      meta: project.meta
+                    })
+                  }
+                >
+                  <div className="aspect-square rounded-xl bg-white dark:bg-zinc-800 overflow-hidden border border-black/5 dark:border-white/5 mb-3 relative shadow-sm dark:shadow-lg group-hover:ring-2 ring-blue-500/50 transition-all">
+                    <img
+                      src={project.image}
+                      alt={project.name}
+                      className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
+                      <ImageIcon className="w-4 h-4 text-white" />
                     </div>
                   </div>
-                );
-              })}
-              {[1, 2, 3].map((index) => {
-                const mockData = getMockData(index + 3, "doc");
-                return (
-                  <div
-                    key={`dummy-${index}`}
-                    className="group cursor-pointer"
-                    onClick={() =>
-                      handleFileClick({
-                        name: `${mockData.client}_Brief.pdf`,
-                        src: null,
-                        type: "document",
-                        ...mockData
-                      })
-                    }
-                  >
-                    <div className="aspect-square rounded-xl bg-white/50 dark:bg-white/5 border border-black/5 dark:border-white/5 mb-3 flex items-center justify-center group-hover:bg-white dark:group-hover:bg-white/10 transition-colors shadow-sm">
-                      <FileText className="w-8 h-8 text-zinc-400 dark:text-zinc-600 group-hover:text-zinc-600 dark:group-hover:text-zinc-400" />
+                  <div className="text-center">
+                    <div className="text-sm text-zinc-900 dark:text-white font-medium group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors truncate">
+                      {project.name}
                     </div>
-                    <div className="text-center">
-                      <div className="text-sm text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white transition-colors truncate">
-                        {mockData.client}_Doc
-                      </div>
-                      <div className="text-[10px] text-zinc-400 dark:text-zinc-600">124 KB • PDF</div>
-                    </div>
+                    <div className="text-[10px] text-zinc-500">{category.size} • LIVE</div>
                   </div>
-                );
-              })}
+                </div>
+              ))}
             </div>
           </div>
         </div>
