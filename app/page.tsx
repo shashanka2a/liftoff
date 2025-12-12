@@ -58,6 +58,73 @@ type FileItem = {
   meta: string;
 };
 
+type LiveProject = {
+  name: string;
+  url: string;
+  tags: string[];
+  summary: string;
+  thumbnail: string;
+};
+
+const liveProjects: LiveProject[] = [
+  {
+    name: "Kampus",
+    url: "https://www.kampus.fun/",
+    tags: ["Campus", "Marketplace"],
+    summary: "UF student marketplace hub for textbooks, rides, housing, and events with verified .edu users.",
+    thumbnail: "https://image.thum.io/get/width/1600/crop/1200/https://www.kampus.fun/"
+  },
+  {
+    name: "MenuOS",
+    url: "https://www.menuos.app/",
+    tags: ["Restaurant", "SaaS", "QR"],
+    summary: "Restaurant OS with QR ordering, captain app, KDS, and analytics—go live in under 24 hours.",
+    thumbnail: "https://image.thum.io/get/width/1600/crop/1200/https://www.menuos.app/"
+  },
+  {
+    name: "Homevisor",
+    url: "https://www.homevisor.co/",
+    tags: ["Home", "Maintenance", "SaaS"],
+    summary: "Single point of contact for proactive home upkeep with lifecycle tracking and sinking-fund planning.",
+    thumbnail: "https://image.thum.io/get/width/1600/crop/1200/https://www.homevisor.co/"
+  },
+  {
+    name: "ShaadiVerse",
+    url: "https://shaadiverse.app/",
+    tags: ["Marketplace", "Services", "Booking"],
+    summary: "Wedding vendor marketplace for Tier-2/3 India with verified vendors, transparent pricing, escrow protection.",
+    thumbnail: "https://image.thum.io/get/width/1600/crop/1200/https://shaadiverse.app/"
+  },
+  {
+    name: "DistroHQ",
+    url: "https://www.distrohq.xyz/",
+    tags: ["Content", "Production", "SaaS"],
+    summary: "Full-stack content ops studio delivering algorithm-optimized video, carousels, demos, and distribution.",
+    thumbnail: "https://image.thum.io/get/width/1600/crop/1200/https://www.distrohq.xyz/"
+  },
+  {
+    name: "LetsVibe",
+    url: "https://letsvibe.dev/",
+    tags: ["Education", "AI", "DevTools"],
+    summary: "AI-native developer education using Gemini, Google AI Studio, and Supabase with 2.4k+ builders enrolled.",
+    thumbnail: "https://image.thum.io/get/width/1600/crop/1200/https://letsvibe.dev/"
+  },
+  {
+    name: "Liftoff",
+    url: "https://liftoff.design/",
+    tags: ["Design Agency", "Creative", "Web"],
+    summary: "Strategic design and engineering studio delivering product design, identity, WebGL, and growth.",
+    thumbnail: "https://image.thum.io/get/width/1600/crop/1200/https://liftoff.design/"
+  },
+  {
+    name: "WorkfloAI",
+    url: "https://www.workfloai.com/",
+    tags: ["AI Agents", "Automation", "No-Code"],
+    summary: "No-config AI agents for real estate, construction, and hospitality—deploy instantly and get results.",
+    thumbnail: "https://image.thum.io/get/width/1600/crop/1200/https://www.workfloai.com/"
+  }
+];
+
 const useOnScreen = (
   options?: IntersectionObserverInit
 ): [React.RefObject<HTMLDivElement>, boolean] => {
@@ -943,69 +1010,78 @@ const Widgets = () => (
   </section>
 );
 
-const WorkSection = ({ onOpenFolder }: { onOpenFolder: (category: Category) => void }) => {
-  const categories: Category[] = [
-    {
-      name: "FinTech",
-      count: "04",
-      size: "2.4 GB",
-      images: [
-        "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=800",
-        "https://images.unsplash.com/photo-1639322537228-ad7117a3943b?auto=format&fit=crop&q=80&w=800",
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800"
-      ]
-    },
-    {
-      name: "E-Commerce",
-      count: "06",
-      size: "4.1 GB",
-      images: [
-        "https://images.unsplash.com/photo-1472851294608-415522f96319?auto=format&fit=crop&q=80&w=800",
-        "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=800",
-        "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=800"
-      ]
-    },
-    {
-      name: "SaaS",
-      count: "12",
-      size: "8.5 GB",
-      images: [
-        "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800",
-        "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&q=80&w=800",
-        "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=800"
-      ]
-    },
-    {
-      name: "Consumer",
-      count: "08",
-      size: "3.2 GB",
-      images: [
-        "https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&q=80&w=800",
-        "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&q=80&w=800",
-        "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&q=80&w=800"
-      ]
-    }
-  ];
-
+const WorkSection = () => {
   return (
     <section id="work" className="px-4 md:px-8 pb-32 max-w-[1600px] mx-auto overflow-hidden">
-      <FadeIn className="mb-16 flex items-end justify-between px-2">
-        <div>
-          <h2 className="text-3xl font-semibold text-zinc-900 dark:text-white flex items-center gap-3">
-            Project Archives <span className="text-zinc-400 dark:text-zinc-600 font-light">/</span>{" "}
-            <span className="text-zinc-400 dark:text-zinc-600 text-xl font-mono">DIR_ROOT</span>
-          </h2>
-        </div>
+      <FadeIn className="mb-8 flex flex-col gap-2 px-2">
+        <h2 className="text-3xl font-semibold text-zinc-900 dark:text-white flex items-center gap-3">
+          Live Projects <span className="text-zinc-400 dark:text-zinc-600 font-light">/</span>{" "}
+          <span className="text-zinc-400 dark:text-zinc-600 text-xl font-mono">projects.md</span>
+        </h2>
+        <p className="text-zinc-500 dark:text-zinc-400 max-w-3xl">
+          Pulled from the latest project portfolio. Thumbnails are live hero screenshots of each URL.
+        </p>
       </FadeIn>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {categories.map((category, i) => (
-          <FolderStack
-            key={category.name}
-            category={category}
-            delay={i * 100}
-            onClick={() => onOpenFolder(category)}
-          />
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        {liveProjects.map((project, index) => (
+          <FadeIn key={project.name} delay={index * 60} className="h-full">
+            <GlassCard className="h-full overflow-hidden group">
+              <div className="relative aspect-video bg-zinc-100 dark:bg-zinc-900 overflow-hidden">
+                <img
+                  src={project.thumbnail}
+                  alt={`${project.name} hero screenshot`}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute top-3 right-3">
+                  <span className="px-3 py-1 rounded-full bg-white/80 dark:bg-white/10 border border-black/5 dark:border-white/10 text-[11px] font-mono text-zinc-700 dark:text-zinc-200 shadow-sm">
+                    Live
+                  </span>
+                </div>
+              </div>
+
+              <div className="p-6 space-y-4">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-lg font-semibold text-zinc-900 dark:text-white">
+                        {project.name}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400 mt-1">
+                      <Globe className="w-3.5 h-3.5" />
+                      <span className="truncate">{project.url.replace(/^https?:\/\//, "")}</span>
+                    </div>
+                  </div>
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="px-3 py-2 rounded-lg bg-zinc-900 dark:bg-white text-white dark:text-black text-xs font-semibold flex items-center gap-2 hover:scale-105 active:scale-95 transition-transform"
+                  >
+                    Open <ArrowRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+
+                <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                  {project.summary}
+                </p>
+
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-3 py-1 rounded-full bg-white/70 dark:bg-white/10 border border-black/5 dark:border-white/10 text-xs text-zinc-700 dark:text-zinc-200 font-mono"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </GlassCard>
+          </FadeIn>
         ))}
       </div>
     </section>
@@ -1283,7 +1359,6 @@ const Dock = ({
 
 const HomePage = () => {
   const [windowState, setWindowState] = useState<WindowState>("maximized");
-  const [activeFolder, setActiveFolder] = useState<Category | null>(null);
   const [theme, setTheme] = useState<Theme>("light");
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -1323,8 +1398,6 @@ const HomePage = () => {
           />
         )}
 
-        {activeFolder && <FolderWindow category={activeFolder} onClose={() => setActiveFolder(null)} />}
-
         <main
           className={`relative z-10 w-full overflow-x-hidden transition-opacity duration-1000 ${
             isLoading ? "opacity-0" : "opacity-100"
@@ -1332,7 +1405,7 @@ const HomePage = () => {
         >
           <Hero windowState={windowState} setWindowState={setWindowState} />
           <Widgets />
-          <WorkSection onOpenFolder={setActiveFolder} />
+          <WorkSection />
           <Features />
           <Footer />
           <div className="h-12" />
