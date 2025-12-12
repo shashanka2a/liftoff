@@ -74,13 +74,13 @@ type Project = {
 
 const liveCategories: Category[] = [
   {
-    name: "Campus OS",
-    count: "01",
-    size: "Live",
+    name: "Campus & Marketplaces",
+    count: "04",
+    size: "Live + Coming",
     images: [
       "https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.kampus.fun/",
-      "https://image.thum.io/get/width/1000/crop/760/noanimate/https://www.kampus.fun/",
-      "https://image.thum.io/get/width/800/crop/640/noanimate/https://www.kampus.fun/"
+      "https://image.thum.io/get/width/1200/crop/900/noanimate/https://shaadiverse.app/",
+      "https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.grogate.com/"
     ],
     projects: [
       {
@@ -91,18 +91,48 @@ const liveCategories: Category[] = [
         year: "2025",
         impact: "250+ verified users",
         meta: "UF student marketplace for textbooks, rides, housing, and events with verified .edu users.",
-        tags: ["Campus", "Marketplace"]
+        tags: ["Campus", "Marketplace", "Live"]
+      },
+      {
+        name: "ShaadiVerse",
+        url: "https://shaadiverse.app/",
+        image: "https://image.thum.io/get/width/1400/crop/900/noanimate/https://shaadiverse.app/",
+        scope: "Wedding vendor marketplace",
+        year: "2025",
+        impact: "10k+ verified vendors",
+        meta: "Tier-2/3 India focus with transparent pricing and escrow protection.",
+        tags: ["Marketplace", "Services", "Live"]
+      },
+      {
+        name: "Grogate",
+        url: "https://www.grogate.com/",
+        image: "https://image.thum.io/get/width/1400/crop/900/noanimate/https://www.grogate.com/",
+        scope: "Fresh produce to gated communities",
+        year: "2025",
+        impact: "Pilot waitlist",
+        meta: "12-24h harvest-to-delivery, zero-waste model, traceable supply for communities.",
+        tags: ["Agri", "Fresh Produce", "Coming Soon"]
+      },
+      {
+        name: "Markit",
+        url: "https://www.markit.one/",
+        image: "https://image.thum.io/get/width/1400/crop/900/noanimate/https://www.markit.one/",
+        scope: "Creator growth suite",
+        year: "2025",
+        impact: "Coming soon",
+        meta: "Forms, video, QR, unified CRM with 60% cost savings positioning.",
+        tags: ["SaaS", "Growth", "Coming Soon"]
       }
     ]
   },
   {
-    name: "Restaurant OS",
-    count: "02",
-    size: "Live",
+    name: "Commerce & Ops OS",
+    count: "04",
+    size: "Live + Coming",
     images: [
       "https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.menuos.app/",
-      "https://image.thum.io/get/width/1000/crop/760/noanimate/https://www.menuos.app/",
-      "https://image.thum.io/get/width/800/crop/640/noanimate/https://www.menuos.app/"
+      "https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.homevisor.co/",
+      "https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.staylinq.co/"
     ],
     projects: [
       {
@@ -113,20 +143,8 @@ const liveCategories: Category[] = [
         year: "2025",
         impact: "10+ restaurants",
         meta: "QR ordering, captain app, KDS, and analytics—live in under 24 hours.",
-        tags: ["Restaurant", "SaaS", "QR"]
-      }
-    ]
-  },
-  {
-    name: "Home & Services",
-    count: "02",
-    size: "Live",
-    images: [
-      "https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.homevisor.co/",
-      "https://image.thum.io/get/width/1200/crop/900/noanimate/https://shaadiverse.app/",
-      "https://image.thum.io/get/width/1000/crop/760/noanimate/https://www.homevisor.co/"
-    ],
-    projects: [
+        tags: ["Restaurant", "SaaS", "Live"]
+      },
       {
         name: "Homevisor",
         url: "https://www.homevisor.co/",
@@ -135,72 +153,38 @@ const liveCategories: Category[] = [
         year: "2025",
         impact: "Waitlist live",
         meta: "Proactive home management with lifecycle tracking and sinking-fund planning.",
-        tags: ["Home", "Maintenance", "SaaS"]
+        tags: ["Home", "Maintenance", "Live"]
       },
       {
-        name: "ShaadiVerse",
-        url: "https://shaadiverse.app/",
-        image: "https://image.thum.io/get/width/1400/crop/900/noanimate/https://shaadiverse.app/",
-        scope: "Wedding vendor marketplace",
+        name: "StayLinq",
+        url: "https://www.staylinq.co/",
+        image: "https://image.thum.io/get/width/1400/crop/900/noanimate/https://www.staylinq.co/",
+        scope: "Vacation rental OS",
         year: "2025",
-        impact: "10k+ verified vendors",
-        meta: "Tier-2/3 India focus with transparent pricing and escrow protection.",
-        tags: ["Marketplace", "Services", "Booking"]
-      }
-    ]
-  },
-  {
-    name: "Content & Growth",
-    count: "01",
-    size: "Live",
-    images: [
-      "https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.distrohq.xyz/",
-      "https://image.thum.io/get/width/1000/crop/760/noanimate/https://www.distrohq.xyz/",
-      "https://image.thum.io/get/width/800/crop/640/noanimate/https://www.distrohq.xyz/"
-    ],
-    projects: [
+        impact: "Coming soon",
+        meta: "Ops + guest experience for vacation rentals with automation and guest portal.",
+        tags: ["Hospitality", "SaaS", "Coming Soon"]
+      },
       {
-        name: "DistroHQ",
-        url: "https://www.distrohq.xyz/",
-        image: "https://image.thum.io/get/width/1400/crop/900/noanimate/https://www.distrohq.xyz/",
-        scope: "Content operations studio",
+        name: "Payd",
+        url: "https://www.payd.plus/",
+        image: "https://image.thum.io/get/width/1400/crop/900/noanimate/https://www.payd.plus/",
+        scope: "Finance OS",
         year: "2025",
-        impact: "Multi-M views case studies",
-        meta: "Algorithm-optimized video, carousels, demos, and distribution for growth teams.",
-        tags: ["Content", "Production", "SaaS"]
+        impact: "Coming soon",
+        meta: "Unified invoices, subscriptions, and cross-border settlements with fiat + crypto.",
+        tags: ["Fintech", "Payments", "Coming Soon"]
       }
     ]
   },
   {
-    name: "Education",
-    count: "01",
-    size: "Live",
-    images: [
-      "https://image.thum.io/get/width/1200/crop/900/noanimate/https://letsvibe.dev/",
-      "https://image.thum.io/get/width/1000/crop/760/noanimate/https://letsvibe.dev/",
-      "https://image.thum.io/get/width/800/crop/640/noanimate/https://letsvibe.dev/"
-    ],
-    projects: [
-      {
-        name: "LetsVibe",
-        url: "https://letsvibe.dev/",
-        image: "https://image.thum.io/get/width/1400/crop/900/noanimate/https://letsvibe.dev/",
-        scope: "AI-native developer education",
-        year: "2025",
-        impact: "2.4k+ builders",
-        meta: "Gemini + Google AI Studio + Supabase curriculum with interactive demos.",
-        tags: ["Education", "AI", "DevTools"]
-      }
-    ]
-  },
-  {
-    name: "Studios",
-    count: "01",
-    size: "Live",
+    name: "Product & Growth",
+    count: "04",
+    size: "Live + Coming",
     images: [
       "https://image.thum.io/get/width/1200/crop/900/noanimate/https://productjoy.co/",
-      "https://image.thum.io/get/width/1000/crop/760/noanimate/https://productjoy.co/",
-      "https://image.thum.io/get/width/800/crop/640/noanimate/https://productjoy.co/"
+      "https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.distrohq.xyz/",
+      "https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.layr.plus/"
     ],
     projects: [
       {
@@ -211,18 +195,48 @@ const liveCategories: Category[] = [
         year: "2025",
         impact: "Active client work",
         meta: "Strategic design and engineering studio delivering product, identity, WebGL, and growth.",
-        tags: ["Design Agency", "Creative", "Web"]
+        tags: ["Design Agency", "Creative", "Live"]
+      },
+      {
+        name: "DistroHQ",
+        url: "https://www.distrohq.xyz/",
+        image: "https://image.thum.io/get/width/1400/crop/900/noanimate/https://www.distrohq.xyz/",
+        scope: "Content operations studio",
+        year: "2025",
+        impact: "Multi-M views case studies",
+        meta: "Algorithm-optimized video, carousels, demos, and distribution for growth teams.",
+        tags: ["Content", "Production", "Live"]
+      },
+      {
+        name: "Layr",
+        url: "https://www.layr.plus/",
+        image: "https://image.thum.io/get/width/1400/crop/900/noanimate/https://www.layr.plus/",
+        scope: "End-to-end builder suite",
+        year: "2025",
+        impact: "50k+ creators (claimed)",
+        meta: "Concept-to-code platform with AI, design systems, export, and deploy.",
+        tags: ["DevTools", "Design", "Coming Soon"]
+      },
+      {
+        name: "Threadz",
+        url: "https://www.threadz.studio/",
+        image: "https://image.thum.io/get/width/1400/crop/900/noanimate/https://www.threadz.studio/",
+        scope: "AI streetwear creation",
+        year: "2025",
+        impact: "Coming soon",
+        meta: "AI apparel design platform blending fashion tech and generative workflows.",
+        tags: ["AI", "Fashion", "Coming Soon"]
       }
     ]
   },
   {
-    name: "AI Agents",
-    count: "01",
-    size: "Live",
+    name: "AI & Automation",
+    count: "05",
+    size: "Live + Coming",
     images: [
       "https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.workfloai.com/",
-      "https://image.thum.io/get/width/1000/crop/760/noanimate/https://www.workfloai.com/",
-      "https://image.thum.io/get/width/800/crop/640/noanimate/https://www.workfloai.com/"
+      "https://image.thum.io/get/width/1200/crop/900/noanimate/https://letsvibe.dev/",
+      "https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.hackr.plus/"
     ],
     projects: [
       {
@@ -233,7 +247,47 @@ const liveCategories: Category[] = [
         year: "2025",
         impact: "2.3k+ leads handled",
         meta: "Industry-specific agents for real estate, construction, and hospitality—deploy instantly.",
-        tags: ["AI Agents", "Automation", "No-Code"]
+        tags: ["AI Agents", "Automation", "Live"]
+      },
+      {
+        name: "LetsVibe",
+        url: "https://letsvibe.dev/",
+        image: "https://image.thum.io/get/width/1400/crop/900/noanimate/https://letsvibe.dev/",
+        scope: "AI-native developer education",
+        year: "2025",
+        impact: "2.4k+ builders",
+        meta: "Gemini + Google AI Studio + Supabase curriculum with interactive demos.",
+        tags: ["Education", "AI", "Live"]
+      },
+      {
+        name: "Hackr",
+        url: "https://www.hackr.plus/",
+        image: "https://image.thum.io/get/width/1400/crop/900/noanimate/https://www.hackr.plus/",
+        scope: "Hackathon OS",
+        year: "2025",
+        impact: "Coming soon",
+        meta: "AI-powered host/judge/hire platform spanning the hackathon lifecycle.",
+        tags: ["Events", "AI", "Coming Soon"]
+      },
+      {
+        name: "Momint",
+        url: "https://www.momint.club/",
+        image: "https://image.thum.io/get/width/1400/crop/900/noanimate/https://www.momint.club/",
+        scope: "Creator ownership platform",
+        year: "2025",
+        impact: "Coming soon",
+        meta: "Turns creator moments into owned assets bridging engagement and lasting value.",
+        tags: ["Web3", "Creator", "Coming Soon"]
+      },
+      {
+        name: "BlueBeetle",
+        url: "https://www.bluebeetle.online/",
+        image: "https://image.thum.io/get/width/1400/crop/900/noanimate/https://www.bluebeetle.online/",
+        scope: "AI trading intelligence",
+        year: "2025",
+        impact: "Coming soon",
+        meta: "AI-driven finance/trading assistant (early-stage placeholder).",
+        tags: ["AI", "Trading", "Coming Soon"]
       }
     ]
   }
