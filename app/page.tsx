@@ -898,10 +898,10 @@ const ProjectPlaceholder = ({ name, tags }: { name: string; tags: string[] }) =>
     .slice(0, 2);
 
   const colors = [
-    "from-purple-500/20 to-pink-500/20",
-    "from-blue-500/20 to-cyan-500/20",
-    "from-emerald-500/20 to-teal-500/20",
-    "from-orange-500/20 to-red-500/20"
+    "from-zinc-300/20 to-zinc-400/20",
+    "from-zinc-200/20 to-zinc-300/20",
+    "from-zinc-400/20 to-zinc-500/20",
+    "from-zinc-300/20 to-zinc-500/20"
   ];
   const colorIndex = name.length % colors.length;
 
@@ -977,8 +977,8 @@ const FolderWindow = ({
           </div>
 
           <div className="p-12 text-center">
-            <div className="w-16 h-16 rounded-2xl bg-purple-100 dark:bg-purple-500/20 mx-auto mb-6 flex items-center justify-center">
-              <Sparkles className="w-8 h-8 text-purple-600 dark:text-purple-400" />
+            <div className="w-16 h-16 rounded-2xl bg-zinc-100 dark:bg-zinc-800/50 mx-auto mb-6 flex items-center justify-center border border-zinc-200 dark:border-zinc-700/50">
+              <Sparkles className="w-8 h-8 text-zinc-700 dark:text-zinc-300" />
             </div>
             <h3 className="text-xl font-semibold text-zinc-900 dark:text-white mb-2">
               We're cooking up new {category.name} projects
@@ -1077,7 +1077,7 @@ const FolderWindow = ({
                 return (
                   <div
                     key={project.name}
-                    className="group cursor-pointer focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 rounded-xl"
+                    className="group cursor-pointer focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-500 focus:ring-offset-2 rounded-xl"
                     style={
                       !prefersReducedMotion
                         ? {
@@ -1149,7 +1149,7 @@ const FolderWindow = ({
 
                       {/* Content */}
                       <div className="p-5">
-                        <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-1.5 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                        <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-1.5 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
                           {project.name}
                         </h3>
                         <div className="text-sm text-zinc-600 dark:text-zinc-400 mb-3">
@@ -1185,7 +1185,7 @@ const FolderWindow = ({
                 return (
                   <div
                     key={project.name}
-                    className="group cursor-pointer focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 rounded-xl"
+                    className="group cursor-pointer focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-500 focus:ring-offset-2 rounded-xl"
                     style={
                       !prefersReducedMotion
                         ? {
@@ -1246,7 +1246,7 @@ const FolderWindow = ({
                       </div>
                       <div className="flex-1 p-5 flex flex-col justify-between">
                         <div>
-                          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-1.5 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-1.5 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
                             {project.name}
                           </h3>
                           <div className="text-sm text-zinc-600 dark:text-zinc-400 mb-2">
@@ -1283,7 +1283,7 @@ const FolderWindow = ({
           <a
             href="#contact"
             onClick={handleClose}
-            className="text-sm font-medium text-zinc-900 dark:text-white hover:text-purple-600 dark:hover:text-purple-400 transition-colors flex items-center gap-2 group"
+            className="text-sm font-medium text-zinc-900 dark:text-white hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors flex items-center gap-2 group"
           >
             Want results like these? Start a project{" "}
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -1481,7 +1481,7 @@ const Hero = ({
 
       <div className="relative z-10 max-w-7xl mx-auto w-full px-6 md:px-12 py-20 flex flex-col items-start justify-center h-full">
         {/* Subtle depth gradient behind hero text */}
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-50/30 via-transparent to-indigo-50/20 dark:from-purple-950/10 dark:via-transparent dark:to-indigo-950/10 rounded-3xl blur-3xl -z-10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-zinc-100/20 via-transparent to-zinc-50/10 dark:from-zinc-900/10 dark:via-transparent dark:to-zinc-800/5 rounded-3xl blur-3xl -z-10" />
         
         <h1 className="text-[40px] md:text-[72px] font-bold text-zinc-900 dark:text-white mb-8 leading-[1.1] tracking-[-0.02em] text-left relative z-10">
           <WordReveal text="Strategic." delay={0} />
@@ -1489,7 +1489,7 @@ const Hero = ({
           <WordReveal
             text="Digital Products."
             delay={200}
-            className="text-[#6D28D9] dark:text-purple-400"
+            className="text-zinc-900 dark:text-zinc-100"
           />
         </h1>
 
@@ -1542,19 +1542,19 @@ const StatCard = ({
     <FadeIn delay={delay}>
       <div ref={ref}>
         <GlassCard className="p-8 h-full min-h-[240px] flex flex-col justify-between hover:bg-white/80 dark:hover:bg-white/[0.03] transition-colors group cursor-default relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-purple-200/30 dark:bg-purple-500/10 rounded-full blur-[60px] -translate-y-1/2 translate-x-1/2" />
+          <div className="absolute top-0 right-0 w-32 h-32 bg-zinc-300/20 dark:bg-zinc-600/10 rounded-full blur-[60px] -translate-y-1/2 translate-x-1/2" />
 
           <div className="relative z-10 flex flex-col justify-between h-full">
             <div className="flex flex-col gap-3">
-              <div className="w-10 h-10 rounded-xl bg-purple-50 dark:bg-purple-500/20 border border-purple-100 dark:border-purple-500/30 flex items-center justify-center">
-                <Icon className="w-5 h-5 text-purple-600 dark:text-purple-300" />
+              <div className="w-10 h-10 rounded-xl bg-zinc-100 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700/50 flex items-center justify-center">
+                <Icon className="w-5 h-5 text-zinc-700 dark:text-zinc-300" />
               </div>
               <div className="text-sm font-medium text-zinc-600 dark:text-zinc-400">
                 {label}
               </div>
             </div>
 
-            <div className="text-5xl md:text-6xl font-medium tracking-tighter text-purple-600 dark:text-purple-300">
+            <div className="text-5xl md:text-6xl font-medium tracking-tighter text-zinc-700 dark:text-zinc-300">
               {formatValue()}
             </div>
           </div>
@@ -2145,12 +2145,12 @@ const Features = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div className="col-span-1 md:col-span-2 row-span-1 md:row-span-1">
         <FadeIn delay={0} className="h-full">
-          <GlassCard className="h-full p-8 md:p-12 flex flex-col md:flex-row gap-12 justify-between group min-h-[400px] hover:shadow-[0_12px_48px_-12px_rgba(139,92,246,0.15)] dark:hover:shadow-[0_12px_48px_-12px_rgba(139,92,246,0.25)] hover:border-purple-200/30 dark:hover:border-purple-500/20 transition-all duration-300">
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-200/30 dark:bg-purple-500/10 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/3" />
+          <GlassCard className="h-full p-8 md:p-12 flex flex-col md:flex-row gap-12 justify-between group min-h-[400px] hover:shadow-[0_12px_48px_-12px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_12px_48px_-12px_rgba(255,255,255,0.1)] hover:border-zinc-300/30 dark:hover:border-zinc-600/20 transition-all duration-300">
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-zinc-300/15 dark:bg-zinc-600/8 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/3" />
 
             <div className="relative z-10 flex-1 flex flex-col justify-center">
-              <div className="w-16 h-16 rounded-2xl bg-purple-50 dark:bg-purple-500/20 border border-purple-100 dark:border-purple-500/30 flex items-center justify-center mb-8">
-                <LayoutGrid className="w-8 h-8 text-purple-500 dark:text-purple-300" />
+              <div className="w-16 h-16 rounded-2xl bg-zinc-100 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700/50 flex items-center justify-center mb-8">
+                <LayoutGrid className="w-8 h-8 text-zinc-700 dark:text-zinc-300" />
               </div>
               <h3 className="text-[24px] font-semibold text-zinc-900 dark:text-white mb-6">
                 Product Design
@@ -2182,7 +2182,7 @@ const Features = () => (
 
       <div className="col-span-1 md:col-span-2">
         <FadeIn delay={200} className="h-full">
-          <GlassCard className="h-full p-10 flex flex-col md:flex-row items-center relative group overflow-hidden min-h-[300px] hover:shadow-[0_12px_48px_-12px_rgba(139,92,246,0.15)] dark:hover:shadow-[0_12px_48px_-12px_rgba(139,92,246,0.25)] hover:border-purple-200/30 dark:hover:border-purple-500/20 transition-all duration-300">
+          <GlassCard className="h-full p-10 flex flex-col md:flex-row items-center relative group overflow-hidden min-h-[300px] hover:shadow-[0_12px_48px_-12px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_12px_48px_-12px_rgba(255,255,255,0.1)] hover:border-zinc-300/30 dark:hover:border-zinc-600/20 transition-all duration-300">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-100/30 to-transparent dark:from-blue-500/5 dark:to-transparent" />
 
             <div className="flex-1 z-10">
@@ -2208,7 +2208,7 @@ const Features = () => (
 
       <div className="col-span-1 md:col-span-1">
         <FadeIn delay={400} className="h-full">
-          <GlassCard className="h-full p-10 flex flex-col justify-between hover:bg-white/80 dark:hover:bg-white/5 hover:shadow-[0_12px_48px_-12px_rgba(139,92,246,0.15)] dark:hover:shadow-[0_12px_48px_-12px_rgba(139,92,246,0.25)] hover:border-purple-200/30 dark:hover:border-purple-500/20 transition-all duration-300 min-h-[300px]">
+          <GlassCard className="h-full p-10 flex flex-col justify-between hover:bg-white/80 dark:hover:bg-white/5 hover:shadow-[0_12px_48px_-12px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_12px_48px_-12px_rgba(255,255,255,0.1)] hover:border-zinc-300/30 dark:hover:border-zinc-600/20 transition-all duration-300 min-h-[300px]">
             <div>
               <div className="w-12 h-12 rounded-xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-700/50 flex items-center justify-center mb-6">
                 <Terminal className="w-6 h-6 text-zinc-600 dark:text-zinc-300" />
@@ -2237,7 +2237,7 @@ const Features = () => (
 
       <div className="col-span-1 md:col-span-1">
         <FadeIn delay={500} className="h-full">
-          <GlassCard className="h-full p-10 flex flex-col justify-between hover:bg-white/80 dark:hover:bg-white/5 hover:shadow-[0_12px_48px_-12px_rgba(139,92,246,0.15)] dark:hover:shadow-[0_12px_48px_-12px_rgba(139,92,246,0.25)] hover:border-purple-200/30 dark:hover:border-purple-500/20 transition-all duration-300 min-h-[300px]">
+          <GlassCard className="h-full p-10 flex flex-col justify-between hover:bg-white/80 dark:hover:bg-white/5 hover:shadow-[0_12px_48px_-12px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_12px_48px_-12px_rgba(255,255,255,0.1)] hover:border-zinc-300/30 dark:hover:border-zinc-600/20 transition-all duration-300 min-h-[300px]">
             <div>
               <div className="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-500/20 border border-amber-100 dark:border-amber-500/30 flex items-center justify-center mb-6">
                 <BarChart3 className="w-6 h-6 text-amber-600 dark:text-amber-400" />

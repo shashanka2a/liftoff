@@ -60,7 +60,7 @@ export default function HeroIllustration() {
             strokeLinecap="round"
             strokeLinejoin="round"
             className="float"
-            style={{ color: "rgb(139 92 246 / 0.4)" }}
+            style={{ color: "rgb(160 160 160 / 0.5)" }}
           />
           <path
             d="M 300 150 L 320 150 L 320 200 L 300 200"
@@ -70,7 +70,7 @@ export default function HeroIllustration() {
             strokeLinecap="round"
             strokeLinejoin="round"
             className="float-reverse"
-            style={{ color: "rgb(139 92 246 / 0.4)" }}
+            style={{ color: "rgb(160 160 160 / 0.5)" }}
           />
         </g>
 
@@ -84,7 +84,7 @@ export default function HeroIllustration() {
             stroke="currentColor"
             strokeWidth="2"
             className="pulse"
-            style={{ color: "rgb(139 92 246 / 0.3)" }}
+            style={{ color: "rgb(128 128 128 / 0.4)" }}
           />
           <circle
             cx="150"
@@ -94,7 +94,7 @@ export default function HeroIllustration() {
             stroke="currentColor"
             strokeWidth="1.5"
             className="pulse"
-            style={{ animationDelay: "0.5s", color: "rgb(139 92 246 / 0.3)" }}
+            style={{ animationDelay: "0.5s", color: "rgb(128 128 128 / 0.4)" }}
           />
           <circle
             cx="250"
@@ -104,7 +104,7 @@ export default function HeroIllustration() {
             stroke="currentColor"
             strokeWidth="2"
             className="float"
-            style={{ color: "rgb(139 92 246 / 0.25)" }}
+            style={{ color: "rgb(160 160 160 / 0.3)" }}
           />
         </g>
 
@@ -120,7 +120,7 @@ export default function HeroIllustration() {
             strokeDasharray="5,5"
             opacity="0.3"
             className="draw"
-            style={{ color: "rgb(139 92 246 / 0.2)" }}
+            style={{ color: "rgb(192 192 192 / 0.3)" }}
           />
           <line
             x1="200"
@@ -132,7 +132,7 @@ export default function HeroIllustration() {
             strokeDasharray="5,5"
             opacity="0.3"
             className="draw"
-            style={{ animationDelay: "0.5s", color: "rgb(139 92 246 / 0.2)" }}
+            style={{ animationDelay: "0.5s", color: "rgb(192 192 192 / 0.3)" }}
           />
         </g>
 
@@ -141,9 +141,9 @@ export default function HeroIllustration() {
           <path
             d="M 200 80 L 220 100 L 210 110 L 190 90 Z"
             fill="currentColor"
-            opacity="0.4"
+            opacity="0.5"
             className="float"
-            style={{ color: "rgb(139 92 246 / 0.5)" }}
+            style={{ color: "rgb(128 128 128 / 0.6)" }}
           />
           <line
             x1="200"
@@ -153,8 +153,8 @@ export default function HeroIllustration() {
             stroke="currentColor"
             strokeWidth="2"
             strokeLinecap="round"
-            opacity="0.5"
-            style={{ color: "rgb(139 92 246 / 0.5)" }}
+            opacity="0.6"
+            style={{ color: "rgb(128 128 128 / 0.6)" }}
           />
         </g>
 
@@ -169,9 +169,9 @@ export default function HeroIllustration() {
             fill="none"
             stroke="currentColor"
             strokeWidth="2"
-            opacity="0.3"
+            opacity="0.4"
             className="float-reverse"
-            style={{ color: "rgb(139 92 246 / 0.3)" }}
+            style={{ color: "rgb(160 160 160 / 0.4)" }}
           />
           <line
             x1="140"
@@ -180,8 +180,8 @@ export default function HeroIllustration() {
             y2="300"
             stroke="currentColor"
             strokeWidth="1.5"
-            opacity="0.4"
-            style={{ color: "rgb(139 92 246 / 0.4)" }}
+            opacity="0.5"
+            style={{ color: "rgb(128 128 128 / 0.5)" }}
           />
           <line
             x1="140"
@@ -190,8 +190,8 @@ export default function HeroIllustration() {
             y2="320"
             stroke="currentColor"
             strokeWidth="1.5"
-            opacity="0.3"
-            style={{ color: "rgb(139 92 246 / 0.3)" }}
+            opacity="0.4"
+            style={{ color: "rgb(128 128 128 / 0.4)" }}
           />
         </g>
 
@@ -202,7 +202,7 @@ export default function HeroIllustration() {
           r="4"
           fill="currentColor"
           className="pulse"
-          style={{ color: "rgb(139 92 246 / 0.6)", animationDelay: "1s" }}
+          style={{ color: "rgb(96 96 96 / 0.7)", animationDelay: "1s" }}
         />
       </svg>
     </div>
