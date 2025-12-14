@@ -4,11 +4,11 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://liftoff.design"),
   title: {
-    default: "LIFTOFF™ — Strategic Digital Product Design & Development Studio",
-    template: "%s | LIFTOFF™"
+    default: "LIFTOFF Strategic Digital Product Design and Development Studio",
+    template: "%s | LIFTOFF"
   },
   description:
-    "LIFTOFF™ is a strategic design and engineering studio crafting premium digital products, systems, and growth platforms for modern brands. Expert UI/UX design, web development, and product strategy.",
+    "LIFTOFF is a strategic design and engineering studio crafting premium digital products, systems, and growth platforms for modern brands. Expert UI/UX design, web development, and product strategy.",
   keywords: [
     "digital product design",
     "UI/UX design agency",
@@ -21,23 +21,35 @@ export const metadata: Metadata = {
     "enterprise design",
     "growth platforms",
     "design engineering",
-    "premium digital products"
+    "premium digital products",
+    "product design agency",
+    "custom software development",
+    "web design studio",
+    "mobile app design",
+    "user experience design",
+    "interface design",
+    "brand identity design",
+    "digital transformation",
+    "product development",
+    "design consulting",
+    "tech startup design",
+    "B2B SaaS design"
   ],
-  authors: [{ name: "LIFTOFF™ Studio", url: "https://liftoff.design" }],
+  authors: [{ name: "LIFTOFF Studio", url: "https://liftoff.design" }],
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     url: "https://liftoff.design",
-    title: "LIFTOFF™ — Strategic Digital Product Design & Development Studio",
+    title: "LIFTOFF Strategic Digital Product Design and Development Studio",
     description:
       "Strategic design and engineering studio crafting premium digital products, systems, and growth platforms. Expert UI/UX design, web development, and product strategy for startups and enterprises.",
-    siteName: "LIFTOFF™",
+    siteName: "LIFTOFF",
     images: [
       {
         url: "https://liftoff.design/og.png",
         width: 1200,
         height: 630,
-        alt: "LIFTOFF™ OS"
+        alt: "LIFTOFF Strategic Digital Product Design Studio"
       }
     ]
   },
@@ -45,7 +57,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@liftoff",
     creator: "@liftoff",
-    title: "LIFTOFF™ — Strategic Digital Product Design & Development Studio",
+    title: "LIFTOFF Strategic Digital Product Design and Development Studio",
     description:
       "Strategic design and engineering studio crafting premium digital products, systems, and growth platforms. Expert UI/UX design, web development, and product strategy.",
     images: ["https://liftoff.design/og.png"]

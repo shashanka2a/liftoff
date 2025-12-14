@@ -1480,13 +1480,17 @@ const Hero = ({
       {/* Main Headline */}
       <h1 className="text-[36px] md:text-[56px] lg:text-[64px] font-bold mb-8 leading-[1.15] tracking-[-0.02em] text-center">
         <FadeIn delay={200}>
-          <div className="block mb-6 md:mb-8">
-            <span className="text-zinc-900 dark:text-white">World-Class Product Studio</span>
+          <div className="block mb-3 md:mb-4">
+            <span className="bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 dark:from-white dark:via-zinc-100 dark:to-white bg-clip-text text-transparent">
+              World-Class Product Studio
+            </span>
           </div>
         </FadeIn>
         <FadeIn delay={400}>
           <div className="block hidden md:block">
-            <span className="text-zinc-900 dark:text-white">Engineering Your Success</span>
+            <span className="bg-gradient-to-br from-zinc-700 via-zinc-600 to-zinc-700 dark:from-zinc-300 dark:via-zinc-200 dark:to-zinc-300 bg-clip-text text-transparent">
+              Engineering Your Success
+            </span>
           </div>
         </FadeIn>
       </h1>
@@ -2626,16 +2630,8 @@ const Footer = () => (
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row justify-between items-center pt-8 gap-4">
-        <span className="text-zinc-500 text-xs">© 2024 LIFTOFF™ OS. All rights reserved.</span>
-        <div className="flex gap-6 text-xs text-zinc-500">
-          <span className="hover:text-zinc-800 dark:hover:text-zinc-400 cursor-pointer">
-            Privacy Protocol
-          </span>
-          <span className="hover:text-zinc-800 dark:hover:text-zinc-400 cursor-pointer">
-            Terms of Service
-          </span>
-        </div>
+      <div className="flex justify-center items-center pt-8">
+        <span className="text-zinc-500 text-xs">© 2024 LIFTOFF. All rights reserved.</span>
       </div>
     </div>
   </footer>
