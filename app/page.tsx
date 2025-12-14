@@ -376,7 +376,7 @@ const WordReveal = ({
   const isVisible = visible || forceVisible;
 
   return (
-    <div ref={ref} className={`flex flex-wrap gap-x-[0.25em] ${className}`}>
+    <div ref={ref} className={`flex flex-wrap gap-x-[0.25em] ${className}`} style={className.includes('text-transparent') ? { WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' } : undefined}>
       {words.map((word, i) => (
         <span
           key={word + i}
@@ -1478,14 +1478,25 @@ const Hero = ({
       </FadeIn>
 
       {/* Main Headline */}
-      <h1 className="text-[48px] md:text-[96px] lg:text-[120px] font-bold mb-8 leading-[1.05] tracking-[-0.03em]">
-        <WordReveal text="Strategic." delay={200} className="text-zinc-900 dark:text-white block" />
-        <div className="h-3 md:h-6" />
-        <WordReveal
-          text="Digital Products."
-          delay={400}
-          className="block bg-gradient-to-r from-[#8B5CF6] via-[#7C3AED] to-[#6366F1] bg-clip-text text-transparent"
-        />
+      <h1 className="text-[48px] md:text-[80px] lg:text-[96px] font-bold mb-8 leading-[1.1] tracking-[-0.02em] text-center">
+        <FadeIn delay={200}>
+          <div className="block text-zinc-900 dark:text-white mb-4">
+            Strategic Product Design Studio
+          </div>
+        </FadeIn>
+        <FadeIn delay={400}>
+          <div className="flex items-center justify-center gap-3 md:gap-4 flex-wrap">
+            <span className="text-zinc-900 dark:text-white">Building Your</span>
+            <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white dark:bg-zinc-800 border border-black/10 dark:border-white/10 flex items-center justify-center shadow-md">
+              <Zap className="w-5 h-5 md:w-6 md:h-6 text-red-500" fill="currentColor" />
+            </div>
+            <span className="text-zinc-900 dark:text-white">Digital</span>
+            <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white dark:bg-zinc-800 border border-black/10 dark:border-white/10 flex items-center justify-center shadow-md">
+              <Rocket className="w-5 h-5 md:w-6 md:h-6 text-blue-500" />
+            </div>
+            <span className="text-zinc-900 dark:text-white">Products</span>
+          </div>
+        </FadeIn>
       </h1>
 
       {/* Description */}
