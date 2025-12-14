@@ -39,7 +39,11 @@ import {
   Home,
   Box,
   DollarSign,
-  Briefcase
+  Briefcase,
+  Palette,
+  Code,
+  Rocket,
+  Sparkles
 } from "lucide-react";
 
 type WindowState = "maximized" | "minimized" | "closed" | "normal";
@@ -321,6 +325,24 @@ const useImagePreloader = (imageUrls: string[], enabled: boolean = true) => {
 
     return () => clearTimeout(timeoutId);
   }, [imageUrls, enabled]);
+};
+
+const useReducedMotion = () => {
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches);
+    };
+
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
+
+  return prefersReducedMotion;
 };
 
 const useCountUp = (end: number, duration: number = 2000, startOnVisible: boolean = false) => {
@@ -787,6 +809,112 @@ const FilePreviewWindow = ({
   );
 };
 
+// Helper function to map project tags to service categories
+const getServicesFromTags = (tags: string[]): string[] => {
+  const serviceMap: { [key: string]: string } = {
+    "Design Agency": "Brand",
+    "Creative": "Brand",
+    "UI/UX": "Product Design",
+    "Design Systems": "Product Design",
+    "Prototyping": "Product Design",
+    "User Research": "Product Design",
+    "Web Development": "Web Development",
+    "SaaS": "Web Development",
+    "DevTools": "Web Development",
+    "Growth": "Growth & Marketing",
+    "Content": "Growth & Marketing",
+    "Production": "Growth & Marketing",
+    "Marketing": "Growth & Marketing"
+  };
+
+  const services = new Set<string>();
+  tags.forEach((tag) => {
+    if (serviceMap[tag]) {
+      services.add(serviceMap[tag]);
+    }
+  });
+
+  // Default to "Product Design" if no services found
+  if (services.size === 0) {
+    services.add("Product Design");
+  }
+
+  return Array.from(services);
+};
+
+// Helper function to determine industry/type from scope or tags
+const getIndustryType = (scope: string, tags: string[]): string => {
+  const industryMap: { [key: string]: string } = {
+    "marketplace": "Marketplace",
+    "restaurant": "B2B SaaS",
+    "operating system": "B2B SaaS",
+    "OS": "B2B SaaS",
+    "fintech": "Fintech Startup",
+    "finance": "Fintech Startup",
+    "payments": "Fintech Startup",
+    "design agency": "Creative Agency",
+    "studio": "Creative Agency",
+    "content": "Content Studio",
+    "growth": "Growth Studio",
+    "education": "EdTech",
+    "campus": "EdTech",
+    "student": "EdTech",
+    "ai": "AI Platform",
+    "automation": "AI Platform",
+    "agents": "AI Platform"
+  };
+
+  const lowerScope = scope.toLowerCase();
+  const lowerTags = tags.map((t) => t.toLowerCase()).join(" ");
+
+  for (const [key, value] of Object.entries(industryMap)) {
+    if (lowerScope.includes(key) || lowerTags.includes(key)) {
+      return value;
+    }
+  }
+
+  return "Digital Product";
+};
+
+// Helper function to format impact as proof point
+const formatProofPoint = (impact: string): string => {
+  if (impact.toLowerCase().includes("coming soon")) {
+    return "→ Launching soon";
+  }
+  if (impact.includes("→")) {
+    return impact;
+  }
+  return `→ ${impact}`;
+};
+
+// Branded placeholder component for missing images
+const ProjectPlaceholder = ({ name, tags }: { name: string; tags: string[] }) => {
+  const initials = name
+    .split(" ")
+    .map((word) => word[0])
+    .join("")
+    .toUpperCase()
+    .slice(0, 2);
+
+  const colors = [
+    "from-purple-500/20 to-pink-500/20",
+    "from-blue-500/20 to-cyan-500/20",
+    "from-emerald-500/20 to-teal-500/20",
+    "from-orange-500/20 to-red-500/20"
+  ];
+  const colorIndex = name.length % colors.length;
+
+  return (
+    <div className={`w-full h-full bg-gradient-to-br ${colors[colorIndex]} flex items-center justify-center relative overflow-hidden`}>
+      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-30" />
+      <div className="relative z-10 text-center px-4">
+        <div className="text-4xl font-bold text-zinc-900 dark:text-white mb-2">{initials}</div>
+        <div className="text-xs text-zinc-600 dark:text-zinc-400 font-medium">{name}</div>
+      </div>
+    </div>
+  );
+};
+
 const FolderWindow = ({
   category,
   onClose
@@ -796,6 +924,9 @@ const FolderWindow = ({
 }) => {
   const [isClosing, setIsClosing] = useState(false);
   const [selectedFile, setSelectedFile] = useState<FileItem | null>(null);
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const [imageErrors, setImageErrors] = useState<{ [key: string]: boolean }>({});
+  const prefersReducedMotion = useReducedMotion();
 
   const handleClose = () => {
     setIsClosing(true);
@@ -806,16 +937,66 @@ const FolderWindow = ({
   const projectImages = category.projects.map((p) => p.image);
   useImagePreloader(projectImages, !isClosing);
 
-  const CategoryIcon =
-    {
-      "Campus OS": Smartphone,
-      "Restaurant OS": ShoppingBag,
-      "Home & Services": Home,
-      "Content & Growth": BarChart3,
-      Education: BookOpen,
-      Studios: LayoutGrid,
-      "AI Agents": Cpu
-    }[category.name] || Folder;
+  const projectCount = category.projects.length;
+
+  // Handle image load errors
+  const handleImageError = (projectName: string) => {
+    setImageErrors((prev) => ({ ...prev, [projectName]: true }));
+  };
+
+  // Empty state
+  if (projectCount === 0) {
+    return (
+      <div className="fixed inset-0 z-[200] flex items-center justify-center px-4 pointer-events-none">
+        <div
+          className={`absolute inset-0 bg-white/40 dark:bg-black/60 backdrop-blur-sm transition-opacity duration-300 ${
+            isClosing ? "opacity-0" : "opacity-100"
+          } pointer-events-auto`}
+          onClick={handleClose}
+        />
+
+        <div
+          className={`
+          relative w-full max-w-2xl bg-[#FAFAFA]/90 dark:bg-[#141414]/90 backdrop-blur-2xl rounded-2xl border border-black/10 dark:border-white/10 shadow-2xl flex flex-col overflow-hidden pointer-events-auto
+          ${prefersReducedMotion ? "transition-opacity duration-150" : "transition-all duration-150 ease-out transform origin-center"}
+          ${isClosing ? (prefersReducedMotion ? "opacity-0" : "scale-[0.97] opacity-0") : (prefersReducedMotion ? "opacity-100" : "scale-100 opacity-100")}
+        `}
+        >
+          <div className="h-14 border-b border-black/5 dark:border-white/5 flex items-center justify-between px-6 relative z-10">
+            <div className="text-lg font-semibold text-zinc-900 dark:text-white">
+              {category.name}
+            </div>
+            <button
+              onClick={handleClose}
+              className="w-8 h-8 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 flex items-center justify-center transition-colors"
+              aria-label="Close"
+            >
+              <X className="w-5 h-5 text-zinc-600 dark:text-zinc-400" />
+            </button>
+          </div>
+
+          <div className="p-12 text-center">
+            <div className="w-16 h-16 rounded-2xl bg-purple-100 dark:bg-purple-500/20 mx-auto mb-6 flex items-center justify-center">
+              <Sparkles className="w-8 h-8 text-purple-600 dark:text-purple-400" />
+            </div>
+            <h3 className="text-xl font-semibold text-zinc-900 dark:text-white mb-2">
+              We're cooking up new {category.name} projects
+            </h3>
+            <p className="text-zinc-600 dark:text-zinc-400 mb-8">
+              Check out our other work or get in touch to be featured here.
+            </p>
+            <a
+              href="#contact"
+              onClick={handleClose}
+              className="inline-flex items-center gap-2 px-6 py-3 bg-zinc-900 dark:bg-white text-white dark:text-black rounded-xl font-medium text-sm hover:scale-105 active:scale-95 transition-transform"
+            >
+              Start a Project <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="fixed inset-0 z-[200] flex items-center justify-center px-4 pointer-events-none">
@@ -832,105 +1013,280 @@ const FolderWindow = ({
 
       <div
         className={`
-        relative w-full max-w-4xl h-[70vh] bg-[#FAFAFA]/90 dark:bg-[#141414]/90 backdrop-blur-2xl rounded-2xl border border-black/10 dark:border-white/10 shadow-2xl flex flex-col overflow-hidden pointer-events-auto
-        transition-all duration-300 transform origin-center
-        ${isClosing ? "scale-95 opacity-0" : "scale-100 opacity-100"}
+        relative w-full max-w-6xl h-[85vh] md:h-[80vh] bg-[#FAFAFA]/90 dark:bg-[#141414]/90 backdrop-blur-2xl rounded-2xl border border-black/10 dark:border-white/10 shadow-2xl flex flex-col overflow-hidden pointer-events-auto
+        ${prefersReducedMotion ? "transition-opacity duration-150" : "transition-all duration-150 ease-out transform origin-center"}
+        ${isClosing ? (prefersReducedMotion ? "opacity-0" : "scale-[0.97] opacity-0") : (prefersReducedMotion ? "opacity-100" : "scale-100 opacity-100")}
       `}
       >
-        <div className="h-12 border-b border-black/5 dark:border-white/5 flex items-center justify-between px-4 bg-white/[0.02] relative z-10">
-          <div className="flex items-center gap-4 w-1/3">
-            <TrafficLights
-              onClose={handleClose}
-              onMinimize={handleClose}
-              onMaximize={() => {}}
-            />
-          </div>
-          <div className="w-1/3 flex justify-center text-sm font-medium text-zinc-900 dark:text-white/80">
-            {category.name}
-          </div>
-          <div className="w-1/3 flex justify-end gap-2 text-zinc-400 dark:text-zinc-500">
-            <Grid className="w-4 h-4" />
-            <List className="w-4 h-4 opacity-50" />
-          </div>
-        </div>
-
-        <div className="flex-1 flex overflow-hidden relative">
-          <div className="w-48 border-r border-black/5 dark:border-white/5 bg-white/40 dark:bg-black/20 p-4 hidden sm:block relative z-10 backdrop-blur-md">
-            <div className="text-[10px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest mb-4">
-              Locations
+        {/* Header */}
+        <div className="h-14 border-b border-black/5 dark:border-white/5 flex items-center justify-between px-6 bg-white/[0.02] relative z-10">
+          <div className="flex items-center gap-4">
+            <div className="text-lg font-semibold text-zinc-900 dark:text-white">
+              {category.name}
             </div>
-            <div className="space-y-1">
-              {["Desktop", "Documents", "Downloads", "AirDrop"].map((item) => (
-                <div
-                  key={item}
-                  className="px-3 py-1.5 rounded-lg text-sm text-zinc-600 dark:text-zinc-400 hover:bg-black/5 dark:hover:text-white dark:hover:bg-white/5 cursor-pointer flex items-center gap-2"
-                >
-                  <Folder className="w-3.5 h-3.5" /> {item}
-                </div>
-              ))}
-            </div>
-            <div className="text-[10px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest mt-6 mb-4">
-              Tags
-            </div>
-            <div className="space-y-1">
-              <div className="px-3 py-1.5 rounded-lg text-sm text-zinc-600 dark:text-zinc-400 hover:bg-black/5 dark:hover:text-white dark:hover:bg-white/5 cursor-pointer flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-red-500" /> Urgent
-              </div>
-              <div className="px-3 py-1.5 rounded-lg text-sm text-zinc-600 dark:text-zinc-400 hover:bg-black/5 dark:hover:text-white dark:hover:bg-white/5 cursor-pointer flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-blue-500" /> Active
-              </div>
+            <div className="text-sm text-zinc-500 dark:text-zinc-400">
+              ({projectCount} {projectCount === 1 ? "project" : "projects"})
             </div>
           </div>
-
-          <div className="flex-1 p-6 overflow-y-auto custom-scrollbar relative z-10 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-100">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03] dark:opacity-[0.03] pointer-events-none transform -rotate-12 scale-125">
-              <CategoryIcon strokeWidth={0.5} size={400} className="text-zinc-900 dark:text-white" />
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1 bg-white dark:bg-zinc-800 rounded-lg p-1 border border-black/5 dark:border-white/10">
+              <button
+                onClick={() => setViewMode("grid")}
+                className={`p-1.5 rounded transition-colors ${
+                  viewMode === "grid"
+                    ? "bg-zinc-900 dark:bg-white text-white dark:text-black"
+                    : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
+                }`}
+                aria-label="Grid view"
+              >
+                <Grid className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => setViewMode("list")}
+                className={`p-1.5 rounded transition-colors ${
+                  viewMode === "list"
+                    ? "bg-zinc-900 dark:bg-white text-white dark:text-black"
+                    : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
+                }`}
+                aria-label="List view"
+              >
+                <List className="w-4 h-4" />
+              </button>
             </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 relative z-10">
-              {category.projects.map((project, i) => (
-                <div
-                  key={project.name}
-                  className="group cursor-pointer"
-                  onClick={() =>
-                    setSelectedFile({
-                      name: project.name,
-                      src: project.image,
-                      type: "image",
-                      client: project.name,
-                      scope: project.scope,
-                      year: project.year,
-                      impact: project.impact,
-                      meta: project.meta
-                    })
-                  }
-                >
-                  <div className="aspect-square rounded-xl bg-white dark:bg-zinc-800 overflow-hidden border border-black/5 dark:border-white/5 mb-3 relative shadow-sm dark:shadow-lg group-hover:ring-2 ring-blue-500/50 transition-all">
-                    <img
-                      src={project.image}
-                      alt={project.name}
-                      className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity"
-                      loading={i < 4 ? "eager" : "lazy"}
-                      decoding="async"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
-                      <ImageIcon className="w-4 h-4 text-white" />
-                    </div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-sm text-zinc-900 dark:text-white font-medium group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors truncate">
-                      {project.name}
-                    </div>
-                    <div className="text-[10px] text-zinc-500">{category.size} • LIVE</div>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <button
+              onClick={handleClose}
+              className="w-8 h-8 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 flex items-center justify-center transition-colors"
+              aria-label="Close"
+            >
+              <X className="w-5 h-5 text-zinc-600 dark:text-zinc-400" />
+            </button>
           </div>
         </div>
 
-        <div className="h-8 bg-white/[0.02] border-t border-black/5 dark:border-white/5 flex items-center px-4 text-[10px] text-zinc-400 dark:text-zinc-500 relative z-10">
-          {category.images.length + 3} items selected • {category.size} available
+        {/* Content */}
+        <div className="flex-1 p-6 md:p-8 overflow-y-auto custom-scrollbar relative z-10">
+          {viewMode === "grid" ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {category.projects.map((project, i) => {
+                const hasImageError = imageErrors[project.name];
+                const services = getServicesFromTags(project.tags);
+                const industry = getIndustryType(project.scope, project.tags);
+                const proofPoint = formatProofPoint(project.impact);
+
+                return (
+                  <div
+                    key={project.name}
+                    className="group cursor-pointer focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 rounded-xl"
+                    style={
+                      !prefersReducedMotion
+                        ? {
+                            animation: `fadeIn 0.3s ease-out ${i * 0.03}s forwards`,
+                            opacity: 0
+                          }
+                        : undefined
+                    }
+                    onClick={() =>
+                      setSelectedFile({
+                        name: project.name,
+                        src: project.image,
+                        type: "image",
+                        client: project.name,
+                        scope: project.scope,
+                        year: project.year,
+                        impact: project.impact,
+                        meta: project.meta
+                      })
+                    }
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        setSelectedFile({
+                          name: project.name,
+                          src: project.image,
+                          type: "image",
+                          client: project.name,
+                          scope: project.scope,
+                          year: project.year,
+                          impact: project.impact,
+                          meta: project.meta
+                        });
+                      }
+                    }}
+                    tabIndex={0}
+                    role="button"
+                    aria-label={`View ${project.name} case study`}
+                  >
+                    <div
+                      className={`bg-white dark:bg-zinc-800 rounded-xl border border-black/5 dark:border-white/5 overflow-hidden shadow-sm hover:shadow-xl ${
+                        prefersReducedMotion
+                          ? "transition-shadow duration-150"
+                          : "transition-all duration-150 ease-out transform hover:-translate-y-1"
+                      }`}
+                    >
+                      {/* Thumbnail */}
+                      <div className="aspect-[4/3] relative overflow-hidden bg-zinc-100 dark:bg-zinc-900">
+                        {hasImageError ? (
+                          <ProjectPlaceholder name={project.name} tags={project.tags} />
+                        ) : (
+                          <>
+                            <img
+                              src={project.image}
+                              alt={`${project.name} screenshot`}
+                              className="w-full h-full object-cover transition-opacity duration-150"
+                              loading={i < 6 ? "eager" : "lazy"}
+                              decoding="async"
+                              onError={() => handleImageError(project.name)}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-150 flex items-end p-4">
+                              <span className="text-white text-sm font-medium flex items-center gap-2">
+                                View Case Study <ArrowRight className="w-4 h-4" />
+                              </span>
+                            </div>
+                          </>
+                        )}
+                      </div>
+
+                      {/* Content */}
+                      <div className="p-5">
+                        <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-1.5 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                          {project.name}
+                        </h3>
+                        <div className="text-sm text-zinc-600 dark:text-zinc-400 mb-3">
+                          {industry}
+                        </div>
+                        <div className="text-sm font-medium text-zinc-900 dark:text-white mb-4">
+                          {proofPoint}
+                        </div>
+                        <div className="flex flex-wrap gap-2">
+                          {services.slice(0, 3).map((service) => (
+                            <span
+                              key={service}
+                              className="px-2.5 py-1 rounded-md bg-zinc-100 dark:bg-zinc-700/50 text-xs text-zinc-700 dark:text-zinc-300 font-medium"
+                            >
+                              {service}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="space-y-4">
+              {category.projects.map((project, i) => {
+                const hasImageError = imageErrors[project.name];
+                const services = getServicesFromTags(project.tags);
+                const industry = getIndustryType(project.scope, project.tags);
+                const proofPoint = formatProofPoint(project.impact);
+
+                return (
+                  <div
+                    key={project.name}
+                    className="group cursor-pointer focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 rounded-xl"
+                    style={
+                      !prefersReducedMotion
+                        ? {
+                            animation: `fadeIn 0.3s ease-out ${i * 0.03}s forwards`,
+                            opacity: 0
+                          }
+                        : undefined
+                    }
+                    onClick={() =>
+                      setSelectedFile({
+                        name: project.name,
+                        src: project.image,
+                        type: "image",
+                        client: project.name,
+                        scope: project.scope,
+                        year: project.year,
+                        impact: project.impact,
+                        meta: project.meta
+                      })
+                    }
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        setSelectedFile({
+                          name: project.name,
+                          src: project.image,
+                          type: "image",
+                          client: project.name,
+                          scope: project.scope,
+                          year: project.year,
+                          impact: project.impact,
+                          meta: project.meta
+                        });
+                      }
+                    }}
+                    tabIndex={0}
+                    role="button"
+                    aria-label={`View ${project.name} case study`}
+                  >
+                    <div
+                      className={`bg-white dark:bg-zinc-800 rounded-xl border border-black/5 dark:border-white/5 overflow-hidden shadow-sm hover:shadow-xl ${
+                        prefersReducedMotion ? "transition-shadow duration-150" : "transition-all duration-150 ease-out"
+                      } flex`}
+                    >
+                      <div className="w-32 md:w-40 aspect-square relative overflow-hidden bg-zinc-100 dark:bg-zinc-900 flex-shrink-0">
+                        {hasImageError ? (
+                          <ProjectPlaceholder name={project.name} tags={project.tags} />
+                        ) : (
+                          <img
+                            src={project.image}
+                            alt={`${project.name} screenshot`}
+                            className="w-full h-full object-cover"
+                            loading={i < 3 ? "eager" : "lazy"}
+                            decoding="async"
+                            onError={() => handleImageError(project.name)}
+                          />
+                        )}
+                      </div>
+                      <div className="flex-1 p-5 flex flex-col justify-between">
+                        <div>
+                          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-1.5 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                            {project.name}
+                          </h3>
+                          <div className="text-sm text-zinc-600 dark:text-zinc-400 mb-2">
+                            {industry}
+                          </div>
+                          <div className="text-sm font-medium text-zinc-900 dark:text-white mb-3">
+                            {proofPoint}
+                          </div>
+                        </div>
+                        <div className="flex flex-wrap gap-2">
+                          {services.slice(0, 3).map((service) => (
+                            <span
+                              key={service}
+                              className="px-2.5 py-1 rounded-md bg-zinc-100 dark:bg-zinc-700/50 text-xs text-zinc-700 dark:text-zinc-300 font-medium"
+                            >
+                              {service}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+
+        {/* Footer */}
+        <div className="h-14 border-t border-black/5 dark:border-white/5 flex items-center justify-between px-6 bg-white/[0.02] relative z-10">
+          <div className="text-sm text-zinc-600 dark:text-zinc-400">
+            {projectCount} {projectCount === 1 ? "project" : "projects"} in {category.name}
+          </div>
+          <a
+            href="#contact"
+            onClick={handleClose}
+            className="text-sm font-medium text-zinc-900 dark:text-white hover:text-purple-600 dark:hover:text-purple-400 transition-colors flex items-center gap-2 group"
+          >
+            Want results like these? Start a project{" "}
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </a>
         </div>
       </div>
     </div>
