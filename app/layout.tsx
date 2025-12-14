@@ -1,12 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap"
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://liftoff.design"),
@@ -78,9 +71,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${inter.variable} antialiased bg-[#F2F2F2] text-zinc-900 dark:bg-[#050505] dark:text-white`}
-      >
+      <body className="antialiased bg-[#F2F2F2] text-zinc-900 dark:bg-[#050505] dark:text-white">
         {children}
       </body>
     </html>

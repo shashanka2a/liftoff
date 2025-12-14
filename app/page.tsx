@@ -1491,7 +1491,7 @@ const Hero = ({
           </div>
         </FadeIn>
 
-        <h1 className="text-6xl md:text-8xl lg:text-[120px] font-semibold tracking-tighter text-zinc-900 dark:text-white mb-8 leading-[0.9] text-left relative z-10">
+        <h1 className="text-[36px] md:text-[56px] font-bold text-zinc-900 dark:text-white mb-8 leading-[1.1] tracking-[-0.02em] text-left relative z-10">
           <WordReveal text="Strategic." delay={0} />
           <div className="h-2 md:h-4" />
           <WordReveal
@@ -1502,7 +1502,7 @@ const Hero = ({
         </h1>
 
         <FadeIn delay={600}>
-          <p className="text-lg md:text-xl text-zinc-500 dark:text-[#A0A0A0] max-w-3xl leading-relaxed font-normal mb-12 text-left relative z-10">
+          <p className="text-[16px] text-zinc-500 dark:text-[#A0A0A0] max-w-3xl leading-[1.6] font-normal mb-12 text-left relative z-10">
             A premium design and development agency crafting world-class digital products.
             We merge strategic branding with scalable engineering to build the infrastructure of
             tomorrow.
@@ -1608,7 +1608,7 @@ const WorkSection = ({ onOpenFolder }: { onOpenFolder: (category: Category) => v
     <section ref={ref} id="work" className="px-4 md:px-8 pb-32 max-w-[1600px] mx-auto overflow-hidden">
       <FadeIn className="mb-16 flex items-end justify-between px-2">
         <div>
-          <h2 className="text-3xl font-semibold text-zinc-900 dark:text-white flex items-center gap-3">
+          <h2 className="text-[22px] md:text-[28px] font-semibold text-zinc-900 dark:text-white flex items-center gap-3">
             Project Archives <span className="text-zinc-400 dark:text-zinc-600 font-light">/</span>{" "}
             <span className="text-zinc-400 dark:text-zinc-600 text-xl font-mono">projects.md</span>
           </h2>
@@ -2144,7 +2144,7 @@ const GrowthAnimation = () => (
 const Features = () => (
   <section id="features" className="px-4 md:px-8 pb-32 max-w-[1600px] mx-auto">
     <FadeIn className="mb-12">
-      <h2 className="text-3xl font-semibold text-zinc-900 dark:text-white flex items-center gap-3">
+      <h2 className="text-[22px] md:text-[28px] font-semibold text-zinc-900 dark:text-white flex items-center gap-3">
         Capabilities <span className="text-zinc-400 dark:text-zinc-600 font-light">/</span>{" "}
         <span className="text-zinc-400 dark:text-zinc-600 text-xl font-mono">SERVICES</span>
       </h2>
@@ -2160,10 +2160,10 @@ const Features = () => (
               <div className="w-16 h-16 rounded-2xl bg-purple-50 dark:bg-purple-500/20 border border-purple-100 dark:border-purple-500/30 flex items-center justify-center mb-8">
                 <LayoutGrid className="w-8 h-8 text-purple-500 dark:text-purple-300" />
               </div>
-              <h3 className="text-4xl md:text-5xl font-medium text-zinc-900 dark:text-white mb-6">
+              <h3 className="text-[18px] font-semibold text-zinc-900 dark:text-white mb-6">
                 Product Design
               </h3>
-              <p className="text-xl text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-lg mb-8">
+              <p className="text-[16px] text-zinc-500 dark:text-zinc-400 leading-[1.6] max-w-lg mb-8">
                 We craft intuitive, human-centric interfaces. From complex design systems to
                 high-fidelity prototyping, we bridge the gap between user needs and business goals.
               </p>
@@ -2198,11 +2198,11 @@ const Features = () => (
                 <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-500/20 border border-blue-100 dark:border-blue-500/30 flex items-center justify-center">
                   <Zap className="w-6 h-6 text-blue-500 dark:text-blue-400" />
                 </div>
-                <h3 className="text-3xl font-medium text-zinc-900 dark:text-white">
+                <h3 className="text-[18px] font-semibold text-zinc-900 dark:text-white">
                   Brand Identity
                 </h3>
               </div>
-              <p className="text-lg text-zinc-500 dark:text-zinc-400 max-w-md">
+              <p className="text-[16px] text-zinc-500 dark:text-zinc-400 leading-[1.6] max-w-md">
                 Strategy, Logo Design, & Art Direction that cuts through the noise.
               </p>
             </div>
@@ -2221,10 +2221,10 @@ const Features = () => (
               <div className="w-12 h-12 rounded-xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-700/50 flex items-center justify-center mb-6">
                 <Terminal className="w-6 h-6 text-zinc-600 dark:text-zinc-300" />
               </div>
-              <h4 className="text-3xl text-zinc-900 dark:text-white font-medium mb-2">
+              <h4 className="text-[18px] text-zinc-900 dark:text-white font-semibold mb-2">
                 Development
               </h4>
-              <p className="text-zinc-600 dark:text-zinc-400 mb-6">Robust engineering for scalable applications.</p>
+              <p className="text-[16px] text-zinc-600 dark:text-zinc-400 leading-[1.6] mb-6">Robust engineering for scalable applications.</p>
               <div className="h-24 w-full rounded-lg overflow-hidden bg-zinc-900/5 dark:bg-zinc-800/30 border border-black/5 dark:border-white/5">
                 <DevelopmentAnimation />
               </div>
@@ -2250,8 +2250,8 @@ const Features = () => (
               <div className="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-500/20 border border-amber-100 dark:border-amber-500/30 flex items-center justify-center mb-6">
                 <BarChart3 className="w-6 h-6 text-amber-600 dark:text-amber-400" />
               </div>
-              <h4 className="text-3xl text-zinc-900 dark:text-white font-medium mb-2">Growth</h4>
-              <p className="text-zinc-600 dark:text-zinc-400 mb-6">Data-driven strategies for user acquisition.</p>
+              <h4 className="text-[18px] text-zinc-900 dark:text-white font-semibold mb-2">Growth</h4>
+              <p className="text-[16px] text-zinc-600 dark:text-zinc-400 leading-[1.6] mb-6">Data-driven strategies for user acquisition.</p>
               <div className="h-24 w-full rounded-lg overflow-hidden bg-white/40 dark:bg-white/5 border border-black/5 dark:border-white/5">
                 <GrowthAnimation />
               </div>
