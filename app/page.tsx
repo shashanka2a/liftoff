@@ -1485,7 +1485,7 @@ const Hero = ({
           </div>
         </FadeIn>
         <FadeIn delay={400}>
-          <div className="block">
+          <div className="block hidden md:block">
             <span className="text-zinc-900 dark:text-white">Engineering Your Success</span>
           </div>
         </FadeIn>
@@ -1781,8 +1781,8 @@ const ProductDesignAnimation = () => (
     <rect x="8" y="59" width="32" height="8" rx="1" fill="rgb(113 113 122 / 0.1)" className="fade-in" style={{ animationDelay: "0.4s" }} />
     <rect x="8" y="71" width="24" height="8" rx="1" fill="rgb(113 113 122 / 0.1)" className="fade-in" style={{ animationDelay: "0.45s" }} />
     
-    {/* Active Layer Indicator */}
-    <rect x="4" y="35" width="2" height="8" rx="1" fill="rgb(39 39 42)" className="fade-in" style={{ animationDelay: "0.5s" }} />
+    {/* Active Layer Indicator - using black for highlight */}
+    <rect x="4" y="35" width="2" height="8" rx="1" fill="rgb(9 9 11)" className="fade-in" style={{ animationDelay: "0.5s" }} />
     
     {/* Main Canvas Area */}
     <rect
@@ -1839,26 +1839,26 @@ const ProductDesignAnimation = () => (
         fill="rgb(113 113 122 / 0.1)"
       />
       
-      {/* Card Button */}
+      {/* Card Button - using black/grey for highlight */}
       <rect
         x="70"
         y="92"
         width="35"
         height="8"
         rx="4"
-        fill="rgb(39 39 42 / 0.4)"
+        fill="rgb(9 9 11 / 0.5)"
         className="select-element"
         style={{ animationDelay: "1.5s" }}
       />
       
-      {/* Selection Handles */}
-      <circle cx="65" cy="45" r="3" fill="rgb(39 39 42)" className="resize-handle" />
-      <circle cx="145" cy="45" r="3" fill="rgb(39 39 42)" className="resize-handle" />
-      <circle cx="65" cy="105" r="3" fill="rgb(39 39 42)" className="resize-handle" />
-      <circle cx="145" cy="105" r="3" fill="rgb(39 39 42)" className="resize-handle" />
+      {/* Selection Handles - using black for highlights */}
+      <circle cx="65" cy="45" r="3" fill="rgb(9 9 11)" className="resize-handle" />
+      <circle cx="145" cy="45" r="3" fill="rgb(9 9 11)" className="resize-handle" />
+      <circle cx="65" cy="105" r="3" fill="rgb(9 9 11)" className="resize-handle" />
+      <circle cx="145" cy="105" r="3" fill="rgb(9 9 11)" className="resize-handle" />
     </g>
     
-    {/* Design Mockup - Button Component */}
+    {/* Design Mockup - Button Component - using black/grey */}
     <g className="fade-in" style={{ animationDelay: "0.8s" }}>
       <rect
         x="155"
@@ -1866,7 +1866,7 @@ const ProductDesignAnimation = () => (
         width="35"
         height="20"
         rx="4"
-        fill="rgb(39 39 42 / 0.5)"
+        fill="rgb(9 9 11 / 0.6)"
         className="select-element"
         style={{ animationDelay: "2s" }}
       />
@@ -1907,7 +1907,7 @@ const ProductDesignAnimation = () => (
       />
     </g>
     
-    {/* Figma Cursor */}
+    {/* Figma Cursor - using black for highlight */}
     <g className="cursor">
       <defs>
         <filter id="cursorShadow">
@@ -1920,18 +1920,18 @@ const ProductDesignAnimation = () => (
       </defs>
       <path
         d="M 45 55 L 45 65 L 50 62 L 45 59 Z"
-        fill="rgb(39 39 42)"
+        fill="rgb(9 9 11)"
         filter="url(#cursorShadow)"
       />
     </g>
     
-    {/* Connection Lines (Design Flow) */}
+    {/* Connection Lines (Design Flow) - using grey */}
     <line
       x1="105"
       y1="105"
       x2="105"
       y2="115"
-      stroke="rgb(113 113 122 / 0.4)"
+      stroke="rgb(63 63 70 / 0.5)"
       strokeWidth="1.5"
       strokeLinecap="round"
       strokeDasharray="3 3"
@@ -2016,7 +2016,7 @@ const BrandIdentityAnimation = () => (
         `}
       </style>
       <text
-        x="50"
+        x="40"
         y="45"
         textAnchor="middle"
         fontSize="42"
@@ -2031,28 +2031,28 @@ const BrandIdentityAnimation = () => (
         Aa
       </text>
       <circle
-        cx="75"
+        cx="85"
         cy="25"
         r="8"
         className="color-swatch"
         style={{ animationDelay: "0s" } as React.CSSProperties}
       />
       <circle
-        cx="88"
+        cx="98"
         cy="25"
         r="8"
         className="color-swatch"
         style={{ animationDelay: "1.25s" } as React.CSSProperties}
       />
       <circle
-        cx="75"
+        cx="85"
         cy="40"
         r="8"
         className="color-swatch"
         style={{ animationDelay: "2.5s" } as React.CSSProperties}
       />
       <circle
-        cx="88"
+        cx="98"
         cy="40"
         r="8"
         className="color-swatch"
@@ -2301,10 +2301,10 @@ const GrowthAnimation = () => (
     </style>
     {/* Chart background with subtle shimmer */}
     <rect
-      x="15"
-      y="15"
-      width="170"
-      height="90"
+      x="20"
+      y="20"
+      width="160"
+      height="75"
       rx="4"
       fill="rgb(250 250 250 / 0.6)"
       stroke="rgb(113 113 122 / 0.15)"
@@ -2313,92 +2313,92 @@ const GrowthAnimation = () => (
     />
     {/* Grid lines */}
     <line
-      x1="15"
+      x1="20"
       y1="60"
-      x2="185"
+      x2="180"
       y2="60"
       stroke="rgb(113 113 122 / 0.1)"
       strokeWidth="1"
       strokeDasharray="4 4"
     />
     <line
-      x1="15"
+      x1="20"
       y1="40"
-      x2="185"
+      x2="180"
       y2="40"
       stroke="rgb(113 113 122 / 0.1)"
       strokeWidth="1"
       strokeDasharray="4 4"
     />
-    {/* Bars with enhanced styling */}
+    {/* Bars with enhanced styling - fixed boundaries */}
     <rect
-      x="35"
+      x="40"
       y="85"
       width="18"
       height="0"
       fill="rgb(113 113 122 / 0.35)"
       className="grow-bar"
       rx="2"
-      style={{ "--target-height": "25px", animationDelay: "0.2s" } as React.CSSProperties}
+      style={{ "--target-height": "20px", animationDelay: "0.2s" } as React.CSSProperties}
     />
     <rect
-      x="65"
+      x="70"
       y="85"
       width="18"
       height="0"
       fill="rgb(113 113 122 / 0.35)"
       className="grow-bar"
       rx="2"
-      style={{ "--target-height": "45px", animationDelay: "0.35s" } as React.CSSProperties}
+      style={{ "--target-height": "40px", animationDelay: "0.35s" } as React.CSSProperties}
     />
     <rect
-      x="95"
+      x="100"
       y="85"
       width="18"
       height="0"
       fill="rgb(63 63 70 / 0.5)"
       className="grow-bar"
       rx="2"
-      style={{ "--target-height": "65px", animationDelay: "0.5s" } as React.CSSProperties}
+      style={{ "--target-height": "55px", animationDelay: "0.5s" } as React.CSSProperties}
     />
     <rect
-      x="125"
+      x="130"
       y="85"
       width="18"
       height="0"
       fill="rgb(39 39 42 / 0.6)"
       className="grow-bar"
       rx="2"
-      style={{ "--target-height": "55px", animationDelay: "0.65s" } as React.CSSProperties}
+      style={{ "--target-height": "50px", animationDelay: "0.65s" } as React.CSSProperties}
     />
-    {/* Data points */}
+    {/* Data points - adjusted to fit within chart */}
     <circle
-      cx="44"
-      cy="70"
+      cx="49"
+      cy="75"
       r="2.5"
       fill="rgb(63 63 70 / 0.6)"
       className="pulse-dot"
       style={{ animationDelay: "1.8s" }}
     />
     <circle
-      cx="74"
-      cy="50"
+      cx="79"
+      cy="55"
       r="2.5"
       fill="rgb(63 63 70 / 0.6)"
       className="pulse-dot"
       style={{ animationDelay: "2s" }}
     />
     <circle
-      cx="104"
-      cy="30"
+      cx="109"
+      cy="35"
       r="2.5"
       fill="rgb(39 39 42 / 0.8)"
       className="pulse-dot"
       style={{ animationDelay: "2.2s" }}
     />
     <circle
-      cx="134"
-      cy="40"
+      cx="139"
+      cy="45"
       r="2.5"
       fill="rgb(63 63 70 / 0.6)"
       className="pulse-dot"
@@ -2406,22 +2406,22 @@ const GrowthAnimation = () => (
     />
     {/* Floating arrows */}
     <path
-      d="M 104 25 L 104 15 L 101 18 L 104 15 L 107 18 Z"
-      fill="rgb(63 63 70 / 0.5)"
+      d="M 109 30 L 109 20 L 106 23 L 109 20 L 112 23 Z"
+      fill="rgb(39 39 42 / 0.6)"
       className="float-arrow"
       style={{ animationDelay: "2.5s" }}
     />
     <path
-      d="M 110 20 L 110 10 L 107 13 L 110 10 L 113 13 Z"
-      fill="rgb(63 63 70 / 0.4)"
+      d="M 115 25 L 115 15 L 112 18 L 115 15 L 118 18 Z"
+      fill="rgb(39 39 42 / 0.5)"
       className="float-arrow"
       style={{ animationDelay: "3.5s" }}
     />
-    {/* Line connecting points */}
+    {/* Line connecting points - adjusted to fit within chart */}
     <polyline
-      points="50,65 80,45 110,25 140,35"
+      points="49,75 79,55 109,35 139,45"
       fill="none"
-      stroke="rgb(113 113 122 / 0.3)"
+      stroke="rgb(39 39 42 / 0.4)"
       strokeWidth="2"
       strokeDasharray="200"
       className="draw-line"
@@ -2453,8 +2453,9 @@ const Features = () => (
                 Product Design
               </h3>
               <p className="text-[16px] text-zinc-500 dark:text-zinc-400 leading-[1.6] max-w-lg mb-8">
-                We craft intuitive, human-centric interfaces. From complex design systems to
-                high-fidelity prototyping, we bridge the gap between user needs and business goals.
+                Intuitive interfaces that connect users with your product.
+                <br />
+                Design systems and prototypes that turn vision into reality.
               </p>
               <div className="flex flex-wrap gap-3">
                 {["UI/UX", "Design Systems", "Prototyping", "User Research"].map((tag) => (
@@ -2492,7 +2493,7 @@ const Features = () => (
                 </h3>
               </div>
               <p className="text-[16px] text-zinc-500 dark:text-zinc-400 leading-[1.6] max-w-md">
-                Strategy, Logo Design, & Art Direction that cuts through the noise.
+                Strategy, logo design, and art direction that cuts through the noise.
               </p>
             </div>
 
