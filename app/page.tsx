@@ -44,7 +44,9 @@ import {
   Palette,
   Code,
   Rocket,
-  Sparkles
+  Sparkles,
+  Star,
+  Quote
 } from "lucide-react";
 
 type WindowState = "maximized" | "minimized" | "closed" | "normal";
@@ -83,7 +85,7 @@ type Project = {
 const liveCategories: Category[] = [
   {
     name: "Campus & Marketplaces",
-    count: "04",
+    count: "03",
     size: "Live + Coming",
     images: [
       "https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.kampus.fun/",
@@ -120,22 +122,12 @@ const liveCategories: Category[] = [
         impact: "Pilot waitlist",
         meta: "12-24h harvest-to-delivery, zero-waste model, traceable supply for communities.",
         tags: ["Agri", "Fresh Produce", "Coming Soon"]
-      },
-      {
-        name: "Markit",
-        url: "https://www.markit.one/",
-        image: "https://image.thum.io/get/width/1400/crop/900/noanimate/https://www.markit.one/",
-        scope: "Creator growth suite",
-        year: "2025",
-        impact: "Coming soon",
-        meta: "Forms, video, QR, unified CRM with 60% cost savings positioning.",
-        tags: ["SaaS", "Growth", "Coming Soon"]
       }
     ]
   },
   {
     name: "Commerce & Ops OS",
-    count: "04",
+    count: "03",
     size: "Live + Coming",
     images: [
       "https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.menuos.app/",
@@ -172,22 +164,12 @@ const liveCategories: Category[] = [
         impact: "Coming soon",
         meta: "Ops + guest experience for vacation rentals with automation and guest portal.",
         tags: ["Hospitality", "SaaS", "Coming Soon"]
-      },
-      {
-        name: "Payd",
-        url: "https://www.payd.plus/",
-        image: "https://image.thum.io/get/width/1400/crop/900/noanimate/https://www.payd.plus/",
-        scope: "Finance OS",
-        year: "2025",
-        impact: "Coming soon",
-        meta: "Unified invoices, subscriptions, and cross-border settlements with fiat + crypto.",
-        tags: ["Fintech", "Payments", "Coming Soon"]
       }
     ]
   },
   {
     name: "Product & Growth",
-    count: "04",
+    count: "03",
     size: "Live + Coming",
     images: [
       "https://image.thum.io/get/width/1200/crop/900/noanimate/https://productjoy.co/",
@@ -224,16 +206,6 @@ const liveCategories: Category[] = [
         impact: "50k+ creators (claimed)",
         meta: "Concept-to-code platform with AI, design systems, export, and deploy.",
         tags: ["DevTools", "Design", "Coming Soon"]
-      },
-      {
-        name: "Threadz",
-        url: "https://www.threadz.studio/",
-        image: "https://image.thum.io/get/width/1400/crop/900/noanimate/https://www.threadz.studio/",
-        scope: "AI streetwear creation",
-        year: "2025",
-        impact: "Coming soon",
-        meta: "AI apparel design platform blending fashion tech and generative workflows.",
-        tags: ["AI", "Fashion", "Coming Soon"]
       }
     ]
   },
@@ -1466,49 +1438,107 @@ const Hero = ({
 }) => (
   <section
     id="hero"
-    className="pt-24 pb-12 px-4 md:px-8 max-w-[1600px] mx-auto transition-all duration-500"
+    className="relative min-h-screen flex items-center justify-center px-4 md:px-8 py-[120px] overflow-hidden"
   >
-    <WindowFrame
-      windowState={windowState}
-      setWindowState={setWindowState}
-      className="min-h-[75vh] flex flex-col items-center justify-center relative w-full"
-    >
-      <div className="absolute top-0 left-1/4 -translate-x-1/2 w-[800px] h-[600px] bg-indigo-200/40 dark:bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none mix-blend-screen" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-200/40 dark:bg-blue-500/10 rounded-full blur-[120px] pointer-events-none mix-blend-screen" />
+    {/* Warm off-white background with radial gradient glow */}
+    <div className="absolute inset-0 bg-gradient-to-b from-[#FAFAF8] via-white to-[#F5F5F3] dark:from-[#0A0A0A] dark:via-[#050505] dark:to-[#0A0A0A]" />
+    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0.02),transparent_70%)] dark:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.01),transparent_70%)]" />
+    
+    {/* Glassmorphism cards behind content */}
+    <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-white/30 dark:bg-white/5 backdrop-blur-2xl rounded-3xl border border-black/5 dark:border-white/5 shadow-xl -rotate-6 opacity-40" />
+    <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-white/20 dark:bg-white/3 backdrop-blur-2xl rounded-3xl border border-black/5 dark:border-white/5 shadow-xl rotate-6 opacity-30" />
 
-      {/* Animated Hero Illustration */}
-      <HeroIllustration />
+    {/* Decorative floating icons */}
+    <div className="absolute top-20 right-20 w-12 h-12 bg-white/60 dark:bg-white/5 backdrop-blur-md rounded-xl border border-black/5 dark:border-white/5 flex items-center justify-center shadow-lg rotate-12 opacity-60">
+      <Zap className="w-6 h-6 text-zinc-700 dark:text-zinc-300" />
+    </div>
+    <div className="absolute bottom-32 left-16 w-10 h-10 bg-white/50 dark:bg-white/5 backdrop-blur-md rounded-lg border border-black/5 dark:border-white/5 flex items-center justify-center shadow-md -rotate-6 opacity-50">
+      <Code className="w-5 h-5 text-zinc-600 dark:text-zinc-400" />
+    </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto w-full px-6 md:px-12 py-20 flex flex-col items-start justify-center h-full">
-        {/* Subtle depth gradient behind hero text */}
-        <div className="absolute inset-0 bg-gradient-to-br from-zinc-100/20 via-transparent to-zinc-50/10 dark:from-zinc-900/10 dark:via-transparent dark:to-zinc-800/5 rounded-3xl blur-3xl -z-10" />
-        
-        <h1 className="text-[40px] md:text-[72px] font-bold text-zinc-900 dark:text-white mb-8 leading-[1.1] tracking-[-0.02em] text-left relative z-10">
-          <WordReveal text="Strategic." delay={0} />
-          <div className="h-2 md:h-4" />
-          <WordReveal
-            text="Digital Products."
-            delay={200}
-            className="text-zinc-900 dark:text-zinc-100"
-          />
-        </h1>
+    {/* Floating testimonial cards */}
+    <div className="absolute left-8 top-1/2 -translate-y-1/2 w-80 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-xl rounded-2xl border border-black/5 dark:border-white/5 shadow-2xl p-6 -rotate-3 opacity-90 hidden lg:block">
+      <Quote className="w-6 h-6 text-zinc-400 dark:text-zinc-500 mb-3" />
+      <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed mb-3">
+        "LIFTOFF transformed our vision into a product that exceeded expectations. Their strategic approach and attention to detail is unmatched."
+      </p>
+      <p className="text-xs text-zinc-500 dark:text-zinc-400 font-medium">
+        — CEO, Tech Startup
+      </p>
+    </div>
 
-        <FadeIn delay={600}>
-          <p className="text-[16px] text-zinc-500 dark:text-[#A0A0A0] max-w-3xl leading-[1.6] font-normal mb-12 text-left relative z-10">
-            A premium design and development agency crafting world-class digital products.
-            We merge strategic branding with scalable engineering to build the infrastructure of
-            tomorrow.
-          </p>
-        </FadeIn>
+    <div className="absolute right-8 top-1/2 -translate-y-1/2 w-80 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-xl rounded-2xl border border-black/5 dark:border-white/5 shadow-2xl p-6 rotate-3 opacity-90 hidden lg:block">
+      <Quote className="w-6 h-6 text-zinc-400 dark:text-zinc-500 mb-3" />
+      <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed mb-3">
+        "Working with LIFTOFF was seamless. They delivered a world-class product that scaled beautifully from day one."
+      </p>
+      <p className="text-xs text-zinc-500 dark:text-zinc-400 font-medium">
+        — Founder, SaaS Platform
+      </p>
+    </div>
 
-        <FadeIn delay={800} className="flex flex-col sm:flex-row items-center justify-start gap-4 relative z-10">
-          <button className="h-14 px-10 rounded-xl bg-zinc-900 dark:bg-[#FAFAFA] text-white dark:text-black font-semibold text-sm hover:scale-105 active:scale-95 transition-all shadow-[0_0_50px_-10px_rgba(0,0,0,0.2)] dark:shadow-[0_0_50px_-10px_rgba(255,255,255,0.4)] flex items-center gap-2 group w-full sm:w-auto justify-center">
-            Start a Project
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </button>
-        </FadeIn>
-      </div>
-    </WindowFrame>
+    <div className="relative z-10 max-w-6xl mx-auto w-full text-center">
+      {/* Urgency Banner */}
+      <FadeIn delay={0}>
+        <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md rounded-full border border-black/5 dark:border-white/5 shadow-sm mb-8">
+          <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+          <span className="text-xs font-medium text-zinc-700 dark:text-zinc-300">
+            Only 2 open slots available!
+          </span>
+          <ArrowRight className="w-3 h-3 text-zinc-500" />
+        </div>
+      </FadeIn>
+
+      {/* Main Headline */}
+      <h1 className="text-[48px] md:text-[96px] lg:text-[120px] font-bold mb-8 leading-[1.05] tracking-[-0.03em]">
+        <WordReveal text="Strategic." delay={200} className="text-zinc-900 dark:text-white block" />
+        <div className="h-3 md:h-6" />
+        <WordReveal
+          text="Digital Products."
+          delay={400}
+          className="block bg-gradient-to-r from-[#8B5CF6] via-[#7C3AED] to-[#6366F1] bg-clip-text text-transparent"
+        />
+      </h1>
+
+      {/* Description */}
+      <FadeIn delay={600}>
+        <p className="text-[18px] md:text-[20px] text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto leading-relaxed mb-12 font-normal">
+          Trusted by startups and enterprises to design, build, and scale products that perform globally.
+        </p>
+      </FadeIn>
+
+      {/* CTA Button */}
+      <FadeIn delay={800}>
+        <button className="h-16 px-12 rounded-full bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 font-semibold text-base hover:scale-105 active:scale-95 transition-all shadow-2xl flex items-center gap-3 group mx-auto mb-10">
+          Start a Project
+          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+        </button>
+      </FadeIn>
+
+      {/* Trust Indicators */}
+      <FadeIn delay={1000}>
+        <div className="flex items-center justify-center gap-4">
+          {/* Avatar circles */}
+          <div className="flex -space-x-3">
+            {[1, 2, 3].map((i) => (
+              <div
+                key={i}
+                className="w-10 h-10 rounded-full bg-gradient-to-br from-zinc-200 to-zinc-300 dark:from-zinc-700 dark:to-zinc-800 border-2 border-white dark:border-zinc-900 flex items-center justify-center text-xs font-semibold text-zinc-700 dark:text-zinc-300"
+              >
+                {i === 1 ? "TH" : i === 2 ? "JD" : "SM"}
+              </div>
+            ))}
+          </div>
+          <span className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">+30</span>
+          <div className="flex items-center gap-1">
+            {[1, 2, 3, 4, 5].map((i) => (
+              <Star key={i} className="w-4 h-4 fill-zinc-900 dark:fill-white text-zinc-900 dark:text-white" />
+            ))}
+          </div>
+          <span className="text-sm text-zinc-600 dark:text-zinc-400">From 30+ reviews</span>
+        </div>
+      </FadeIn>
+    </div>
   </section>
 );
 
