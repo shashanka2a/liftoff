@@ -1629,6 +1629,518 @@ const WorkSection = ({ onOpenFolder }: { onOpenFolder: (category: Category) => v
   );
 };
 
+// SVG Animation Components
+const ProductDesignAnimation = () => (
+  <svg
+    viewBox="0 0 200 150"
+    className="w-full h-full"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <style>
+      {`
+        @keyframes drawLine {
+          0% { stroke-dashoffset: 100; }
+          100% { stroke-dashoffset: 0; }
+        }
+        @keyframes fadeIn {
+          0% { opacity: 0; }
+          100% { opacity: 1; }
+        }
+        @keyframes cursorBlink {
+          0%, 50% { opacity: 1; }
+          51%, 100% { opacity: 0; }
+        }
+        @keyframes moveCursor {
+          0% { transform: translate(20px, 40px); opacity: 0; }
+          5% { opacity: 1; }
+          25% { transform: translate(60px, 40px); }
+          50% { transform: translate(60px, 70px); }
+          75% { transform: translate(100px, 70px); }
+          95% { opacity: 1; }
+          100% { transform: translate(100px, 100px); opacity: 0; }
+        }
+        .draw-line {
+          stroke-dasharray: 100;
+          animation: drawLine 0.8s ease-out forwards;
+        }
+        .fade-in {
+          animation: fadeIn 0.4s ease-out forwards;
+          opacity: 0;
+        }
+        .cursor {
+          animation: cursorBlink 1s infinite, moveCursor 4s ease-in-out infinite;
+          animation-delay: 1.6s;
+        }
+      `}
+    </style>
+    {/* Header bar */}
+    <rect
+      x="10"
+      y="10"
+      width="180"
+      height="12"
+      rx="2"
+      fill="currentColor"
+      className="fade-in"
+      style={{ animationDelay: "0s", color: "rgb(113 113 122 / 0.2)" }}
+    />
+    {/* Sidebar */}
+    <rect
+      x="10"
+      y="28"
+      width="40"
+      height="112"
+      rx="2"
+      fill="currentColor"
+      className="fade-in"
+      style={{ animationDelay: "0.2s", color: "rgb(113 113 122 / 0.15)" }}
+    />
+    {/* Main content boxes */}
+    <rect
+      x="58"
+      y="28"
+      width="132"
+      height="30"
+      rx="2"
+      fill="currentColor"
+      className="fade-in"
+      style={{ animationDelay: "0.4s", color: "rgb(113 113 122 / 0.2)" }}
+    />
+    <rect
+      x="58"
+      y="66"
+      width="60"
+      height="30"
+      rx="2"
+      fill="currentColor"
+      className="fade-in"
+      style={{ animationDelay: "0.6s", color: "rgb(113 113 122 / 0.2)" }}
+    />
+    <rect
+      x="130"
+      y="66"
+      width="60"
+      height="30"
+      rx="2"
+      fill="currentColor"
+      className="fade-in"
+      style={{ animationDelay: "0.8s", color: "rgb(113 113 122 / 0.2)" }}
+    />
+    {/* Button */}
+    <rect
+      x="58"
+      y="104"
+      width="50"
+      height="20"
+      rx="3"
+      fill="currentColor"
+      className="fade-in"
+      style={{ animationDelay: "1s", color: "rgb(139 92 246 / 0.3)" }}
+    />
+    {/* Lines connecting elements */}
+    <line
+      x1="78"
+      y1="58"
+      x2="78"
+      y2="66"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      className="draw-line"
+      style={{ animationDelay: "1.2s", color: "rgb(113 113 122 / 0.3)" }}
+    />
+    <line
+      x1="88"
+      y1="96"
+      x2="88"
+      y2="104"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      className="draw-line"
+      style={{ animationDelay: "1.4s", color: "rgb(113 113 122 / 0.3)" }}
+    />
+    {/* Cursor */}
+    <g className="cursor" style={{ animationDelay: "1.6s" }}>
+      <path
+        d="M 20 40 L 20 50 L 25 47 L 20 44 Z"
+        fill="rgb(139 92 246 / 0.8)"
+      />
+    </g>
+  </svg>
+);
+
+const BrandIdentityAnimation = () => (
+  <div className="relative w-full h-full flex items-center justify-center">
+    <svg
+      viewBox="0 0 120 80"
+      className="w-full h-full max-w-[200px]"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <style>
+        {`
+          @keyframes morphLetter {
+            0% { font-weight: 100; letter-spacing: -0.05em; }
+            25% { font-weight: 400; letter-spacing: 0em; }
+            50% { font-weight: 700; letter-spacing: 0.02em; }
+            75% { font-weight: 900; letter-spacing: 0.05em; }
+            100% { font-weight: 100; letter-spacing: -0.05em; }
+          }
+          @keyframes rotateColor {
+            0% { fill: rgb(139 92 246 / 0.4); }
+            25% { fill: rgb(59 130 246 / 0.4); }
+            50% { fill: rgb(236 72 153 / 0.4); }
+            75% { fill: rgb(251 146 60 / 0.4); }
+            100% { fill: rgb(139 92 246 / 0.4); }
+          }
+          .morph-text {
+            animation: morphLetter 4s ease-in-out infinite;
+          }
+          .color-swatch {
+            animation: rotateColor 4s ease-in-out infinite;
+          }
+        `}
+      </style>
+      <text
+        x="60"
+        y="45"
+        textAnchor="middle"
+        fontSize="48"
+        fill="currentColor"
+        className="morph-text"
+        style={{
+          color: "rgb(113 113 122 / 0.3)",
+          fontFamily: "system-ui, -apple-system, sans-serif"
+        }}
+      >
+        Aa
+      </text>
+      <circle
+        cx="90"
+        cy="25"
+        r="8"
+        className="color-swatch"
+      />
+      <circle
+        cx="105"
+        cy="25"
+        r="8"
+        className="color-swatch"
+        style={{ animationDelay: "1s" } as React.CSSProperties}
+      />
+      <circle
+        cx="90"
+        cy="40"
+        r="8"
+        className="color-swatch"
+        style={{ animationDelay: "2s" } as React.CSSProperties}
+      />
+      <circle
+        cx="105"
+        cy="40"
+        r="8"
+        className="color-swatch"
+        style={{ animationDelay: "3s" } as React.CSSProperties}
+      />
+    </svg>
+  </div>
+);
+
+const DevelopmentAnimation = () => (
+  <svg
+    viewBox="0 0 200 120"
+    className="w-full h-full"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <style>
+      {`
+        @keyframes typeText {
+          0% { width: 0; opacity: 1; }
+          90% { width: 100%; opacity: 1; }
+          100% { width: 100%; opacity: 0; }
+        }
+        @keyframes blinkCursor {
+          0%, 50% { opacity: 1; }
+          51%, 100% { opacity: 0; }
+        }
+        @keyframes fadeInCheck {
+          0% { opacity: 0; transform: scale(0); }
+          20% { opacity: 1; transform: scale(1); }
+          80% { opacity: 1; transform: scale(1); }
+          100% { opacity: 0; transform: scale(0); }
+        }
+        @keyframes highlightSyntax {
+          0%, 100% { fill: rgb(113 113 122 / 0.4); }
+          50% { fill: rgb(139 92 246 / 0.6); }
+        }
+        .type-text {
+          overflow: hidden;
+          white-space: nowrap;
+          animation: typeText 1.5s steps(20) infinite;
+        }
+        .cursor-blink {
+          animation: blinkCursor 1s infinite;
+        }
+        .syntax-highlight {
+          animation: highlightSyntax 2s ease-in-out infinite;
+        }
+        .check-mark {
+          animation: fadeInCheck 6s ease-in-out infinite;
+          opacity: 0;
+        }
+      `}
+    </style>
+    {/* Terminal background */}
+    <rect
+      x="10"
+      y="10"
+      width="180"
+      height="100"
+      rx="4"
+      fill="rgb(9 9 11 / 0.8)"
+      stroke="rgb(113 113 122 / 0.2)"
+      strokeWidth="1"
+    />
+    {/* Terminal header */}
+    <rect
+      x="10"
+      y="10"
+      width="180"
+      height="20"
+      rx="4"
+      fill="rgb(39 39 42 / 0.9)"
+    />
+    <circle cx="20" cy="20" r="4" fill="rgb(239 68 68 / 0.6)" />
+    <circle cx="32" cy="20" r="4" fill="rgb(234 179 8 / 0.6)" />
+    <circle cx="44" cy="20" r="4" fill="rgb(34 197 94 / 0.6)" />
+    {/* Code lines */}
+    <text
+      x="20"
+      y="45"
+      fontSize="10"
+      fill="rgb(139 92 246 / 0.7)"
+      fontFamily="monospace"
+      className="type-text"
+      style={{ animationDelay: "0s", animationDuration: "1.2s" } as React.CSSProperties}
+    >
+      const app = () =&gt; {"{"}
+    </text>
+    <text
+      x="20"
+      y="60"
+      fontSize="10"
+      fill="rgb(113 113 122 / 0.6)"
+      fontFamily="monospace"
+      className="type-text"
+      style={{ animationDelay: "1.5s", animationDuration: "1.2s" } as React.CSSProperties}
+    >
+      &nbsp;&nbsp;return &lt;App /&gt;
+    </text>
+    <text
+      x="20"
+      y="75"
+      fontSize="10"
+      fill="rgb(113 113 122 / 0.6)"
+      fontFamily="monospace"
+      className="type-text"
+      style={{ animationDelay: "3s", animationDuration: "0.8s" } as React.CSSProperties}
+    >
+      {"}"}
+    </text>
+    {/* Cursor */}
+    <rect
+      x="20"
+      y="85"
+      width="8"
+      height="12"
+      fill="rgb(139 92 246 / 0.8)"
+      className="cursor-blink"
+      style={{ animationDelay: "4s" } as React.CSSProperties}
+    />
+    {/* Success checkmark */}
+    <g className="check-mark" style={{ animationDelay: "4.5s" } as React.CSSProperties}>
+      <circle
+        cx="170"
+        cy="70"
+        r="12"
+        fill="rgb(34 197 94 / 0.3)"
+      />
+      <path
+        d="M 165 70 L 168 73 L 175 66"
+        stroke="rgb(34 197 94)"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+    </g>
+  </svg>
+);
+
+const GrowthAnimation = () => (
+  <svg
+    viewBox="0 0 200 120"
+    className="w-full h-full"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <style>
+      {`
+        @keyframes growBar {
+          0% { height: 0; }
+          100% { height: var(--target-height); }
+        }
+        @keyframes drawLine {
+          0% { stroke-dashoffset: 200; }
+          100% { stroke-dashoffset: 0; }
+        }
+        @keyframes pulse {
+          0%, 100% { opacity: 0.6; }
+          50% { opacity: 1; }
+        }
+        @keyframes floatUp {
+          0% { transform: translateY(0); opacity: 0; }
+          20% { opacity: 1; }
+          100% { transform: translateY(-40px); opacity: 0; }
+        }
+        .grow-bar {
+          animation: growBar 1.5s ease-out forwards;
+          transform-origin: bottom;
+        }
+        .draw-line {
+          animation: drawLine 1.5s ease-out forwards;
+        }
+        .pulse-dot {
+          animation: pulse 2s ease-in-out infinite;
+        }
+        .float-arrow {
+          animation: floatUp 3s ease-out infinite;
+        }
+      `}
+    </style>
+    {/* Chart background */}
+    <rect
+      x="20"
+      y="20"
+      width="160"
+      height="80"
+      rx="4"
+      fill="rgb(250 250 250 / 0.5)"
+      stroke="rgb(113 113 122 / 0.1)"
+      strokeWidth="1"
+    />
+    {/* Grid lines */}
+    <line
+      x1="20"
+      y1="60"
+      x2="180"
+      y2="60"
+      stroke="rgb(113 113 122 / 0.1)"
+      strokeWidth="1"
+      strokeDasharray="4 4"
+    />
+    <line
+      x1="20"
+      y1="40"
+      x2="180"
+      y2="40"
+      stroke="rgb(113 113 122 / 0.1)"
+      strokeWidth="1"
+      strokeDasharray="4 4"
+    />
+    {/* Bars */}
+    <rect
+      x="40"
+      y="80"
+      width="20"
+      height="0"
+      fill="rgb(113 113 122 / 0.3)"
+      className="grow-bar"
+      style={{ "--target-height": "30px", animationDelay: "0.2s" } as React.CSSProperties}
+    />
+    <rect
+      x="70"
+      y="80"
+      width="20"
+      height="0"
+      fill="rgb(113 113 122 / 0.3)"
+      className="grow-bar"
+      style={{ "--target-height": "50px", animationDelay: "0.4s" } as React.CSSProperties}
+    />
+    <rect
+      x="100"
+      y="80"
+      width="20"
+      height="0"
+      fill="rgb(139 92 246 / 0.4)"
+      className="grow-bar"
+      style={{ "--target-height": "70px", animationDelay: "0.6s" } as React.CSSProperties}
+    />
+    <rect
+      x="130"
+      y="80"
+      width="20"
+      height="0"
+      fill="rgb(139 92 246 / 0.5)"
+      className="grow-bar"
+      style={{ "--target-height": "60px", animationDelay: "0.8s" } as React.CSSProperties}
+    />
+    {/* Data points */}
+    <circle
+      cx="50"
+      cy="65"
+      r="3"
+      fill="rgb(139 92 246 / 0.6)"
+      className="pulse-dot"
+      style={{ animationDelay: "1.8s" }}
+    />
+    <circle
+      cx="80"
+      cy="45"
+      r="3"
+      fill="rgb(139 92 246 / 0.6)"
+      className="pulse-dot"
+      style={{ animationDelay: "2s" }}
+    />
+    <circle
+      cx="110"
+      cy="25"
+      r="3"
+      fill="rgb(139 92 246 / 0.8)"
+      className="pulse-dot"
+      style={{ animationDelay: "2.2s" }}
+    />
+    <circle
+      cx="140"
+      cy="35"
+      r="3"
+      fill="rgb(139 92 246 / 0.6)"
+      className="pulse-dot"
+      style={{ animationDelay: "2.4s" }}
+    />
+    {/* Floating arrows */}
+    <path
+      d="M 110 20 L 110 10 L 107 13 L 110 10 L 113 13 Z"
+      fill="rgb(139 92 246 / 0.5)"
+      className="float-arrow"
+      style={{ animationDelay: "2.5s" }}
+    />
+    <path
+      d="M 110 20 L 110 10 L 107 13 L 110 10 L 113 13 Z"
+      fill="rgb(139 92 246 / 0.4)"
+      className="float-arrow"
+      style={{ animationDelay: "3.5s" }}
+    />
+    {/* Line connecting points */}
+    <polyline
+      points="50,65 80,45 110,25 140,35"
+      fill="none"
+      stroke="rgb(139 92 246 / 0.3)"
+      strokeWidth="2"
+      strokeDasharray="200"
+      className="draw-line"
+      style={{ animationDelay: "2.5s", animationDuration: "1.5s" } as React.CSSProperties}
+    />
+  </svg>
+);
+
 const Features = () => (
   <section id="features" className="px-4 md:px-8 pb-32 max-w-[1600px] mx-auto">
     <FadeIn className="mb-12">
@@ -1668,10 +2180,8 @@ const Features = () => (
             </div>
 
             <div className="relative z-10 flex-1 flex items-center justify-center">
-              <div className="relative w-full aspect-square md:aspect-[4/3] border border-black/5 dark:border-white/10 rounded-2xl bg-white/40 dark:bg-white/5 overflow-hidden flex items-center justify-center group-hover:bg-white/60 dark:group-hover:bg-white/10 transition-colors">
-                <div className="w-3/4 h-3/4 border border-dashed border-black/20 dark:border-white/30 rounded-xl flex items-center justify-center text-sm text-zinc-600 dark:text-zinc-400 font-mono tracking-widest opacity-50">
-                  INTERFACE_WIREFRAME_v2.0
-                </div>
+              <div className="relative w-full aspect-square md:aspect-[4/3] border border-black/5 dark:border-white/10 rounded-2xl bg-white/40 dark:bg-white/5 overflow-hidden flex items-center justify-center group-hover:bg-white/60 dark:group-hover:bg-white/10 transition-colors p-8">
+                <ProductDesignAnimation />
               </div>
             </div>
           </GlassCard>
@@ -1698,12 +2208,7 @@ const Features = () => (
             </div>
 
             <div className="flex-1 flex items-center justify-center h-40 md:h-auto w-full mt-8 md:mt-0 relative">
-              <div className="text-8xl font-black text-black/5 dark:text-white/5 tracking-tighter group-hover:text-black/10 dark:group-hover:text-white/10 transition-colors select-none">
-                Aa
-              </div>
-              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[10px] font-mono text-zinc-400 dark:text-zinc-600">
-                TYPOGRAPHY_SYSTEM
-              </div>
+              <BrandIdentityAnimation />
             </div>
           </GlassCard>
         </FadeIn>
@@ -1719,7 +2224,10 @@ const Features = () => (
               <h4 className="text-3xl text-zinc-900 dark:text-white font-medium mb-2">
                 Development
               </h4>
-              <p className="text-zinc-600 dark:text-zinc-400">Robust engineering for scalable applications.</p>
+              <p className="text-zinc-600 dark:text-zinc-400 mb-6">Robust engineering for scalable applications.</p>
+              <div className="h-24 w-full rounded-lg overflow-hidden bg-zinc-900/5 dark:bg-zinc-800/30 border border-black/5 dark:border-white/5">
+                <DevelopmentAnimation />
+              </div>
             </div>
             <div className="flex flex-wrap gap-2 mt-8">
               {["React", "Next.js", "WebGL", "Node"].map((tag) => (
@@ -1743,7 +2251,10 @@ const Features = () => (
                 <BarChart3 className="w-6 h-6 text-amber-600 dark:text-amber-400" />
               </div>
               <h4 className="text-3xl text-zinc-900 dark:text-white font-medium mb-2">Growth</h4>
-              <p className="text-zinc-600 dark:text-zinc-400">Data-driven strategies for user acquisition.</p>
+              <p className="text-zinc-600 dark:text-zinc-400 mb-6">Data-driven strategies for user acquisition.</p>
+              <div className="h-24 w-full rounded-lg overflow-hidden bg-white/40 dark:bg-white/5 border border-black/5 dark:border-white/5">
+                <GrowthAnimation />
+              </div>
             </div>
             <div className="flex flex-wrap gap-2 mt-8">
               {["SEO", "Analytics", "Conversion", "A/B Testing"].map((tag) => (
