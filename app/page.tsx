@@ -1478,7 +1478,7 @@ const Hero = ({
       </FadeIn>
 
       {/* Main Headline */}
-      <h1 className="text-[48px] md:text-[80px] lg:text-[96px] font-bold mb-8 leading-[1.1] tracking-[-0.02em] text-center">
+      <h1 className="text-[36px] md:text-[56px] lg:text-[64px] font-bold mb-8 leading-[1.1] tracking-[-0.02em] text-center">
         <FadeIn delay={200}>
           <div className="block text-zinc-900 dark:text-white mb-4">
             Strategic Product Design Studio
