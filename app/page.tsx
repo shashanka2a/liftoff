@@ -36,7 +36,10 @@ import {
   User,
   X,
   BookOpen,
-  Home
+  Home,
+  Box,
+  DollarSign,
+  Briefcase
 } from "lucide-react";
 
 type WindowState = "maximized" | "minimized" | "closed" | "normal";
@@ -231,12 +234,12 @@ const liveCategories: Category[] = [
   },
   {
     name: "AI & Automation",
-    count: "05",
+    count: "03",
     size: "Live + Coming",
     images: [
       "https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.workfloai.com/",
-      "https://image.thum.io/get/width/1200/crop/900/noanimate/https://letsvibe.dev/",
-      "https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.hackr.plus/"
+      "https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.hackr.plus/",
+      "https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.bluebeetle.online/"
     ],
     projects: [
       {
@@ -250,16 +253,6 @@ const liveCategories: Category[] = [
         tags: ["AI Agents", "Automation", "Live"]
       },
       {
-        name: "LetsVibe",
-        url: "https://letsvibe.dev/",
-        image: "https://image.thum.io/get/width/1400/crop/900/noanimate/https://letsvibe.dev/",
-        scope: "AI-native developer education",
-        year: "2025",
-        impact: "2.4k+ builders",
-        meta: "Gemini + Google AI Studio + Supabase curriculum with interactive demos.",
-        tags: ["Education", "AI", "Live"]
-      },
-      {
         name: "Hackr",
         url: "https://www.hackr.plus/",
         image: "https://image.thum.io/get/width/1400/crop/900/noanimate/https://www.hackr.plus/",
@@ -268,16 +261,6 @@ const liveCategories: Category[] = [
         impact: "Coming soon",
         meta: "AI-powered host/judge/hire platform spanning the hackathon lifecycle.",
         tags: ["Events", "AI", "Coming Soon"]
-      },
-      {
-        name: "Momint",
-        url: "https://www.momint.club/",
-        image: "https://image.thum.io/get/width/1400/crop/900/noanimate/https://www.momint.club/",
-        scope: "Creator ownership platform",
-        year: "2025",
-        impact: "Coming soon",
-        meta: "Turns creator moments into owned assets bridging engagement and lasting value.",
-        tags: ["Web3", "Creator", "Coming Soon"]
       },
       {
         name: "BlueBeetle",
@@ -312,6 +295,69 @@ const useOnScreen = (
   }, [options]);
 
   return [ref, visible];
+};
+
+const preloadImage = (src: string): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve();
+    img.onerror = reject;
+    img.src = src;
+  });
+};
+
+const useImagePreloader = (imageUrls: string[], enabled: boolean = true) => {
+  useEffect(() => {
+    if (!enabled || imageUrls.length === 0) return;
+
+    // Preload images with a small delay to avoid blocking initial render
+    const timeoutId = setTimeout(() => {
+      imageUrls.forEach((url) => {
+        preloadImage(url).catch(() => {
+          // Silently fail - image will load normally when needed
+        });
+      });
+    }, 100);
+
+    return () => clearTimeout(timeoutId);
+  }, [imageUrls, enabled]);
+};
+
+const useCountUp = (end: number, duration: number = 2000, startOnVisible: boolean = false) => {
+  const [count, setCount] = useState(0);
+  const [hasStarted, setHasStarted] = useState(!startOnVisible);
+  const [ref, visible] = useOnScreen({ threshold: 0.1 });
+
+  useEffect(() => {
+    if (startOnVisible && visible && !hasStarted) {
+      setHasStarted(true);
+    }
+
+    if (!hasStarted) return;
+
+    let startTime: number | null = null;
+    const startValue = 0;
+
+    const animate = (currentTime: number) => {
+      if (startTime === null) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+      const current = Math.floor(startValue + (end - startValue) * easeOut);
+      
+      setCount(current);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        setCount(end);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [end, duration, hasStarted, visible, startOnVisible]);
+
+  return [ref, count] as const;
 };
 
 const WordReveal = ({
@@ -756,6 +802,10 @@ const FolderWindow = ({
     setTimeout(onClose, 300);
   };
 
+  // Preload all project images when folder opens
+  const projectImages = category.projects.map((p) => p.image);
+  useImagePreloader(projectImages, !isClosing);
+
   const CategoryIcon =
     {
       "Campus OS": Smartphone,
@@ -860,7 +910,8 @@ const FolderWindow = ({
                       src={project.image}
                       alt={project.name}
                       className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity"
-                      loading="lazy"
+                      loading={i < 4 ? "eager" : "lazy"}
+                      decoding="async"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
                       <ImageIcon className="w-4 h-4 text-white" />
@@ -903,9 +954,14 @@ const FolderStack = ({
       Consumer: Smartphone
     }[category.name] || Folder;
 
+  const [ref, visible] = useOnScreen({ threshold: 0.1 });
+  
+  // Preload folder images when they come into view
+  useImagePreloader(category.images, visible);
+
   return (
     <FadeIn delay={delay}>
-      <div onClick={onClick} className="group relative w-full h-[450px] cursor-pointer perspective-1000">
+      <div ref={ref} onClick={onClick} className="group relative w-full h-[450px] cursor-pointer perspective-1000">
         <div className="relative w-full h-full flex items-center justify-center transition-transform duration-500">
           <div
             className="absolute w-[80%] aspect-[3/4] bg-zinc-200 dark:bg-zinc-800 rounded-2xl border border-black/5 dark:border-white/5 shadow-2xl transition-all duration-500 ease-out transform
@@ -916,6 +972,8 @@ const FolderStack = ({
               src={category.images[2]}
               alt="Project"
               className="w-full h-full object-cover rounded-2xl opacity-60 group-hover:opacity-100 transition-opacity"
+              loading="lazy"
+              decoding="async"
             />
           </div>
 
@@ -928,6 +986,8 @@ const FolderStack = ({
               src={category.images[1]}
               alt="Project"
               className="w-full h-full object-cover rounded-2xl opacity-60 group-hover:opacity-100 transition-opacity"
+              loading="lazy"
+              decoding="async"
             />
           </div>
 
@@ -1060,6 +1120,9 @@ const Hero = ({
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-200/40 dark:bg-blue-500/10 rounded-full blur-[120px] pointer-events-none mix-blend-screen" />
 
       <div className="relative z-10 max-w-7xl mx-auto w-full px-6 md:px-12 py-20 flex flex-col items-start justify-center h-full">
+        {/* Subtle depth gradient behind hero text */}
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-50/30 via-transparent to-indigo-50/20 dark:from-purple-950/10 dark:via-transparent dark:to-indigo-950/10 rounded-3xl blur-3xl -z-10" />
+        
         <FadeIn delay={100} className="flex justify-start mb-10">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-black/5 dark:border-white/10 bg-white/30 dark:bg-white/5 backdrop-blur-md shadow-lg cursor-pointer hover:bg-white/50 dark:hover:bg-white/10 transition-colors">
             <span className="flex h-2 w-2 relative">
@@ -1072,27 +1135,27 @@ const Hero = ({
           </div>
         </FadeIn>
 
-        <h1 className="text-6xl md:text-8xl lg:text-[120px] font-semibold tracking-tighter text-zinc-900 dark:text-white mb-8 leading-[0.9] text-left">
+        <h1 className="text-6xl md:text-8xl lg:text-[120px] font-semibold tracking-tighter text-zinc-900 dark:text-white mb-8 leading-[0.9] text-left relative z-10">
           <WordReveal text="Strategic." delay={0} />
           <div className="h-2 md:h-4" />
           <WordReveal
             text="Digital Products."
             delay={200}
-            className="text-zinc-400 dark:text-white/50"
+            className="text-[#6D28D9] dark:text-purple-400"
           />
         </h1>
 
         <FadeIn delay={600}>
-          <p className="text-lg md:text-xl text-zinc-500 dark:text-[#A0A0A0] max-w-3xl leading-relaxed font-normal mb-12 text-left">
+          <p className="text-lg md:text-xl text-zinc-500 dark:text-[#A0A0A0] max-w-3xl leading-relaxed font-normal mb-12 text-left relative z-10">
             A premium design and development agency crafting world-class digital products.
             We merge strategic branding with scalable engineering to build the infrastructure of
             tomorrow.
           </p>
         </FadeIn>
 
-        <FadeIn delay={800} className="flex flex-col sm:flex-row items-center justify-start gap-4">
+        <FadeIn delay={800} className="flex flex-col sm:flex-row items-center justify-start gap-4 relative z-10">
           <button className="h-14 px-10 rounded-xl bg-zinc-900 dark:bg-[#FAFAFA] text-white dark:text-black font-semibold text-sm hover:scale-105 active:scale-95 transition-all shadow-[0_0_50px_-10px_rgba(0,0,0,0.2)] dark:shadow-[0_0_50px_-10px_rgba(255,255,255,0.4)] flex items-center gap-2 group w-full sm:w-auto justify-center">
-            Initialize Project
+            Start a Project
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
         </FadeIn>
@@ -1101,37 +1164,92 @@ const Hero = ({
   </section>
 );
 
-const Widgets = () => (
-  <section className="px-4 md:px-8 pb-12 max-w-[1600px] mx-auto">
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {[
-        { label: "Products Built", value: "200+", color: "text-purple-600 dark:text-purple-300" },
-        { label: "Client Funding", value: "$25M+", color: "text-purple-600 dark:text-purple-300" },
-        { label: "Total VC investments in our clients", value: "80+", color: "text-purple-600 dark:text-purple-300" }
-      ].map((item, i) => (
-        <FadeIn key={item.label} delay={200 + i * 100}>
-          <GlassCard className="p-8 h-full min-h-[240px] flex flex-col justify-between hover:bg-white/80 dark:hover:bg-white/[0.03] transition-colors group cursor-default relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-purple-200/30 dark:bg-purple-500/10 rounded-full blur-[60px] -translate-y-1/2 translate-x-1/2" />
+const StatCard = ({
+  label,
+  value,
+  icon: Icon,
+  delay
+}: {
+  label: string;
+  value: string;
+  icon: React.ComponentType<{ className?: string }>;
+  delay: number;
+}) => {
+  const numericMatch = value.match(/(\d+)/);
+  const numericValue = numericMatch ? parseInt(numericMatch[1]) : 0;
+  const suffix = value.replace(/[0-9]/g, "");
+  const [ref, count] = useCountUp(numericValue, 2000, true);
 
-            <div className="relative z-10 flex flex-col justify-between h-full">
-              <div className="text-sm font-medium text-zinc-500 dark:text-zinc-400">
-                {item.label}
+  const formatValue = () => {
+    if (value.includes("$")) {
+      if (value.includes("M")) {
+        return `$${count}M${suffix.replace("$", "").replace("M", "")}`;
+      }
+      return `$${count}${suffix.replace("$", "")}`;
+    }
+    return `${count}${suffix}`;
+  };
+
+  return (
+    <FadeIn delay={delay}>
+      <div ref={ref}>
+        <GlassCard className="p-8 h-full min-h-[240px] flex flex-col justify-between hover:bg-white/80 dark:hover:bg-white/[0.03] transition-colors group cursor-default relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-purple-200/30 dark:bg-purple-500/10 rounded-full blur-[60px] -translate-y-1/2 translate-x-1/2" />
+
+          <div className="relative z-10 flex flex-col justify-between h-full">
+            <div className="flex flex-col gap-3">
+              <div className="w-10 h-10 rounded-xl bg-purple-50 dark:bg-purple-500/20 border border-purple-100 dark:border-purple-500/30 flex items-center justify-center">
+                <Icon className="w-5 h-5 text-purple-600 dark:text-purple-300" />
               </div>
-
-              <div className={`text-5xl md:text-6xl font-medium tracking-tighter ${item.color}`}>
-                {item.value}
+              <div className="text-sm font-medium text-zinc-600 dark:text-zinc-400">
+                {label}
               </div>
             </div>
-          </GlassCard>
-        </FadeIn>
-      ))}
+
+            <div className="text-5xl md:text-6xl font-medium tracking-tighter text-purple-600 dark:text-purple-300">
+              {formatValue()}
+            </div>
+          </div>
+        </GlassCard>
+      </div>
+    </FadeIn>
+  );
+};
+
+const Widgets = () => (
+  <section className="px-4 md:px-8 pb-12 max-w-[1600px] mx-auto mt-16">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <StatCard
+        label="Products Built"
+        value="200+"
+        icon={Box}
+        delay={200}
+      />
+      <StatCard
+        label="Client Funding"
+        value="$25M+"
+        icon={DollarSign}
+        delay={300}
+      />
+      <StatCard
+        label="Total VC investments in our clients"
+        value="80+"
+        icon={Briefcase}
+        delay={400}
+      />
     </div>
   </section>
 );
 
 const WorkSection = ({ onOpenFolder }: { onOpenFolder: (category: Category) => void }) => {
+  const [ref, visible] = useOnScreen({ threshold: 0.1 });
+  
+  // Preload all folder images when section comes into view
+  const allFolderImages = liveCategories.flatMap((cat) => cat.images);
+  useImagePreloader(allFolderImages, visible);
+
   return (
-    <section id="work" className="px-4 md:px-8 pb-32 max-w-[1600px] mx-auto overflow-hidden">
+    <section ref={ref} id="work" className="px-4 md:px-8 pb-32 max-w-[1600px] mx-auto overflow-hidden">
       <FadeIn className="mb-16 flex items-end justify-between px-2">
         <div>
           <h2 className="text-3xl font-semibold text-zinc-900 dark:text-white flex items-center gap-3">
@@ -1167,7 +1285,7 @@ const Features = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div className="col-span-1 md:col-span-2 row-span-1 md:row-span-1">
         <FadeIn delay={0} className="h-full">
-          <GlassCard className="h-full p-8 md:p-12 flex flex-col md:flex-row gap-12 justify-between group min-h-[400px]">
+          <GlassCard className="h-full p-8 md:p-12 flex flex-col md:flex-row gap-12 justify-between group min-h-[400px] hover:shadow-[0_12px_48px_-12px_rgba(139,92,246,0.15)] dark:hover:shadow-[0_12px_48px_-12px_rgba(139,92,246,0.25)] hover:border-purple-200/30 dark:hover:border-purple-500/20 transition-all duration-300">
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-200/30 dark:bg-purple-500/10 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/3" />
 
             <div className="relative z-10 flex-1 flex flex-col justify-center">
@@ -1185,7 +1303,7 @@ const Features = () => (
                 {["UI/UX", "Design Systems", "Prototyping", "User Research"].map((tag) => (
                   <span
                     key={tag}
-                    className="px-4 py-2 rounded-full bg-white/60 dark:bg-white/5 border border-black/5 dark:border-white/10 text-sm text-zinc-600 dark:text-zinc-300 font-mono"
+                    className="px-4 py-2 rounded-full bg-white/60 dark:bg-white/5 border border-black/5 dark:border-white/10 text-sm text-zinc-800 dark:text-zinc-200 font-mono"
                   >
                     {tag}
                   </span>
@@ -1195,7 +1313,7 @@ const Features = () => (
 
             <div className="relative z-10 flex-1 flex items-center justify-center">
               <div className="relative w-full aspect-square md:aspect-[4/3] border border-black/5 dark:border-white/10 rounded-2xl bg-white/40 dark:bg-white/5 overflow-hidden flex items-center justify-center group-hover:bg-white/60 dark:group-hover:bg-white/10 transition-colors">
-                <div className="w-3/4 h-3/4 border border-dashed border-black/10 dark:border-white/20 rounded-xl flex items-center justify-center text-sm text-zinc-400 dark:text-zinc-500 font-mono tracking-widest">
+                <div className="w-3/4 h-3/4 border border-dashed border-black/20 dark:border-white/30 rounded-xl flex items-center justify-center text-sm text-zinc-600 dark:text-zinc-400 font-mono tracking-widest opacity-50">
                   INTERFACE_WIREFRAME_v2.0
                 </div>
               </div>
@@ -1206,12 +1324,14 @@ const Features = () => (
 
       <div className="col-span-1 md:col-span-2">
         <FadeIn delay={200} className="h-full">
-          <GlassCard className="h-full p-10 flex flex-col md:flex-row items-center relative group overflow-hidden min-h-[300px]">
+          <GlassCard className="h-full p-10 flex flex-col md:flex-row items-center relative group overflow-hidden min-h-[300px] hover:shadow-[0_12px_48px_-12px_rgba(139,92,246,0.15)] dark:hover:shadow-[0_12px_48px_-12px_rgba(139,92,246,0.25)] hover:border-purple-200/30 dark:hover:border-purple-500/20 transition-all duration-300">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-100/30 to-transparent dark:from-blue-500/5 dark:to-transparent" />
 
             <div className="flex-1 z-10">
               <div className="flex items-center gap-4 mb-6">
-                <Zap className="w-8 h-8 text-blue-500 dark:text-blue-400" />
+                <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-500/20 border border-blue-100 dark:border-blue-500/30 flex items-center justify-center">
+                  <Zap className="w-6 h-6 text-blue-500 dark:text-blue-400" />
+                </div>
                 <h3 className="text-3xl font-medium text-zinc-900 dark:text-white">
                   Brand Identity
                 </h3>
@@ -1235,19 +1355,21 @@ const Features = () => (
 
       <div className="col-span-1 md:col-span-1">
         <FadeIn delay={400} className="h-full">
-          <GlassCard className="h-full p-10 flex flex-col justify-between hover:bg-white/80 dark:hover:bg-white/5 transition-colors min-h-[300px]">
+          <GlassCard className="h-full p-10 flex flex-col justify-between hover:bg-white/80 dark:hover:bg-white/5 hover:shadow-[0_12px_48px_-12px_rgba(139,92,246,0.15)] dark:hover:shadow-[0_12px_48px_-12px_rgba(139,92,246,0.25)] hover:border-purple-200/30 dark:hover:border-purple-500/20 transition-all duration-300 min-h-[300px]">
             <div>
-              <Terminal className="w-10 h-10 text-zinc-400 dark:text-zinc-300 mb-6" />
+              <div className="w-12 h-12 rounded-xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-700/50 flex items-center justify-center mb-6">
+                <Terminal className="w-6 h-6 text-zinc-600 dark:text-zinc-300" />
+              </div>
               <h4 className="text-3xl text-zinc-900 dark:text-white font-medium mb-2">
                 Development
               </h4>
-              <p className="text-zinc-500">Robust engineering for scalable applications.</p>
+              <p className="text-zinc-600 dark:text-zinc-400">Robust engineering for scalable applications.</p>
             </div>
             <div className="flex flex-wrap gap-2 mt-8">
               {["React", "Next.js", "WebGL", "Node"].map((tag) => (
                 <span
                   key={tag}
-                  className="px-3 py-1 rounded bg-zinc-100 dark:bg-zinc-900 border border-black/5 dark:border-white/10 text-xs text-zinc-500 dark:text-zinc-400 font-mono"
+                  className="px-3 py-1 rounded bg-zinc-100 dark:bg-zinc-900 border border-black/5 dark:border-white/10 text-xs text-zinc-700 dark:text-zinc-300 font-mono"
                 >
                   {tag}
                 </span>
@@ -1259,17 +1381,19 @@ const Features = () => (
 
       <div className="col-span-1 md:col-span-1">
         <FadeIn delay={500} className="h-full">
-          <GlassCard className="h-full p-10 flex flex-col justify-between hover:bg-white/80 dark:hover:bg-white/5 transition-colors min-h-[300px]">
+          <GlassCard className="h-full p-10 flex flex-col justify-between hover:bg-white/80 dark:hover:bg-white/5 hover:shadow-[0_12px_48px_-12px_rgba(139,92,246,0.15)] dark:hover:shadow-[0_12px_48px_-12px_rgba(139,92,246,0.25)] hover:border-purple-200/30 dark:hover:border-purple-500/20 transition-all duration-300 min-h-[300px]">
             <div>
-              <BarChart3 className="w-10 h-10 text-amber-500 dark:text-amber-400 mb-6" />
+              <div className="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-500/20 border border-amber-100 dark:border-amber-500/30 flex items-center justify-center mb-6">
+                <BarChart3 className="w-6 h-6 text-amber-600 dark:text-amber-400" />
+              </div>
               <h4 className="text-3xl text-zinc-900 dark:text-white font-medium mb-2">Growth</h4>
-              <p className="text-zinc-500">Data-driven strategies for user acquisition.</p>
+              <p className="text-zinc-600 dark:text-zinc-400">Data-driven strategies for user acquisition.</p>
             </div>
             <div className="flex flex-wrap gap-2 mt-8">
               {["SEO", "Analytics", "Conversion", "A/B Testing"].map((tag) => (
                 <span
                   key={tag}
-                  className="px-3 py-1 rounded bg-zinc-100 dark:bg-zinc-900 border border-black/5 dark:border-white/10 text-xs text-zinc-500 dark:text-zinc-400 font-mono"
+                  className="px-3 py-1 rounded bg-zinc-100 dark:bg-zinc-900 border border-black/5 dark:border-white/10 text-xs text-zinc-700 dark:text-zinc-300 font-mono"
                 >
                   {tag}
                 </span>
@@ -1305,7 +1429,7 @@ const Footer = () => (
 
         <div>
           <h4 className="text-zinc-900 dark:text-white font-medium mb-6">Directory</h4>
-          <ul className="space-y-4 text-zinc-500 text-sm">
+          <ul className="space-y-4 text-zinc-700 dark:text-zinc-300 text-sm">
             {["Work Index", "Capabilities", "Agency", "Careers"].map((item) => (
               <li
                 key={item}
@@ -1333,9 +1457,12 @@ const Footer = () => (
             </button>
           </div>
           <div className="text-zinc-500 text-xs">
-            <div className="flex items-center gap-2 mb-2">
-              <div className="w-2 h-2 rounded-full bg-green-500" />
-              Systems Normal
+            <div className="flex items-center gap-2 mb-2 group/status relative">
+              <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+              <span className="cursor-help">Systems Normal</span>
+              <div className="absolute bottom-full left-0 mb-2 px-2 py-1 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-xs rounded opacity-0 group-hover/status:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50">
+                All systems operational
+              </div>
             </div>
             Last update: 12.12.2024
           </div>
