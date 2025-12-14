@@ -1480,19 +1480,13 @@ const Hero = ({
       {/* Main Headline */}
       <h1 className="text-[36px] md:text-[56px] lg:text-[64px] font-bold mb-8 leading-[1.15] tracking-[-0.02em] text-center">
         <FadeIn delay={200}>
-          <div className="flex items-baseline justify-center gap-2 md:gap-3 flex-wrap mb-6 md:mb-8">
+          <div className="block mb-6 md:mb-8">
             <span className="text-zinc-900 dark:text-white">World-Class Product Studio</span>
-            <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-white dark:bg-zinc-800 border border-black/10 dark:border-white/10 flex items-center justify-center shadow-sm flex-shrink-0">
-              <Zap className="w-4 h-4 md:w-5 md:h-5 text-red-500" fill="currentColor" />
-            </div>
           </div>
         </FadeIn>
         <FadeIn delay={400}>
-          <div className="flex items-baseline justify-center gap-2 md:gap-3 flex-wrap">
+          <div className="block">
             <span className="text-zinc-900 dark:text-white">Engineering Your Success</span>
-            <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-white dark:bg-zinc-800 border border-black/10 dark:border-white/10 flex items-center justify-center shadow-sm flex-shrink-0">
-              <Rocket className="w-4 h-4 md:w-5 md:h-5 text-blue-500" />
-            </div>
           </div>
         </FadeIn>
       </h1>
@@ -1531,7 +1525,6 @@ const Hero = ({
               </div>
             ))}
           </div>
-          <span className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">+30</span>
           <div className="flex items-center gap-1">
             {[1, 2, 3, 4, 5].map((i) => (
               <Star key={i} className="w-4 h-4 fill-zinc-900 dark:fill-white text-zinc-900 dark:text-white" />
@@ -1949,12 +1942,13 @@ const ProductDesignAnimation = () => (
 );
 
 const BrandIdentityAnimation = () => (
-  <div className="relative w-full h-full flex items-center justify-center">
+  <div className="relative w-full h-full flex items-center justify-center overflow-hidden p-4">
     <svg
       viewBox="0 0 120 80"
-      className="w-full h-full max-w-[200px]"
+      className="w-full h-full max-w-[180px]"
       xmlns="http://www.w3.org/2000/svg"
       style={{ willChange: 'transform' }}
+      preserveAspectRatio="xMidYMid meet"
     >
       <style>
         {`
@@ -2022,10 +2016,10 @@ const BrandIdentityAnimation = () => (
         `}
       </style>
       <text
-        x="60"
+        x="50"
         y="45"
         textAnchor="middle"
-        fontSize="48"
+        fontSize="42"
         fill="currentColor"
         className="morph-text"
         style={{
@@ -2037,30 +2031,30 @@ const BrandIdentityAnimation = () => (
         Aa
       </text>
       <circle
-        cx="90"
+        cx="75"
         cy="25"
-        r="9"
+        r="8"
         className="color-swatch"
         style={{ animationDelay: "0s" } as React.CSSProperties}
       />
       <circle
-        cx="105"
+        cx="88"
         cy="25"
-        r="9"
+        r="8"
         className="color-swatch"
         style={{ animationDelay: "1.25s" } as React.CSSProperties}
       />
       <circle
-        cx="90"
+        cx="75"
         cy="40"
-        r="9"
+        r="8"
         className="color-swatch"
         style={{ animationDelay: "2.5s" } as React.CSSProperties}
       />
       <circle
-        cx="105"
+        cx="88"
         cy="40"
-        r="9"
+        r="8"
         className="color-swatch"
         style={{ animationDelay: "3.75s" } as React.CSSProperties}
       />
@@ -2230,6 +2224,7 @@ const GrowthAnimation = () => (
     className="w-full h-full"
     xmlns="http://www.w3.org/2000/svg"
     style={{ willChange: 'transform' }}
+    preserveAspectRatio="xMidYMid meet"
   >
     <style>
       {`
@@ -2306,10 +2301,10 @@ const GrowthAnimation = () => (
     </style>
     {/* Chart background with subtle shimmer */}
     <rect
-      x="20"
-      y="20"
-      width="160"
-      height="80"
+      x="15"
+      y="15"
+      width="170"
+      height="90"
       rx="4"
       fill="rgb(250 250 250 / 0.6)"
       stroke="rgb(113 113 122 / 0.15)"
@@ -2318,18 +2313,18 @@ const GrowthAnimation = () => (
     />
     {/* Grid lines */}
     <line
-      x1="20"
+      x1="15"
       y1="60"
-      x2="180"
+      x2="185"
       y2="60"
       stroke="rgb(113 113 122 / 0.1)"
       strokeWidth="1"
       strokeDasharray="4 4"
     />
     <line
-      x1="20"
+      x1="15"
       y1="40"
-      x2="180"
+      x2="185"
       y2="40"
       stroke="rgb(113 113 122 / 0.1)"
       strokeWidth="1"
@@ -2337,81 +2332,81 @@ const GrowthAnimation = () => (
     />
     {/* Bars with enhanced styling */}
     <rect
-      x="40"
-      y="80"
-      width="20"
+      x="35"
+      y="85"
+      width="18"
       height="0"
       fill="rgb(113 113 122 / 0.35)"
       className="grow-bar"
       rx="2"
-      style={{ "--target-height": "30px", animationDelay: "0.2s" } as React.CSSProperties}
+      style={{ "--target-height": "25px", animationDelay: "0.2s" } as React.CSSProperties}
     />
     <rect
-      x="70"
-      y="80"
-      width="20"
+      x="65"
+      y="85"
+      width="18"
       height="0"
       fill="rgb(113 113 122 / 0.35)"
       className="grow-bar"
       rx="2"
-      style={{ "--target-height": "50px", animationDelay: "0.35s" } as React.CSSProperties}
+      style={{ "--target-height": "45px", animationDelay: "0.35s" } as React.CSSProperties}
     />
     <rect
-      x="100"
-      y="80"
-      width="20"
+      x="95"
+      y="85"
+      width="18"
       height="0"
       fill="rgb(139 92 246 / 0.5)"
       className="grow-bar"
       rx="2"
-      style={{ "--target-height": "70px", animationDelay: "0.5s" } as React.CSSProperties}
+      style={{ "--target-height": "65px", animationDelay: "0.5s" } as React.CSSProperties}
     />
     <rect
-      x="130"
-      y="80"
-      width="20"
+      x="125"
+      y="85"
+      width="18"
       height="0"
       fill="rgb(139 92 246 / 0.6)"
       className="grow-bar"
       rx="2"
-      style={{ "--target-height": "60px", animationDelay: "0.65s" } as React.CSSProperties}
+      style={{ "--target-height": "55px", animationDelay: "0.65s" } as React.CSSProperties}
     />
     {/* Data points */}
     <circle
-      cx="50"
-      cy="65"
-      r="3"
+      cx="44"
+      cy="70"
+      r="2.5"
       fill="rgb(139 92 246 / 0.6)"
       className="pulse-dot"
       style={{ animationDelay: "1.8s" }}
     />
     <circle
-      cx="80"
-      cy="45"
-      r="3"
+      cx="74"
+      cy="50"
+      r="2.5"
       fill="rgb(139 92 246 / 0.6)"
       className="pulse-dot"
       style={{ animationDelay: "2s" }}
     />
     <circle
-      cx="110"
-      cy="25"
-      r="3"
+      cx="104"
+      cy="30"
+      r="2.5"
       fill="rgb(139 92 246 / 0.8)"
       className="pulse-dot"
       style={{ animationDelay: "2.2s" }}
     />
     <circle
-      cx="140"
-      cy="35"
-      r="3"
+      cx="134"
+      cy="40"
+      r="2.5"
       fill="rgb(139 92 246 / 0.6)"
       className="pulse-dot"
       style={{ animationDelay: "2.4s" }}
     />
     {/* Floating arrows */}
     <path
-      d="M 110 20 L 110 10 L 107 13 L 110 10 L 113 13 Z"
+      d="M 104 25 L 104 15 L 101 18 L 104 15 L 107 18 Z"
       fill="rgb(139 92 246 / 0.5)"
       className="float-arrow"
       style={{ animationDelay: "2.5s" }}
@@ -2501,7 +2496,7 @@ const Features = () => (
               </p>
             </div>
 
-            <div className="flex-1 flex items-center justify-center h-40 md:h-auto w-full mt-8 md:mt-0 relative">
+            <div className="flex-1 flex items-center justify-center h-40 md:h-auto w-full mt-8 md:mt-0 relative overflow-hidden">
               <BrandIdentityAnimation />
             </div>
           </GlassCard>
@@ -2546,7 +2541,7 @@ const Features = () => (
               </div>
               <h4 className="text-[24px] text-zinc-900 dark:text-white font-semibold mb-2">Growth</h4>
               <p className="text-[16px] text-zinc-600 dark:text-zinc-400 leading-[1.6] mb-6">Data-driven strategies for user acquisition.</p>
-              <div className="h-24 w-full rounded-lg overflow-hidden bg-white/40 dark:bg-white/5 border border-black/5 dark:border-white/5">
+              <div className="h-24 w-full rounded-lg overflow-hidden bg-white/40 dark:bg-white/5 border border-black/5 dark:border-white/5 p-2">
                 <GrowthAnimation />
               </div>
             </div>
