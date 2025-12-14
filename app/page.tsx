@@ -1480,21 +1480,19 @@ const Hero = ({
       {/* Main Headline */}
       <h1 className="text-[36px] md:text-[56px] lg:text-[64px] font-bold mb-8 leading-[1.15] tracking-[-0.02em] text-center">
         <FadeIn delay={200}>
-          <div className="block text-zinc-900 dark:text-white mb-6 md:mb-8">
-            World-Class Product Studio
+          <div className="flex items-baseline justify-center gap-2 md:gap-3 flex-wrap mb-6 md:mb-8">
+            <span className="text-zinc-900 dark:text-white">World-Class Product Studio</span>
+            <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-white dark:bg-zinc-800 border border-black/10 dark:border-white/10 flex items-center justify-center shadow-sm flex-shrink-0">
+              <Zap className="w-4 h-4 md:w-5 md:h-5 text-red-500" fill="currentColor" />
+            </div>
           </div>
         </FadeIn>
         <FadeIn delay={400}>
           <div className="flex items-baseline justify-center gap-2 md:gap-3 flex-wrap">
-            <span className="text-zinc-900 dark:text-white">Engineering Your</span>
-            <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-white dark:bg-zinc-800 border border-black/10 dark:border-white/10 flex items-center justify-center shadow-sm flex-shrink-0">
-              <Zap className="w-4 h-4 md:w-5 md:h-5 text-red-500" fill="currentColor" />
-            </div>
-            <span className="text-zinc-900 dark:text-white">Digital</span>
+            <span className="text-zinc-900 dark:text-white">Engineering Your Success</span>
             <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-white dark:bg-zinc-800 border border-black/10 dark:border-white/10 flex items-center justify-center shadow-sm flex-shrink-0">
               <Rocket className="w-4 h-4 md:w-5 md:h-5 text-blue-500" />
             </div>
-            <span className="text-zinc-900 dark:text-white">Success</span>
           </div>
         </FadeIn>
       </h1>
@@ -1575,20 +1573,20 @@ const StatCard = ({
   return (
     <FadeIn delay={delay}>
       <div ref={ref}>
-        <GlassCard className="p-8 h-full min-h-[240px] flex flex-col justify-between hover:bg-white/80 dark:hover:bg-white/[0.03] transition-colors group cursor-default relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-zinc-300/20 dark:bg-zinc-600/10 rounded-full blur-[60px] -translate-y-1/2 translate-x-1/2" />
+        <GlassCard className="p-8 h-full min-h-[240px] flex flex-col justify-between hover:bg-white/90 dark:hover:bg-white/[0.05] group cursor-default relative overflow-hidden transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_20px_60px_-12px_rgba(255,255,255,0.15)] hover:border-zinc-200/50 dark:hover:border-zinc-700/30">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-zinc-300/20 dark:bg-zinc-600/10 rounded-full blur-[60px] -translate-y-1/2 translate-x-1/2 group-hover:bg-zinc-300/30 dark:group-hover:bg-zinc-600/15 group-hover:scale-110 transition-all duration-500" />
 
           <div className="relative z-10 flex flex-col justify-between h-full">
             <div className="flex flex-col gap-3">
-              <div className="w-10 h-10 rounded-xl bg-zinc-100 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700/50 flex items-center justify-center">
-                <Icon className="w-5 h-5 text-zinc-700 dark:text-zinc-300" />
+              <div className="w-10 h-10 rounded-xl bg-zinc-100 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700/50 flex items-center justify-center group-hover:scale-110 group-hover:bg-zinc-200/80 dark:group-hover:bg-zinc-700/70 transition-all duration-300">
+                <Icon className="w-5 h-5 text-zinc-700 dark:text-zinc-300 group-hover:scale-110 transition-transform duration-300" />
               </div>
-              <div className="text-sm font-medium text-zinc-600 dark:text-zinc-400">
+              <div className="text-sm font-medium text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-700 dark:group-hover:text-zinc-300 transition-colors duration-300">
                 {label}
               </div>
             </div>
 
-            <div className="text-5xl md:text-6xl font-medium tracking-tighter text-zinc-700 dark:text-zinc-300">
+            <div className="text-5xl md:text-6xl font-medium tracking-tighter text-zinc-700 dark:text-zinc-300 group-hover:scale-105 transition-transform duration-300 origin-bottom-left">
               {formatValue()}
             </div>
           </div>
@@ -1661,136 +1659,292 @@ const ProductDesignAnimation = () => (
     viewBox="0 0 200 150"
     className="w-full h-full"
     xmlns="http://www.w3.org/2000/svg"
+    style={{ willChange: 'transform' }}
   >
     <style>
       {`
-        @keyframes drawLine {
-          0% { stroke-dashoffset: 100; }
-          100% { stroke-dashoffset: 0; }
+        @keyframes fadeInScale {
+          0% { opacity: 0; transform: scale(0.96); }
+          100% { opacity: 1; transform: scale(1); }
         }
-        @keyframes fadeIn {
-          0% { opacity: 0; }
-          100% { opacity: 1; }
+        @keyframes drawPath {
+          0% { stroke-dashoffset: 100; opacity: 0; }
+          10% { opacity: 1; }
+          100% { stroke-dashoffset: 0; opacity: 1; }
         }
-        @keyframes cursorBlink {
-          0%, 50% { opacity: 1; }
-          51%, 100% { opacity: 0; }
+        @keyframes selectElement {
+          0% { opacity: 0; transform: scale(0.9); stroke-dasharray: 0; }
+          20% { opacity: 1; transform: scale(1); }
+          40% { stroke-dasharray: 4 2; }
+          60% { stroke-dasharray: 4 2; }
+          100% { opacity: 1; transform: scale(1); stroke-dasharray: 4 2; }
         }
-        @keyframes moveCursor {
-          0% { transform: translate(20px, 40px); opacity: 0; }
-          5% { opacity: 1; }
-          25% { transform: translate(60px, 40px); }
-          50% { transform: translate(60px, 70px); }
-          75% { transform: translate(100px, 70px); }
-          95% { opacity: 1; }
-          100% { transform: translate(100px, 100px); opacity: 0; }
+        @keyframes moveElement {
+          0% { transform: translate(0, 0); }
+          50% { transform: translate(15px, -10px); }
+          100% { transform: translate(0, 0); }
         }
-        .draw-line {
-          stroke-dasharray: 100;
-          animation: drawLine 0.8s ease-out forwards;
+        @keyframes resizeHandle {
+          0%, 100% { opacity: 0.6; }
+          50% { opacity: 1; }
+        }
+        @keyframes cursorMove {
+          0% { transform: translate(45px, 55px); opacity: 0; }
+          10% { opacity: 1; }
+          30% { transform: translate(85px, 55px); }
+          50% { transform: translate(85px, 75px); }
+          70% { transform: translate(120px, 75px); }
+          90% { opacity: 1; }
+          100% { transform: translate(120px, 95px); opacity: 0.8; }
+        }
+        @keyframes layerHighlight {
+          0%, 100% { fill: rgb(113 113 122 / 0.1); }
+          50% { fill: rgb(139 92 246 / 0.2); }
         }
         .fade-in {
-          animation: fadeIn 0.4s ease-out forwards;
+          animation: fadeInScale 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
           opacity: 0;
         }
+        .draw-path {
+          stroke-dasharray: 100;
+          animation: drawPath 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        .select-element {
+          animation: selectElement 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+          opacity: 0;
+        }
+        .move-element {
+          animation: moveElement 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+          animation-delay: 2s;
+        }
+        .resize-handle {
+          animation: resizeHandle 1.5s ease-in-out infinite;
+          animation-delay: 2.5s;
+        }
         .cursor {
-          animation: cursorBlink 1s infinite, moveCursor 4s ease-in-out infinite;
-          animation-delay: 1.6s;
+          animation: cursorMove 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+          animation-delay: 1s;
+        }
+        .layer-highlight {
+          animation: layerHighlight 3s ease-in-out infinite;
+          animation-delay: 1.5s;
         }
       `}
     </style>
-    {/* Header bar */}
+    {/* Figma Canvas Background */}
     <rect
-      x="10"
-      y="10"
-      width="180"
-      height="12"
-      rx="2"
-      fill="currentColor"
-      className="fade-in"
-      style={{ animationDelay: "0s", color: "rgb(113 113 122 / 0.2)" }}
+      x="0"
+      y="0"
+      width="200"
+      height="150"
+      rx="6"
+      fill="rgb(250 250 250)"
     />
-    {/* Sidebar */}
+    
+    {/* Figma Top Toolbar */}
     <rect
-      x="10"
-      y="28"
-      width="40"
-      height="112"
-      rx="2"
-      fill="currentColor"
+      x="0"
+      y="0"
+      width="200"
+      height="24"
+      fill="rgb(255 255 255)"
       className="fade-in"
-      style={{ animationDelay: "0.2s", color: "rgb(113 113 122 / 0.15)" }}
-    />
-    {/* Main content boxes */}
-    <rect
-      x="58"
-      y="28"
-      width="132"
-      height="30"
-      rx="2"
-      fill="currentColor"
-      className="fade-in"
-      style={{ animationDelay: "0.4s", color: "rgb(113 113 122 / 0.2)" }}
+      style={{ animationDelay: "0s" }}
     />
     <rect
-      x="58"
-      y="66"
-      width="60"
-      height="30"
-      rx="2"
-      fill="currentColor"
-      className="fade-in"
-      style={{ animationDelay: "0.6s", color: "rgb(113 113 122 / 0.2)" }}
+      x="0"
+      y="24"
+      width="200"
+      height="1"
+      fill="rgb(228 228 231 / 0.5)"
     />
+    
+    {/* Toolbar Icons */}
+    <circle cx="12" cy="12" r="3" fill="rgb(113 113 122 / 0.3)" className="fade-in" style={{ animationDelay: "0.1s" }} />
+    <rect x="20" y="9" width="12" height="6" rx="1" fill="rgb(113 113 122 / 0.3)" className="fade-in" style={{ animationDelay: "0.15s" }} />
+    <rect x="36" y="9" width="8" height="6" rx="1" fill="rgb(113 113 122 / 0.3)" className="fade-in" style={{ animationDelay: "0.2s" }} />
+    
+    {/* Left Layers Panel */}
     <rect
-      x="130"
-      y="66"
-      width="60"
-      height="30"
-      rx="2"
-      fill="currentColor"
-      className="fade-in"
-      style={{ animationDelay: "0.8s", color: "rgb(113 113 122 / 0.2)" }}
-    />
-    {/* Button */}
-    <rect
-      x="58"
-      y="104"
+      x="0"
+      y="25"
       width="50"
-      height="20"
-      rx="3"
-      fill="currentColor"
+      height="125"
+      fill="rgb(255 255 255)"
       className="fade-in"
-      style={{ animationDelay: "1s", color: "rgb(139 92 246 / 0.3)" }}
+      style={{ animationDelay: "0.25s" }}
     />
-    {/* Lines connecting elements */}
-    <line
-      x1="78"
-      y1="58"
-      x2="78"
-      y2="66"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      className="draw-line"
-      style={{ animationDelay: "1.2s", color: "rgb(113 113 122 / 0.3)" }}
+    <rect
+      x="50"
+      y="25"
+      width="1"
+      height="125"
+      fill="rgb(228 228 231 / 0.5)"
     />
-    <line
-      x1="88"
-      y1="96"
-      x2="88"
-      y2="104"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      className="draw-line"
-      style={{ animationDelay: "1.4s", color: "rgb(113 113 122 / 0.3)" }}
+    
+    {/* Layer Items */}
+    <rect x="8" y="35" width="34" height="8" rx="1" fill="rgb(113 113 122 / 0.15)" className="fade-in layer-highlight" style={{ animationDelay: "0.3s" }} />
+    <rect x="8" y="47" width="28" height="8" rx="1" fill="rgb(113 113 122 / 0.1)" className="fade-in" style={{ animationDelay: "0.35s" }} />
+    <rect x="8" y="59" width="32" height="8" rx="1" fill="rgb(113 113 122 / 0.1)" className="fade-in" style={{ animationDelay: "0.4s" }} />
+    <rect x="8" y="71" width="24" height="8" rx="1" fill="rgb(113 113 122 / 0.1)" className="fade-in" style={{ animationDelay: "0.45s" }} />
+    
+    {/* Active Layer Indicator (Purple) */}
+    <rect x="4" y="35" width="2" height="8" rx="1" fill="rgb(139 92 246 / 0.8)" className="fade-in" style={{ animationDelay: "0.5s" }} />
+    
+    {/* Main Canvas Area */}
+    <rect
+      x="51"
+      y="25"
+      width="149"
+      height="125"
+      fill="rgb(250 250 250)"
+      className="fade-in"
+      style={{ animationDelay: "0.3s" }}
     />
-    {/* Cursor */}
-    <g className="cursor" style={{ animationDelay: "1.6s" }}>
-      <path
-        d="M 20 40 L 20 50 L 25 47 L 20 44 Z"
-        fill="rgb(139 92 246 / 0.8)"
+    
+    {/* Design Mockup - Card Component */}
+    <g className="fade-in move-element" style={{ animationDelay: "0.6s" }}>
+      {/* Card Container */}
+      <rect
+        x="65"
+        y="45"
+        width="80"
+        height="60"
+        rx="6"
+        fill="rgb(255 255 255)"
+        stroke="rgb(228 228 231)"
+        strokeWidth="1"
+        className="select-element"
+        style={{ animationDelay: "1s" }}
+      />
+      
+      {/* Card Header */}
+      <rect
+        x="70"
+        y="50"
+        width="70"
+        height="12"
+        rx="2"
+        fill="rgb(113 113 122 / 0.2)"
+      />
+      
+      {/* Card Content */}
+      <rect
+        x="70"
+        y="68"
+        width="50"
+        height="8"
+        rx="1"
+        fill="rgb(113 113 122 / 0.15)"
+      />
+      <rect
+        x="70"
+        y="80"
+        width="60"
+        height="8"
+        rx="1"
+        fill="rgb(113 113 122 / 0.1)"
+      />
+      
+      {/* Card Button */}
+      <rect
+        x="70"
+        y="92"
+        width="35"
+        height="8"
+        rx="4"
+        fill="rgb(139 92 246 / 0.3)"
+        className="select-element"
+        style={{ animationDelay: "1.5s" }}
+      />
+      
+      {/* Selection Handles */}
+      <circle cx="65" cy="45" r="3" fill="rgb(139 92 246)" className="resize-handle" />
+      <circle cx="145" cy="45" r="3" fill="rgb(139 92 246)" className="resize-handle" />
+      <circle cx="65" cy="105" r="3" fill="rgb(139 92 246)" className="resize-handle" />
+      <circle cx="145" cy="105" r="3" fill="rgb(139 92 246)" className="resize-handle" />
+    </g>
+    
+    {/* Design Mockup - Button Component */}
+    <g className="fade-in" style={{ animationDelay: "0.8s" }}>
+      <rect
+        x="155"
+        y="50"
+        width="35"
+        height="20"
+        rx="4"
+        fill="rgb(139 92 246 / 0.4)"
+        className="select-element"
+        style={{ animationDelay: "2s" }}
+      />
+      <text
+        x="172.5"
+        y="63"
+        textAnchor="middle"
+        fontSize="8"
+        fill="rgb(255 255 255)"
+        fontFamily="system-ui"
+        fontWeight="500"
+      >
+        Button
+      </text>
+    </g>
+    
+    {/* Design Mockup - Input Field */}
+    <g className="fade-in" style={{ animationDelay: "1s" }}>
+      <rect
+        x="65"
+        y="115"
+        width="70"
+        height="20"
+        rx="4"
+        fill="rgb(255 255 255)"
+        stroke="rgb(228 228 231)"
+        strokeWidth="1"
+        className="select-element"
+        style={{ animationDelay: "2.5s" }}
+      />
+      <rect
+        x="70"
+        y="120"
+        width="40"
+        height="6"
+        rx="1"
+        fill="rgb(113 113 122 / 0.2)"
       />
     </g>
+    
+    {/* Figma Cursor */}
+    <g className="cursor">
+      <defs>
+        <filter id="cursorShadow">
+          <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
+          <feMerge>
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+      <path
+        d="M 45 55 L 45 65 L 50 62 L 45 59 Z"
+        fill="rgb(139 92 246)"
+        filter="url(#cursorShadow)"
+      />
+    </g>
+    
+    {/* Connection Lines (Design Flow) */}
+    <line
+      x1="105"
+      y1="105"
+      x2="105"
+      y2="115"
+      stroke="rgb(139 92 246 / 0.4)"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeDasharray="3 3"
+      className="draw-path"
+      style={{ animationDelay: "3s" }}
+    />
   </svg>
 );
 
@@ -1800,28 +1954,70 @@ const BrandIdentityAnimation = () => (
       viewBox="0 0 120 80"
       className="w-full h-full max-w-[200px]"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ willChange: 'transform' }}
     >
       <style>
         {`
           @keyframes morphLetter {
-            0% { font-weight: 100; letter-spacing: -0.05em; }
-            25% { font-weight: 400; letter-spacing: 0em; }
-            50% { font-weight: 700; letter-spacing: 0.02em; }
-            75% { font-weight: 900; letter-spacing: 0.05em; }
-            100% { font-weight: 100; letter-spacing: -0.05em; }
+            0% { 
+              font-weight: 100; 
+              letter-spacing: -0.05em; 
+              transform: scale(0.95);
+            }
+            25% { 
+              font-weight: 400; 
+              letter-spacing: 0em; 
+              transform: scale(1);
+            }
+            50% { 
+              font-weight: 700; 
+              letter-spacing: 0.02em; 
+              transform: scale(1.05);
+            }
+            75% { 
+              font-weight: 900; 
+              letter-spacing: 0.05em; 
+              transform: scale(1);
+            }
+            100% { 
+              font-weight: 100; 
+              letter-spacing: -0.05em; 
+              transform: scale(0.95);
+            }
           }
           @keyframes rotateColor {
-            0% { fill: rgb(139 92 246 / 0.4); }
-            25% { fill: rgb(59 130 246 / 0.4); }
-            50% { fill: rgb(236 72 153 / 0.4); }
-            75% { fill: rgb(251 146 60 / 0.4); }
-            100% { fill: rgb(139 92 246 / 0.4); }
+            0% { 
+              fill: rgb(139 92 246 / 0.5); 
+              transform: scale(1);
+            }
+            25% { 
+              fill: rgb(59 130 246 / 0.5); 
+              transform: scale(1.1);
+            }
+            50% { 
+              fill: rgb(236 72 153 / 0.5); 
+              transform: scale(1.15);
+            }
+            75% { 
+              fill: rgb(251 146 60 / 0.5); 
+              transform: scale(1.1);
+            }
+            100% { 
+              fill: rgb(139 92 246 / 0.5); 
+              transform: scale(1);
+            }
+          }
+          @keyframes floatCircle {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-3px); }
           }
           .morph-text {
-            animation: morphLetter 4s ease-in-out infinite;
+            animation: morphLetter 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            transform-origin: center;
           }
           .color-swatch {
-            animation: rotateColor 4s ease-in-out infinite;
+            animation: rotateColor 5s cubic-bezier(0.4, 0, 0.2, 1) infinite, floatCircle 3s ease-in-out infinite;
+            transform-origin: center;
           }
         `}
       </style>
@@ -1833,8 +2029,9 @@ const BrandIdentityAnimation = () => (
         fill="currentColor"
         className="morph-text"
         style={{
-          color: "rgb(113 113 122 / 0.3)",
-          fontFamily: "system-ui, -apple-system, sans-serif"
+          color: "rgb(113 113 122 / 0.35)",
+          fontFamily: "system-ui, -apple-system, sans-serif",
+          transformOrigin: "center"
         }}
       >
         Aa
@@ -1842,29 +2039,30 @@ const BrandIdentityAnimation = () => (
       <circle
         cx="90"
         cy="25"
-        r="8"
+        r="9"
         className="color-swatch"
+        style={{ animationDelay: "0s" } as React.CSSProperties}
       />
       <circle
         cx="105"
         cy="25"
-        r="8"
+        r="9"
         className="color-swatch"
-        style={{ animationDelay: "1s" } as React.CSSProperties}
+        style={{ animationDelay: "1.25s" } as React.CSSProperties}
       />
       <circle
         cx="90"
         cy="40"
-        r="8"
+        r="9"
         className="color-swatch"
-        style={{ animationDelay: "2s" } as React.CSSProperties}
+        style={{ animationDelay: "2.5s" } as React.CSSProperties}
       />
       <circle
         cx="105"
         cy="40"
-        r="8"
+        r="9"
         className="color-swatch"
-        style={{ animationDelay: "3s" } as React.CSSProperties}
+        style={{ animationDelay: "3.75s" } as React.CSSProperties}
       />
     </svg>
   </div>
@@ -1875,55 +2073,68 @@ const DevelopmentAnimation = () => (
     viewBox="0 0 200 120"
     className="w-full h-full"
     xmlns="http://www.w3.org/2000/svg"
+    style={{ willChange: 'transform' }}
   >
     <style>
       {`
         @keyframes typeText {
-          0% { width: 0; opacity: 1; }
+          0% { width: 0; opacity: 0.8; }
+          10% { opacity: 1; }
           90% { width: 100%; opacity: 1; }
-          100% { width: 100%; opacity: 0; }
+          100% { width: 100%; opacity: 0.9; }
         }
         @keyframes blinkCursor {
-          0%, 50% { opacity: 1; }
-          51%, 100% { opacity: 0; }
+          0%, 40% { opacity: 1; }
+          41%, 49% { opacity: 0.2; }
+          50%, 100% { opacity: 1; }
         }
         @keyframes fadeInCheck {
-          0% { opacity: 0; transform: scale(0); }
-          20% { opacity: 1; transform: scale(1); }
-          80% { opacity: 1; transform: scale(1); }
-          100% { opacity: 0; transform: scale(0); }
+          0% { opacity: 0; transform: scale(0) rotate(-180deg); }
+          15% { opacity: 1; transform: scale(1.2) rotate(0deg); }
+          25% { transform: scale(1) rotate(0deg); }
+          80% { opacity: 1; transform: scale(1) rotate(0deg); }
+          100% { opacity: 0; transform: scale(0.8) rotate(180deg); }
         }
         @keyframes highlightSyntax {
-          0%, 100% { fill: rgb(113 113 122 / 0.4); }
-          50% { fill: rgb(139 92 246 / 0.6); }
+          0%, 100% { fill: rgb(113 113 122 / 0.5); }
+          50% { fill: rgb(139 92 246 / 0.7); }
+        }
+        @keyframes terminalGlow {
+          0%, 100% { opacity: 0.3; }
+          50% { opacity: 0.5; }
         }
         .type-text {
           overflow: hidden;
           white-space: nowrap;
-          animation: typeText 1.5s steps(20) infinite;
+          animation: typeText 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
         }
         .cursor-blink {
-          animation: blinkCursor 1s infinite;
+          animation: blinkCursor 1.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
         .syntax-highlight {
-          animation: highlightSyntax 2s ease-in-out infinite;
+          animation: highlightSyntax 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
         }
         .check-mark {
-          animation: fadeInCheck 6s ease-in-out infinite;
+          animation: fadeInCheck 7s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
           opacity: 0;
+          transform-origin: center;
+        }
+        .terminal-glow {
+          animation: terminalGlow 3s ease-in-out infinite;
         }
       `}
     </style>
-    {/* Terminal background */}
+    {/* Terminal background with subtle glow */}
     <rect
       x="10"
       y="10"
       width="180"
       height="100"
       rx="4"
-      fill="rgb(9 9 11 / 0.8)"
-      stroke="rgb(113 113 122 / 0.2)"
-      strokeWidth="1"
+      fill="rgb(9 9 11 / 0.85)"
+      stroke="rgb(113 113 122 / 0.25)"
+      strokeWidth="1.5"
+      className="terminal-glow"
     />
     {/* Terminal header */}
     <rect
@@ -1932,11 +2143,11 @@ const DevelopmentAnimation = () => (
       width="180"
       height="20"
       rx="4"
-      fill="rgb(39 39 42 / 0.9)"
+      fill="rgb(39 39 42 / 0.95)"
     />
-    <circle cx="20" cy="20" r="4" fill="rgb(239 68 68 / 0.6)" />
-    <circle cx="32" cy="20" r="4" fill="rgb(234 179 8 / 0.6)" />
-    <circle cx="44" cy="20" r="4" fill="rgb(34 197 94 / 0.6)" />
+    <circle cx="20" cy="20" r="4.5" fill="rgb(239 68 68 / 0.7)" />
+    <circle cx="32" cy="20" r="4.5" fill="rgb(234 179 8 / 0.7)" />
+    <circle cx="44" cy="20" r="4.5" fill="rgb(34 197 94 / 0.7)" />
     {/* Code lines */}
     <text
       x="20"
@@ -1971,31 +2182,43 @@ const DevelopmentAnimation = () => (
     >
       {"}"}
     </text>
-    {/* Cursor */}
+    {/* Enhanced cursor with glow */}
     <rect
       x="20"
       y="85"
       width="8"
       height="12"
-      fill="rgb(139 92 246 / 0.8)"
+      fill="rgb(139 92 246 / 0.9)"
       className="cursor-blink"
-      style={{ animationDelay: "4s" } as React.CSSProperties}
+      rx="1"
+      style={{ animationDelay: "4.2s" } as React.CSSProperties}
     />
-    {/* Success checkmark */}
-    <g className="check-mark" style={{ animationDelay: "4.5s" } as React.CSSProperties}>
+    {/* Success checkmark with enhanced animation */}
+    <g className="check-mark" style={{ animationDelay: "4.8s" } as React.CSSProperties}>
+      <defs>
+        <filter id="checkGlow">
+          <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+          <feMerge>
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
       <circle
         cx="170"
         cy="70"
-        r="12"
-        fill="rgb(34 197 94 / 0.3)"
+        r="14"
+        fill="rgb(34 197 94 / 0.4)"
+        filter="url(#checkGlow)"
       />
       <path
-        d="M 165 70 L 168 73 L 175 66"
+        d="M 164 70 L 168 74 L 176 66"
         stroke="rgb(34 197 94)"
-        strokeWidth="2"
+        strokeWidth="2.5"
         strokeLinecap="round"
         strokeLinejoin="round"
         fill="none"
+        filter="url(#checkGlow)"
       />
     </g>
   </svg>
@@ -2006,51 +2229,92 @@ const GrowthAnimation = () => (
     viewBox="0 0 200 120"
     className="w-full h-full"
     xmlns="http://www.w3.org/2000/svg"
+    style={{ willChange: 'transform' }}
   >
     <style>
       {`
         @keyframes growBar {
-          0% { height: 0; }
-          100% { height: var(--target-height); }
+          0% { 
+            height: 0; 
+            opacity: 0.8;
+            transform: scaleY(0);
+          }
+          10% { opacity: 1; }
+          100% { 
+            height: var(--target-height); 
+            opacity: 1;
+            transform: scaleY(1);
+          }
         }
         @keyframes drawLine {
-          0% { stroke-dashoffset: 200; }
-          100% { stroke-dashoffset: 0; }
+          0% { 
+            stroke-dashoffset: 200; 
+            opacity: 0;
+          }
+          10% { opacity: 1; }
+          100% { 
+            stroke-dashoffset: 0; 
+            opacity: 1;
+          }
         }
         @keyframes pulse {
-          0%, 100% { opacity: 0.6; }
-          50% { opacity: 1; }
+          0%, 100% { 
+            opacity: 0.7; 
+            transform: scale(1);
+          }
+          50% { 
+            opacity: 1; 
+            transform: scale(1.2);
+          }
         }
         @keyframes floatUp {
-          0% { transform: translateY(0); opacity: 0; }
-          20% { opacity: 1; }
-          100% { transform: translateY(-40px); opacity: 0; }
+          0% { 
+            transform: translateY(0) scale(0.8); 
+            opacity: 0; 
+          }
+          15% { opacity: 1; }
+          50% { transform: translateY(-20px) scale(1); }
+          100% { 
+            transform: translateY(-40px) scale(0.8); 
+            opacity: 0; 
+          }
+        }
+        @keyframes shimmer {
+          0% { opacity: 0.3; }
+          50% { opacity: 0.6; }
+          100% { opacity: 0.3; }
         }
         .grow-bar {
-          animation: growBar 1.5s ease-out forwards;
+          animation: growBar 1.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
           transform-origin: bottom;
         }
         .draw-line {
-          animation: drawLine 1.5s ease-out forwards;
+          animation: drawLine 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
         .pulse-dot {
-          animation: pulse 2s ease-in-out infinite;
+          animation: pulse 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+          transform-origin: center;
         }
         .float-arrow {
-          animation: floatUp 3s ease-out infinite;
+          animation: floatUp 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+          transform-origin: center;
+        }
+        .shimmer {
+          animation: shimmer 2s ease-in-out infinite;
         }
       `}
     </style>
-    {/* Chart background */}
+    {/* Chart background with subtle shimmer */}
     <rect
       x="20"
       y="20"
       width="160"
       height="80"
       rx="4"
-      fill="rgb(250 250 250 / 0.5)"
-      stroke="rgb(113 113 122 / 0.1)"
-      strokeWidth="1"
+      fill="rgb(250 250 250 / 0.6)"
+      stroke="rgb(113 113 122 / 0.15)"
+      strokeWidth="1.5"
+      className="shimmer"
     />
     {/* Grid lines */}
     <line
@@ -2071,14 +2335,15 @@ const GrowthAnimation = () => (
       strokeWidth="1"
       strokeDasharray="4 4"
     />
-    {/* Bars */}
+    {/* Bars with enhanced styling */}
     <rect
       x="40"
       y="80"
       width="20"
       height="0"
-      fill="rgb(113 113 122 / 0.3)"
+      fill="rgb(113 113 122 / 0.35)"
       className="grow-bar"
+      rx="2"
       style={{ "--target-height": "30px", animationDelay: "0.2s" } as React.CSSProperties}
     />
     <rect
@@ -2086,27 +2351,30 @@ const GrowthAnimation = () => (
       y="80"
       width="20"
       height="0"
-      fill="rgb(113 113 122 / 0.3)"
+      fill="rgb(113 113 122 / 0.35)"
       className="grow-bar"
-      style={{ "--target-height": "50px", animationDelay: "0.4s" } as React.CSSProperties}
+      rx="2"
+      style={{ "--target-height": "50px", animationDelay: "0.35s" } as React.CSSProperties}
     />
     <rect
       x="100"
       y="80"
       width="20"
       height="0"
-      fill="rgb(139 92 246 / 0.4)"
+      fill="rgb(139 92 246 / 0.5)"
       className="grow-bar"
-      style={{ "--target-height": "70px", animationDelay: "0.6s" } as React.CSSProperties}
+      rx="2"
+      style={{ "--target-height": "70px", animationDelay: "0.5s" } as React.CSSProperties}
     />
     <rect
       x="130"
       y="80"
       width="20"
       height="0"
-      fill="rgb(139 92 246 / 0.5)"
+      fill="rgb(139 92 246 / 0.6)"
       className="grow-bar"
-      style={{ "--target-height": "60px", animationDelay: "0.8s" } as React.CSSProperties}
+      rx="2"
+      style={{ "--target-height": "60px", animationDelay: "0.65s" } as React.CSSProperties}
     />
     {/* Data points */}
     <circle
@@ -2179,12 +2447,12 @@ const Features = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div className="col-span-1 md:col-span-2 row-span-1 md:row-span-1">
         <FadeIn delay={0} className="h-full">
-          <GlassCard className="h-full p-8 md:p-12 flex flex-col md:flex-row gap-12 justify-between group min-h-[400px] hover:shadow-[0_12px_48px_-12px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_12px_48px_-12px_rgba(255,255,255,0.1)] hover:border-zinc-300/30 dark:hover:border-zinc-600/20 transition-all duration-300">
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-zinc-300/15 dark:bg-zinc-600/8 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/3" />
+          <GlassCard className="h-full p-8 md:p-12 flex flex-col md:flex-row gap-12 justify-between group min-h-[400px] hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_20px_60px_-12px_rgba(255,255,255,0.15)] hover:border-zinc-300/40 dark:hover:border-zinc-600/30 transition-all duration-500 ease-out hover:-translate-y-1 hover:bg-white/95 dark:hover:bg-white/[0.08]">
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-zinc-300/15 dark:bg-zinc-600/8 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/3 group-hover:bg-zinc-300/25 dark:group-hover:bg-zinc-600/12 group-hover:scale-110 transition-all duration-700" />
 
             <div className="relative z-10 flex-1 flex flex-col justify-center">
-              <div className="w-16 h-16 rounded-2xl bg-zinc-100 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700/50 flex items-center justify-center mb-8">
-                <LayoutGrid className="w-8 h-8 text-zinc-700 dark:text-zinc-300" />
+              <div className="w-16 h-16 rounded-2xl bg-zinc-100 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700/50 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-zinc-200/80 dark:group-hover:bg-zinc-700/70 group-hover:rotate-3 transition-all duration-500">
+                <LayoutGrid className="w-8 h-8 text-zinc-700 dark:text-zinc-300 group-hover:scale-110 transition-transform duration-500" />
               </div>
               <h3 className="text-[24px] font-semibold text-zinc-900 dark:text-white mb-6">
                 Product Design
@@ -2216,13 +2484,13 @@ const Features = () => (
 
       <div className="col-span-1 md:col-span-2">
         <FadeIn delay={200} className="h-full">
-          <GlassCard className="h-full p-10 flex flex-col md:flex-row items-center relative group overflow-hidden min-h-[300px] hover:shadow-[0_12px_48px_-12px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_12px_48px_-12px_rgba(255,255,255,0.1)] hover:border-zinc-300/30 dark:hover:border-zinc-600/20 transition-all duration-300">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-100/30 to-transparent dark:from-blue-500/5 dark:to-transparent" />
+          <GlassCard className="h-full p-10 flex flex-col md:flex-row items-center relative group overflow-hidden min-h-[300px] hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_20px_60px_-12px_rgba(255,255,255,0.15)] hover:border-zinc-300/40 dark:hover:border-zinc-600/30 transition-all duration-500 ease-out hover:-translate-y-1 hover:bg-white/95 dark:hover:bg-white/[0.08]">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-100/30 to-transparent dark:from-blue-500/5 dark:to-transparent group-hover:from-blue-100/40 group-hover:dark:from-blue-500/8 transition-all duration-500" />
 
             <div className="flex-1 z-10">
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-500/20 border border-blue-100 dark:border-blue-500/30 flex items-center justify-center">
-                  <Zap className="w-6 h-6 text-blue-500 dark:text-blue-400" />
+                <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-500/20 border border-blue-100 dark:border-blue-500/30 flex items-center justify-center group-hover:scale-110 group-hover:bg-blue-100/80 dark:group-hover:bg-blue-500/30 group-hover:rotate-3 transition-all duration-500">
+                  <Zap className="w-6 h-6 text-blue-500 dark:text-blue-400 group-hover:scale-110 transition-transform duration-500" />
                 </div>
                 <h3 className="text-[24px] font-semibold text-zinc-900 dark:text-white">
                   Brand Identity
@@ -2242,10 +2510,10 @@ const Features = () => (
 
       <div className="col-span-1 md:col-span-1">
         <FadeIn delay={400} className="h-full">
-          <GlassCard className="h-full p-10 flex flex-col justify-between hover:bg-white/80 dark:hover:bg-white/5 hover:shadow-[0_12px_48px_-12px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_12px_48px_-12px_rgba(255,255,255,0.1)] hover:border-zinc-300/30 dark:hover:border-zinc-600/20 transition-all duration-300 min-h-[300px]">
+          <GlassCard className="h-full p-10 flex flex-col justify-between hover:bg-white/90 dark:hover:bg-white/[0.08] hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_20px_60px_-12px_rgba(255,255,255,0.15)] hover:border-zinc-300/40 dark:hover:border-zinc-600/30 transition-all duration-500 ease-out hover:-translate-y-1 min-h-[300px] group">
             <div>
-              <div className="w-12 h-12 rounded-xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-700/50 flex items-center justify-center mb-6">
-                <Terminal className="w-6 h-6 text-zinc-600 dark:text-zinc-300" />
+              <div className="w-12 h-12 rounded-xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-700/50 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-zinc-100/80 dark:group-hover:bg-zinc-700/70 group-hover:rotate-3 transition-all duration-500">
+                <Terminal className="w-6 h-6 text-zinc-600 dark:text-zinc-300 group-hover:scale-110 transition-transform duration-500" />
               </div>
               <h4 className="text-[24px] text-zinc-900 dark:text-white font-semibold mb-2">
                 Development
@@ -2271,10 +2539,10 @@ const Features = () => (
 
       <div className="col-span-1 md:col-span-1">
         <FadeIn delay={500} className="h-full">
-          <GlassCard className="h-full p-10 flex flex-col justify-between hover:bg-white/80 dark:hover:bg-white/5 hover:shadow-[0_12px_48px_-12px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_12px_48px_-12px_rgba(255,255,255,0.1)] hover:border-zinc-300/30 dark:hover:border-zinc-600/20 transition-all duration-300 min-h-[300px]">
+          <GlassCard className="h-full p-10 flex flex-col justify-between hover:bg-white/90 dark:hover:bg-white/[0.08] hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_20px_60px_-12px_rgba(255,255,255,0.15)] hover:border-zinc-300/40 dark:hover:border-zinc-600/30 transition-all duration-500 ease-out hover:-translate-y-1 min-h-[300px] group">
             <div>
-              <div className="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-500/20 border border-amber-100 dark:border-amber-500/30 flex items-center justify-center mb-6">
-                <BarChart3 className="w-6 h-6 text-amber-600 dark:text-amber-400" />
+              <div className="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-500/20 border border-amber-100 dark:border-amber-500/30 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-amber-100/80 dark:group-hover:bg-amber-500/30 group-hover:rotate-3 transition-all duration-500">
+                <BarChart3 className="w-6 h-6 text-amber-600 dark:text-amber-400 group-hover:scale-110 transition-transform duration-500" />
               </div>
               <h4 className="text-[24px] text-zinc-900 dark:text-white font-semibold mb-2">Growth</h4>
               <p className="text-[16px] text-zinc-600 dark:text-zinc-400 leading-[1.6] mb-6">Data-driven strategies for user acquisition.</p>
@@ -2302,13 +2570,13 @@ const Features = () => (
 const Footer = () => (
   <footer
     id="footer"
-    className="bg-[#FAFAFA] dark:bg-[#0A0A0A] border-t border-black/5 dark:border-white/5 pt-24 pb-48 px-6"
+    className="bg-[#FAFAFA] dark:bg-[#0A0A0A] pt-24 pb-12 px-6"
   >
     <div className="max-w-[1600px] mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
         <div className="col-span-1 md:col-span-2">
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6 tracking-wide">
-            LIFTOFF™ STUDIO
+            LIFTOFF
           </h2>
           <p className="text-zinc-500 max-w-sm mb-8">
             Strategic digital infrastructure for the modern web.
@@ -2362,7 +2630,7 @@ const Footer = () => (
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-black/5 dark:border-white/5 gap-4">
+      <div className="flex flex-col md:flex-row justify-between items-center pt-8 gap-4">
         <span className="text-zinc-500 text-xs">© 2024 LIFTOFF™ OS. All rights reserved.</span>
         <div className="flex gap-6 text-xs text-zinc-500">
           <span className="hover:text-zinc-800 dark:hover:text-zinc-400 cursor-pointer">
