@@ -86,7 +86,7 @@ const liveCategories: Category[] = [
   {
     name: "Campus & Marketplaces",
     count: "03",
-    size: "Live + Coming",
+    size: "+245% Growth",
     images: [
       "https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.kampus.fun/",
       "https://image.thum.io/get/width/1200/crop/900/noanimate/https://shaadiverse.app/",
@@ -128,7 +128,7 @@ const liveCategories: Category[] = [
   {
     name: "Commerce & Ops OS",
     count: "03",
-    size: "Live + Coming",
+    size: "$2.4M Revenue",
     images: [
       "https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.menuos.app/",
       "https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.homevisor.co/",
@@ -170,7 +170,7 @@ const liveCategories: Category[] = [
   {
     name: "Product & Growth",
     count: "03",
-    size: "Live + Coming",
+    size: "+180% Growth",
     images: [
       "https://image.thum.io/get/width/1200/crop/900/noanimate/https://productjoy.co/",
       "https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.distrohq.xyz/",
@@ -212,7 +212,7 @@ const liveCategories: Category[] = [
   {
     name: "AI & Automation",
     count: "03",
-    size: "Live + Coming",
+    size: "98% Efficiency",
     images: [
       "https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.workfloai.com/",
       "https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.hackr.plus/",
