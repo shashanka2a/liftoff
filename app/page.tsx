@@ -1440,39 +1440,27 @@ const Hero = ({
     id="hero"
     className="relative min-h-screen flex items-center justify-center px-4 md:px-8 py-[120px] overflow-hidden"
   >
-    {/* Warm off-white background with radial gradient glow */}
+    {/* Clean background with subtle gradient */}
     <div className="absolute inset-0 bg-gradient-to-b from-[#FAFAF8] via-white to-[#F5F5F3] dark:from-[#0A0A0A] dark:via-[#050505] dark:to-[#0A0A0A]" />
-    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0.02),transparent_70%)] dark:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.01),transparent_70%)]" />
-    
-    {/* Glassmorphism cards behind content */}
-    <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-white/30 dark:bg-white/5 backdrop-blur-2xl rounded-3xl border border-black/5 dark:border-white/5 shadow-xl -rotate-6 opacity-40" />
-    <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-white/20 dark:bg-white/3 backdrop-blur-2xl rounded-3xl border border-black/5 dark:border-white/5 shadow-xl rotate-6 opacity-30" />
+    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0.015),transparent_70%)] dark:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.008),transparent_70%)]" />
 
-    {/* Decorative floating icons */}
-    <div className="absolute top-20 right-20 w-12 h-12 bg-white/60 dark:bg-white/5 backdrop-blur-md rounded-xl border border-black/5 dark:border-white/5 flex items-center justify-center shadow-lg rotate-12 opacity-60">
-      <Zap className="w-6 h-6 text-zinc-700 dark:text-zinc-300" />
-    </div>
-    <div className="absolute bottom-32 left-16 w-10 h-10 bg-white/50 dark:bg-white/5 backdrop-blur-md rounded-lg border border-black/5 dark:border-white/5 flex items-center justify-center shadow-md -rotate-6 opacity-50">
-      <Code className="w-5 h-5 text-zinc-600 dark:text-zinc-400" />
-    </div>
-
-    {/* Floating testimonial cards */}
-    <div className="absolute left-8 top-1/2 -translate-y-1/2 w-80 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-xl rounded-2xl border border-black/5 dark:border-white/5 shadow-2xl p-6 -rotate-3 opacity-90 hidden lg:block">
-      <Quote className="w-6 h-6 text-zinc-400 dark:text-zinc-500 mb-3" />
-      <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed mb-3">
-        "LIFTOFF transformed our vision into a product that exceeded expectations. Their strategic approach and attention to detail is unmatched."
+    {/* Subtle floating testimonial cards - reduced prominence */}
+    <div className="absolute left-4 xl:left-8 top-1/2 -translate-y-1/2 w-72 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-xl rounded-xl border border-black/5 dark:border-white/5 shadow-lg p-5 -rotate-2 opacity-60 hover:opacity-90 transition-opacity hidden xl:block">
+      <Quote className="w-5 h-5 text-zinc-400 dark:text-zinc-500 mb-2" />
+      <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-2">
+        "LIFTOFF transformed our vision into a product that exceeded expectations."
       </p>
-      <p className="text-xs text-zinc-500 dark:text-zinc-400 font-medium">
+      <p className="text-[10px] text-zinc-500 dark:text-zinc-500 font-medium">
         — CEO, Tech Startup
       </p>
     </div>
 
-    <div className="absolute right-8 top-1/2 -translate-y-1/2 w-80 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-xl rounded-2xl border border-black/5 dark:border-white/5 shadow-2xl p-6 rotate-3 opacity-90 hidden lg:block">
-      <Quote className="w-6 h-6 text-zinc-400 dark:text-zinc-500 mb-3" />
-      <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed mb-3">
-        "Working with LIFTOFF was seamless. They delivered a world-class product that scaled beautifully from day one."
+    <div className="absolute right-4 xl:right-8 top-1/2 -translate-y-1/2 w-72 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-xl rounded-xl border border-black/5 dark:border-white/5 shadow-lg p-5 rotate-2 opacity-60 hover:opacity-90 transition-opacity hidden xl:block">
+      <Quote className="w-5 h-5 text-zinc-400 dark:text-zinc-500 mb-2" />
+      <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-2">
+        "Working with LIFTOFF was seamless. They delivered a world-class product."
       </p>
-      <p className="text-xs text-zinc-500 dark:text-zinc-400 font-medium">
+      <p className="text-[10px] text-zinc-500 dark:text-zinc-500 font-medium">
         — Founder, SaaS Platform
       </p>
     </div>
@@ -2393,14 +2381,16 @@ const StatusBar = () => {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 right-0 h-10 px-6 flex items-center justify-between z-[60] text-xs font-medium text-zinc-900 dark:text-white/70 select-none pointer-events-none mix-blend-difference">
+    <div className="fixed top-0 left-0 right-0 h-10 px-6 flex items-center justify-between z-[60] text-xs font-medium select-none pointer-events-none">
       <div className="flex items-center gap-4 pointer-events-auto">
-        <span className="font-bold tracking-wide">LIFTOFF™ OS</span>
+        <span className="font-bold tracking-wide text-zinc-900 dark:text-white bg-white/90 dark:bg-zinc-900/90 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-black/5 dark:border-white/5 shadow-sm">
+          LIFTOFF™ OS
+        </span>
       </div>
-      <div className="flex items-center gap-4">
-        <Wifi className="w-4 h-4" />
-        <Battery className="w-4 h-4" />
-        <span className="tabular-nums">{time} ET</span>
+      <div className="flex items-center gap-3 pointer-events-auto bg-white/90 dark:bg-zinc-900/90 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-black/5 dark:border-white/5 shadow-sm">
+        <Wifi className="w-4 h-4 text-zinc-700 dark:text-zinc-300" />
+        <Battery className="w-4 h-4 text-zinc-700 dark:text-zinc-300" />
+        <span className="tabular-nums text-zinc-700 dark:text-zinc-300 font-medium">{time} ET</span>
       </div>
     </div>
   );
