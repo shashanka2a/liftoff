@@ -1481,12 +1481,12 @@ const Hero = ({
       <h1 className="text-[36px] md:text-[56px] lg:text-[64px] font-bold mb-8 leading-[1.15] tracking-[-0.02em] text-center">
         <FadeIn delay={200}>
           <div className="block text-zinc-900 dark:text-white mb-6 md:mb-8">
-            Strategic Product Design Studio
+            World-Class Product Studio
           </div>
         </FadeIn>
         <FadeIn delay={400}>
           <div className="flex items-baseline justify-center gap-2 md:gap-3 flex-wrap">
-            <span className="text-zinc-900 dark:text-white">Building Your</span>
+            <span className="text-zinc-900 dark:text-white">Engineering Your</span>
             <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-white dark:bg-zinc-800 border border-black/10 dark:border-white/10 flex items-center justify-center shadow-sm flex-shrink-0">
               <Zap className="w-4 h-4 md:w-5 md:h-5 text-red-500" fill="currentColor" />
             </div>
@@ -1494,7 +1494,7 @@ const Hero = ({
             <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-white dark:bg-zinc-800 border border-black/10 dark:border-white/10 flex items-center justify-center shadow-sm flex-shrink-0">
               <Rocket className="w-4 h-4 md:w-5 md:h-5 text-blue-500" />
             </div>
-            <span className="text-zinc-900 dark:text-white">Products</span>
+            <span className="text-zinc-900 dark:text-white">Success</span>
           </div>
         </FadeIn>
       </h1>
