@@ -2,6 +2,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import HeroIllustration from "./components/HeroIllustration";
 import {
   ArrowRight,
   BarChart3,
@@ -1475,23 +1476,14 @@ const Hero = ({
       <div className="absolute top-0 left-1/4 -translate-x-1/2 w-[800px] h-[600px] bg-indigo-200/40 dark:bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none mix-blend-screen" />
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-200/40 dark:bg-blue-500/10 rounded-full blur-[120px] pointer-events-none mix-blend-screen" />
 
+      {/* Animated Hero Illustration */}
+      <HeroIllustration />
+
       <div className="relative z-10 max-w-7xl mx-auto w-full px-6 md:px-12 py-20 flex flex-col items-start justify-center h-full">
         {/* Subtle depth gradient behind hero text */}
         <div className="absolute inset-0 bg-gradient-to-br from-purple-50/30 via-transparent to-indigo-50/20 dark:from-purple-950/10 dark:via-transparent dark:to-indigo-950/10 rounded-3xl blur-3xl -z-10" />
         
-        <FadeIn delay={100} className="flex justify-start mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-black/5 dark:border-white/10 bg-white/30 dark:bg-white/5 backdrop-blur-md shadow-lg cursor-pointer hover:bg-white/50 dark:hover:bg-white/10 transition-colors">
-            <span className="flex h-2 w-2 relative">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500" />
-            </span>
-            <span className="text-[10px] font-mono text-indigo-600 dark:text-indigo-200 uppercase tracking-wider">
-              System v4.2 Online
-            </span>
-          </div>
-        </FadeIn>
-
-        <h1 className="text-[36px] md:text-[56px] font-bold text-zinc-900 dark:text-white mb-8 leading-[1.1] tracking-[-0.02em] text-left relative z-10">
+        <h1 className="text-[40px] md:text-[72px] font-bold text-zinc-900 dark:text-white mb-8 leading-[1.1] tracking-[-0.02em] text-left relative z-10">
           <WordReveal text="Strategic." delay={0} />
           <div className="h-2 md:h-4" />
           <WordReveal
@@ -2160,7 +2152,7 @@ const Features = () => (
               <div className="w-16 h-16 rounded-2xl bg-purple-50 dark:bg-purple-500/20 border border-purple-100 dark:border-purple-500/30 flex items-center justify-center mb-8">
                 <LayoutGrid className="w-8 h-8 text-purple-500 dark:text-purple-300" />
               </div>
-              <h3 className="text-[18px] font-semibold text-zinc-900 dark:text-white mb-6">
+              <h3 className="text-[24px] font-semibold text-zinc-900 dark:text-white mb-6">
                 Product Design
               </h3>
               <p className="text-[16px] text-zinc-500 dark:text-zinc-400 leading-[1.6] max-w-lg mb-8">
@@ -2198,7 +2190,7 @@ const Features = () => (
                 <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-500/20 border border-blue-100 dark:border-blue-500/30 flex items-center justify-center">
                   <Zap className="w-6 h-6 text-blue-500 dark:text-blue-400" />
                 </div>
-                <h3 className="text-[18px] font-semibold text-zinc-900 dark:text-white">
+                <h3 className="text-[24px] font-semibold text-zinc-900 dark:text-white">
                   Brand Identity
                 </h3>
               </div>
@@ -2221,7 +2213,7 @@ const Features = () => (
               <div className="w-12 h-12 rounded-xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-700/50 flex items-center justify-center mb-6">
                 <Terminal className="w-6 h-6 text-zinc-600 dark:text-zinc-300" />
               </div>
-              <h4 className="text-[18px] text-zinc-900 dark:text-white font-semibold mb-2">
+              <h4 className="text-[24px] text-zinc-900 dark:text-white font-semibold mb-2">
                 Development
               </h4>
               <p className="text-[16px] text-zinc-600 dark:text-zinc-400 leading-[1.6] mb-6">Robust engineering for scalable applications.</p>
@@ -2250,7 +2242,7 @@ const Features = () => (
               <div className="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-500/20 border border-amber-100 dark:border-amber-500/30 flex items-center justify-center mb-6">
                 <BarChart3 className="w-6 h-6 text-amber-600 dark:text-amber-400" />
               </div>
-              <h4 className="text-[18px] text-zinc-900 dark:text-white font-semibold mb-2">Growth</h4>
+              <h4 className="text-[24px] text-zinc-900 dark:text-white font-semibold mb-2">Growth</h4>
               <p className="text-[16px] text-zinc-600 dark:text-zinc-400 leading-[1.6] mb-6">Data-driven strategies for user acquisition.</p>
               <div className="h-24 w-full rounded-lg overflow-hidden bg-white/40 dark:bg-white/5 border border-black/5 dark:border-white/5">
                 <GrowthAnimation />
