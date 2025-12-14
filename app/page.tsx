@@ -1468,31 +1468,31 @@ const Hero = ({
     <div className="relative z-10 max-w-6xl mx-auto w-full text-center">
       {/* Urgency Banner */}
       <FadeIn delay={0}>
-        <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md rounded-full border border-black/5 dark:border-white/5 shadow-sm mb-8">
-          <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-          <span className="text-xs font-medium text-zinc-700 dark:text-zinc-300">
+        <div className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-full border border-black/5 dark:border-white/5 shadow-sm mb-10 md:mb-12">
+          <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse flex-shrink-0" />
+          <span className="text-xs font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wide">
             Only 2 open slots available!
           </span>
-          <ArrowRight className="w-3 h-3 text-zinc-500" />
+          <ArrowRight className="w-3 h-3 text-zinc-500 flex-shrink-0" />
         </div>
       </FadeIn>
 
       {/* Main Headline */}
-      <h1 className="text-[36px] md:text-[56px] lg:text-[64px] font-bold mb-8 leading-[1.1] tracking-[-0.02em] text-center">
+      <h1 className="text-[36px] md:text-[56px] lg:text-[64px] font-bold mb-8 leading-[1.15] tracking-[-0.02em] text-center">
         <FadeIn delay={200}>
-          <div className="block text-zinc-900 dark:text-white mb-4">
+          <div className="block text-zinc-900 dark:text-white mb-6 md:mb-8">
             Strategic Product Design Studio
           </div>
         </FadeIn>
         <FadeIn delay={400}>
-          <div className="flex items-center justify-center gap-3 md:gap-4 flex-wrap">
+          <div className="flex items-baseline justify-center gap-2 md:gap-3 flex-wrap">
             <span className="text-zinc-900 dark:text-white">Building Your</span>
-            <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white dark:bg-zinc-800 border border-black/10 dark:border-white/10 flex items-center justify-center shadow-md">
-              <Zap className="w-5 h-5 md:w-6 md:h-6 text-red-500" fill="currentColor" />
+            <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-white dark:bg-zinc-800 border border-black/10 dark:border-white/10 flex items-center justify-center shadow-sm flex-shrink-0">
+              <Zap className="w-4 h-4 md:w-5 md:h-5 text-red-500" fill="currentColor" />
             </div>
             <span className="text-zinc-900 dark:text-white">Digital</span>
-            <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white dark:bg-zinc-800 border border-black/10 dark:border-white/10 flex items-center justify-center shadow-md">
-              <Rocket className="w-5 h-5 md:w-6 md:h-6 text-blue-500" />
+            <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-white dark:bg-zinc-800 border border-black/10 dark:border-white/10 flex items-center justify-center shadow-sm flex-shrink-0">
+              <Rocket className="w-4 h-4 md:w-5 md:h-5 text-blue-500" />
             </div>
             <span className="text-zinc-900 dark:text-white">Products</span>
           </div>
@@ -1508,10 +1508,15 @@ const Hero = ({
 
       {/* CTA Button */}
       <FadeIn delay={800}>
-        <button className="h-16 px-12 rounded-full bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 font-semibold text-base hover:scale-105 active:scale-95 transition-all shadow-2xl flex items-center gap-3 group mx-auto mb-10">
+        <a 
+          href="https://calendly.com/5ha5hank/availability" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="h-16 px-12 rounded-full bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 font-semibold text-base hover:scale-105 active:scale-95 transition-all shadow-2xl flex items-center gap-3 group mx-auto mb-10 inline-flex justify-center"
+        >
           Start a Project
           <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-        </button>
+        </a>
       </FadeIn>
 
       {/* Trust Indicators */}
@@ -2395,7 +2400,7 @@ const StatusBar = () => {
     <div className="fixed top-0 left-0 right-0 h-10 px-6 flex items-center justify-between z-[60] text-xs font-medium select-none pointer-events-none">
       <div className="flex items-center gap-4 pointer-events-auto">
         <span className="font-bold tracking-wide text-zinc-900 dark:text-white bg-white/90 dark:bg-zinc-900/90 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-black/5 dark:border-white/5 shadow-sm">
-          LIFTOFF™ OS
+          LIFTOFF
         </span>
       </div>
       <div className="flex items-center gap-3 pointer-events-auto bg-white/90 dark:bg-zinc-900/90 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-black/5 dark:border-white/5 shadow-sm">
