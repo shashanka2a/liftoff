@@ -1,18 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-  <!-- Rocket body - rounded rectangle -->
-  <path d="M4.5 16.5 L4.5 7.5 L12 4 L19.5 7.5 L19.5 16.5" stroke="currentColor"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <!-- Dark gray square background -->
+  <rect x="4" y="4" width="16" height="16" rx="2" fill="#3F3F46"/>
   
-  <!-- Rounded nose cone -->
-  <path d="M12 4 L12 2" stroke="currentColor"/>
-  <circle cx="12" cy="2" r="1.5" fill="currentColor"/>
+  <!-- White M shape (negative space) -->
+  <path d="M 8 18 Q 8 16 10 14 L 12 12 L 14 14 Q 16 16 16 18 L 16 20 L 8 20 Z" fill="white"/>
   
-  <!-- Rounded window -->
-  <circle cx="12" cy="10" r="2" fill="none" stroke="currentColor"/>
-  
-  <!-- Rounded fins -->
-  <path d="M4.5 16.5 Q2.5 18.5 4.5 20.5" stroke="currentColor"/>
-  <path d="M19.5 16.5 Q21.5 18.5 19.5 20.5" stroke="currentColor"/>
-  
-  <!-- Rounded flame -->
-  <path d="M8 16.5 Q12 20.5 12 23 Q12 20.5 16 16.5" fill="none" stroke="currentColor"/>
+  <!-- Four-pointed star above the peak -->
+  <path d="M 12 6 L 12.5 7.5 L 14 7.5 L 12.8 8.5 L 13.3 10 L 12 9 L 10.7 10 L 11.2 8.5 L 10 7.5 L 11.5 7.5 Z" fill="#D4A574"/>
 </svg>
