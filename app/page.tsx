@@ -1692,7 +1692,7 @@ const ProductDesignAnimation = () => (
         }
         @keyframes layerHighlight {
           0%, 100% { fill: rgb(113 113 122 / 0.1); }
-          50% { fill: rgb(139 92 246 / 0.2); }
+          50% { fill: rgb(63 63 70 / 0.3); }
         }
         .fade-in {
           animation: fadeInScale 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
@@ -1781,8 +1781,8 @@ const ProductDesignAnimation = () => (
     <rect x="8" y="59" width="32" height="8" rx="1" fill="rgb(113 113 122 / 0.1)" className="fade-in" style={{ animationDelay: "0.4s" }} />
     <rect x="8" y="71" width="24" height="8" rx="1" fill="rgb(113 113 122 / 0.1)" className="fade-in" style={{ animationDelay: "0.45s" }} />
     
-    {/* Active Layer Indicator (Purple) */}
-    <rect x="4" y="35" width="2" height="8" rx="1" fill="rgb(139 92 246 / 0.8)" className="fade-in" style={{ animationDelay: "0.5s" }} />
+    {/* Active Layer Indicator */}
+    <rect x="4" y="35" width="2" height="8" rx="1" fill="rgb(39 39 42)" className="fade-in" style={{ animationDelay: "0.5s" }} />
     
     {/* Main Canvas Area */}
     <rect
@@ -1846,16 +1846,16 @@ const ProductDesignAnimation = () => (
         width="35"
         height="8"
         rx="4"
-        fill="rgb(139 92 246 / 0.3)"
+        fill="rgb(39 39 42 / 0.4)"
         className="select-element"
         style={{ animationDelay: "1.5s" }}
       />
       
       {/* Selection Handles */}
-      <circle cx="65" cy="45" r="3" fill="rgb(139 92 246)" className="resize-handle" />
-      <circle cx="145" cy="45" r="3" fill="rgb(139 92 246)" className="resize-handle" />
-      <circle cx="65" cy="105" r="3" fill="rgb(139 92 246)" className="resize-handle" />
-      <circle cx="145" cy="105" r="3" fill="rgb(139 92 246)" className="resize-handle" />
+      <circle cx="65" cy="45" r="3" fill="rgb(39 39 42)" className="resize-handle" />
+      <circle cx="145" cy="45" r="3" fill="rgb(39 39 42)" className="resize-handle" />
+      <circle cx="65" cy="105" r="3" fill="rgb(39 39 42)" className="resize-handle" />
+      <circle cx="145" cy="105" r="3" fill="rgb(39 39 42)" className="resize-handle" />
     </g>
     
     {/* Design Mockup - Button Component */}
@@ -1866,7 +1866,7 @@ const ProductDesignAnimation = () => (
         width="35"
         height="20"
         rx="4"
-        fill="rgb(139 92 246 / 0.4)"
+        fill="rgb(39 39 42 / 0.5)"
         className="select-element"
         style={{ animationDelay: "2s" }}
       />
@@ -1920,7 +1920,7 @@ const ProductDesignAnimation = () => (
       </defs>
       <path
         d="M 45 55 L 45 65 L 50 62 L 45 59 Z"
-        fill="rgb(139 92 246)"
+        fill="rgb(39 39 42)"
         filter="url(#cursorShadow)"
       />
     </g>
@@ -1931,7 +1931,7 @@ const ProductDesignAnimation = () => (
       y1="105"
       x2="105"
       y2="115"
-      stroke="rgb(139 92 246 / 0.4)"
+      stroke="rgb(113 113 122 / 0.4)"
       strokeWidth="1.5"
       strokeLinecap="round"
       strokeDasharray="3 3"
@@ -1981,23 +1981,23 @@ const BrandIdentityAnimation = () => (
           }
           @keyframes rotateColor {
             0% { 
-              fill: rgb(139 92 246 / 0.5); 
+              fill: rgb(63 63 70 / 0.4); 
               transform: scale(1);
             }
             25% { 
-              fill: rgb(59 130 246 / 0.5); 
+              fill: rgb(82 82 91 / 0.5); 
               transform: scale(1.1);
             }
             50% { 
-              fill: rgb(236 72 153 / 0.5); 
+              fill: rgb(113 113 122 / 0.6); 
               transform: scale(1.15);
             }
             75% { 
-              fill: rgb(251 146 60 / 0.5); 
+              fill: rgb(82 82 91 / 0.5); 
               transform: scale(1.1);
             }
             100% { 
-              fill: rgb(139 92 246 / 0.5); 
+              fill: rgb(63 63 70 / 0.4); 
               transform: scale(1);
             }
           }
@@ -2091,7 +2091,7 @@ const DevelopmentAnimation = () => (
         }
         @keyframes highlightSyntax {
           0%, 100% { fill: rgb(113 113 122 / 0.5); }
-          50% { fill: rgb(139 92 246 / 0.7); }
+          50% { fill: rgb(63 63 70 / 0.7); }
         }
         @keyframes terminalGlow {
           0%, 100% { opacity: 0.3; }
@@ -2139,15 +2139,15 @@ const DevelopmentAnimation = () => (
       rx="4"
       fill="rgb(39 39 42 / 0.95)"
     />
-    <circle cx="20" cy="20" r="4.5" fill="rgb(239 68 68 / 0.7)" />
-    <circle cx="32" cy="20" r="4.5" fill="rgb(234 179 8 / 0.7)" />
-    <circle cx="44" cy="20" r="4.5" fill="rgb(34 197 94 / 0.7)" />
+    <circle cx="20" cy="20" r="4.5" fill="rgb(113 113 122 / 0.5)" />
+    <circle cx="32" cy="20" r="4.5" fill="rgb(113 113 122 / 0.5)" />
+    <circle cx="44" cy="20" r="4.5" fill="rgb(113 113 122 / 0.5)" />
     {/* Code lines */}
     <text
       x="20"
       y="45"
       fontSize="10"
-      fill="rgb(139 92 246 / 0.7)"
+      fill="rgb(39 39 42 / 0.8)"
       fontFamily="monospace"
       className="type-text"
       style={{ animationDelay: "0s", animationDuration: "1.2s" } as React.CSSProperties}
@@ -2182,7 +2182,7 @@ const DevelopmentAnimation = () => (
       y="85"
       width="8"
       height="12"
-      fill="rgb(139 92 246 / 0.9)"
+      fill="rgb(250 250 250 / 0.9)"
       className="cursor-blink"
       rx="1"
       style={{ animationDelay: "4.2s" } as React.CSSProperties}
@@ -2202,12 +2202,12 @@ const DevelopmentAnimation = () => (
         cx="170"
         cy="70"
         r="14"
-        fill="rgb(34 197 94 / 0.4)"
+        fill="rgb(113 113 122 / 0.3)"
         filter="url(#checkGlow)"
       />
       <path
         d="M 164 70 L 168 74 L 176 66"
-        stroke="rgb(34 197 94)"
+        stroke="rgb(39 39 42)"
         strokeWidth="2.5"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -2356,7 +2356,7 @@ const GrowthAnimation = () => (
       y="85"
       width="18"
       height="0"
-      fill="rgb(139 92 246 / 0.5)"
+      fill="rgb(63 63 70 / 0.5)"
       className="grow-bar"
       rx="2"
       style={{ "--target-height": "65px", animationDelay: "0.5s" } as React.CSSProperties}
@@ -2366,7 +2366,7 @@ const GrowthAnimation = () => (
       y="85"
       width="18"
       height="0"
-      fill="rgb(139 92 246 / 0.6)"
+      fill="rgb(39 39 42 / 0.6)"
       className="grow-bar"
       rx="2"
       style={{ "--target-height": "55px", animationDelay: "0.65s" } as React.CSSProperties}
@@ -2376,7 +2376,7 @@ const GrowthAnimation = () => (
       cx="44"
       cy="70"
       r="2.5"
-      fill="rgb(139 92 246 / 0.6)"
+      fill="rgb(63 63 70 / 0.6)"
       className="pulse-dot"
       style={{ animationDelay: "1.8s" }}
     />
@@ -2384,7 +2384,7 @@ const GrowthAnimation = () => (
       cx="74"
       cy="50"
       r="2.5"
-      fill="rgb(139 92 246 / 0.6)"
+      fill="rgb(63 63 70 / 0.6)"
       className="pulse-dot"
       style={{ animationDelay: "2s" }}
     />
@@ -2392,7 +2392,7 @@ const GrowthAnimation = () => (
       cx="104"
       cy="30"
       r="2.5"
-      fill="rgb(139 92 246 / 0.8)"
+      fill="rgb(39 39 42 / 0.8)"
       className="pulse-dot"
       style={{ animationDelay: "2.2s" }}
     />
@@ -2400,20 +2400,20 @@ const GrowthAnimation = () => (
       cx="134"
       cy="40"
       r="2.5"
-      fill="rgb(139 92 246 / 0.6)"
+      fill="rgb(63 63 70 / 0.6)"
       className="pulse-dot"
       style={{ animationDelay: "2.4s" }}
     />
     {/* Floating arrows */}
     <path
       d="M 104 25 L 104 15 L 101 18 L 104 15 L 107 18 Z"
-      fill="rgb(139 92 246 / 0.5)"
+      fill="rgb(63 63 70 / 0.5)"
       className="float-arrow"
       style={{ animationDelay: "2.5s" }}
     />
     <path
       d="M 110 20 L 110 10 L 107 13 L 110 10 L 113 13 Z"
-      fill="rgb(139 92 246 / 0.4)"
+      fill="rgb(63 63 70 / 0.4)"
       className="float-arrow"
       style={{ animationDelay: "3.5s" }}
     />
@@ -2421,7 +2421,7 @@ const GrowthAnimation = () => (
     <polyline
       points="50,65 80,45 110,25 140,35"
       fill="none"
-      stroke="rgb(139 92 246 / 0.3)"
+      stroke="rgb(113 113 122 / 0.3)"
       strokeWidth="2"
       strokeDasharray="200"
       className="draw-line"
