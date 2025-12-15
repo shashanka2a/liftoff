@@ -1601,7 +1601,7 @@ const Hero = ({
                 }
               })}
             </div>
-            <span className="text-gray-500 dark:text-zinc-400 font-medium">From 30+ reviews</span>
+            <span className="text-gray-500 dark:text-zinc-400 font-medium">rated 4.8</span>
           </div>
         </div>
       </FadeIn>
@@ -2555,7 +2555,7 @@ const Features = () => (
 const Footer = () => (
   <footer
     id="footer"
-    className="bg-white dark:bg-white pt-24 pb-12 px-6"
+    className="bg-white dark:bg-zinc-900 pt-24 pb-12 px-6"
   >
     <div className="max-w-[1600px] mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
@@ -2564,7 +2564,7 @@ const Footer = () => (
             <img src="/icon.svg" alt="LIFTOFF" className="w-6 h-6" />
             LIFTOFF
           </h2>
-          <p className="text-zinc-500 max-w-sm mb-8">
+          <p className="text-zinc-500 dark:text-zinc-400 max-w-sm mb-8">
             Strategic digital infrastructure for the modern web.
             <br />
             San Francisco • New York • Tokyo
@@ -2603,10 +2603,10 @@ const Footer = () => (
               <Globe className="w-4 h-4" />
             </button>
           </div>
-          <div className="text-zinc-500 text-xs">
+          <div className="text-zinc-500 dark:text-zinc-400 text-xs">
             <div className="flex items-center gap-2 mb-2 group/status relative">
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              <span className="cursor-help">Systems Normal</span>
+              <span className="cursor-help dark:text-zinc-300">Systems Normal</span>
               <div className="absolute bottom-full left-0 mb-2 px-2 py-1 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-xs rounded opacity-0 group-hover/status:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50">
                 All systems operational
               </div>
@@ -2617,7 +2617,7 @@ const Footer = () => (
       </div>
 
       <div className="flex justify-start items-center pt-8">
-        <span className="text-zinc-500 text-xs whitespace-nowrap">© 2024 LIFTOFF. All rights reserved.</span>
+        <span className="text-zinc-500 dark:text-zinc-400 text-xs whitespace-nowrap">© 2024 LIFTOFF. All rights reserved.</span>
       </div>
     </div>
   </footer>
