@@ -1500,16 +1500,9 @@ const Hero = ({
       {/* Main Headline */}
       <h1 className="text-[36px] md:text-[56px] lg:text-[64px] font-bold mb-8 leading-[1.15] tracking-[-0.02em] text-center">
         <FadeIn delay={200}>
-          <div className="block mb-3 md:mb-4">
+          <div className="block">
             <span className="bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 dark:from-white dark:via-zinc-100 dark:to-white bg-clip-text text-transparent">
-              World-Class Product Studio
-            </span>
-          </div>
-        </FadeIn>
-        <FadeIn delay={400}>
-          <div className="block hidden md:block">
-            <span className="bg-gradient-to-br from-zinc-700 via-zinc-600 to-zinc-700 dark:from-zinc-300 dark:via-zinc-200 dark:to-zinc-300 bg-clip-text text-transparent">
-              Engineering Your Success
+              Where Premium Design Meets Strategic Engineering
             </span>
           </div>
         </FadeIn>
@@ -1518,7 +1511,7 @@ const Hero = ({
       {/* Description */}
       <FadeIn delay={600}>
         <p className="text-[18px] md:text-[20px] text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto leading-relaxed mb-12 font-normal">
-          Trusted by startups and enterprises to design, build, and scale products that perform globally.
+          UI/UX, web, and product engineering for startups and growing companies.
         </p>
       </FadeIn>
 
