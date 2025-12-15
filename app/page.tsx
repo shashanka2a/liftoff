@@ -1464,23 +1464,23 @@ const Hero = ({
     <div className="absolute inset-0 bg-gradient-to-b from-[#FAFAF8] via-white to-[#F5F5F3] dark:from-[#0A0A0A] dark:via-[#050505] dark:to-[#0A0A0A]" />
     <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0.015),transparent_70%)] dark:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.008),transparent_70%)]" />
 
-    {/* Subtle floating testimonial cards - reduced prominence */}
-    <div className="absolute left-4 xl:left-8 top-1/2 -translate-y-1/2 w-72 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-xl rounded-xl border border-black/5 dark:border-white/5 shadow-lg p-5 -rotate-2 opacity-60 hover:opacity-90 transition-opacity hidden xl:block">
-      <Quote className="w-5 h-5 text-zinc-400 dark:text-zinc-500 mb-2" />
-      <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-2">
+    {/* Subtle floating testimonial cards - with enhanced contrast animation */}
+    <div className="absolute left-4 xl:left-8 top-1/2 -translate-y-1/2 w-72 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-xl rounded-xl border border-black/5 dark:border-white/5 shadow-lg p-5 -rotate-2 opacity-60 hover:opacity-100 hover:scale-110 hover:-rotate-3 hover:shadow-2xl hover:bg-white dark:hover:bg-zinc-900 transition-all duration-500 ease-out hidden xl:block group">
+      <Quote className="w-5 h-5 text-zinc-400 dark:text-zinc-500 mb-2 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors duration-500" />
+      <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-2 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 transition-colors duration-500">
         "LIFTOFF transformed our vision into a product that exceeded expectations."
       </p>
-      <p className="text-[10px] text-zinc-500 dark:text-zinc-500 font-medium">
+      <p className="text-[10px] text-zinc-500 dark:text-zinc-500 font-medium group-hover:text-zinc-700 dark:group-hover:text-zinc-300 transition-colors duration-500">
         — CEO, Grogate
       </p>
     </div>
 
-    <div className="absolute right-4 xl:right-8 top-1/2 -translate-y-1/2 w-72 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-xl rounded-xl border border-black/5 dark:border-white/5 shadow-lg p-5 rotate-2 opacity-60 hover:opacity-90 transition-opacity hidden xl:block">
-      <Quote className="w-5 h-5 text-zinc-400 dark:text-zinc-500 mb-2" />
-      <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-2">
+    <div className="absolute right-4 xl:right-8 top-1/2 -translate-y-1/2 w-72 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-xl rounded-xl border border-black/5 dark:border-white/5 shadow-lg p-5 rotate-2 opacity-60 hover:opacity-100 hover:scale-110 hover:rotate-3 hover:shadow-2xl hover:bg-white dark:hover:bg-zinc-900 transition-all duration-500 ease-out hidden xl:block group">
+      <Quote className="w-5 h-5 text-zinc-400 dark:text-zinc-500 mb-2 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors duration-500" />
+      <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-2 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 transition-colors duration-500">
         "Working with LIFTOFF was seamless. They delivered a world-class product."
       </p>
-      <p className="text-[10px] text-zinc-500 dark:text-zinc-500 font-medium">
+      <p className="text-[10px] text-zinc-500 dark:text-zinc-500 font-medium group-hover:text-zinc-700 dark:group-hover:text-zinc-300 transition-colors duration-500">
         — Founder, Homevisor
       </p>
     </div>
@@ -1498,25 +1498,32 @@ const Hero = ({
       </FadeIn>
 
       {/* Main Headline */}
-      <h1 className="text-[36px] md:text-[56px] lg:text-[64px] font-bold mb-8 leading-[1.15] tracking-[-0.02em] text-center">
+      <h1 className="text-[32px] md:text-[48px] lg:text-[56px] font-bold mb-8 leading-[1.15] tracking-[-0.02em] text-center">
         <FadeIn delay={200}>
           <div className="block">
             <span className="bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 dark:from-white dark:via-zinc-100 dark:to-white bg-clip-text text-transparent">
-              Where Premium Design
-              {/* Icons Group */}
-              <span className="inline-flex align-middle relative mx-4 -top-2">
-                <span className="relative z-10 bg-white dark:bg-zinc-900 p-2.5 rounded-2xl shadow-[0_8px_16px_-4px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_16px_-4px_rgba(0,0,0,0.3)] border border-gray-100 dark:border-zinc-800 -rotate-6 transform hover:-rotate-12 transition-transform duration-300 block">
-                  <Box className="w-8 h-8 md:w-10 md:h-10 text-gray-800 dark:text-white fill-current" />
+              {/* First Line */}
+              <span className="inline-block">
+                Where Premium Design
+                {/* Icons Group */}
+                <span className="inline-flex align-middle relative mx-2 md:mx-4 -top-2">
+                  <span className="relative z-10 bg-white dark:bg-zinc-900 p-2 md:p-2.5 rounded-2xl shadow-[0_8px_16px_-4px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_16px_-4px_rgba(0,0,0,0.3)] border border-gray-100 dark:border-zinc-800 -rotate-6 transform hover:-rotate-12 transition-transform duration-300 block">
+                    <Box className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 text-gray-800 dark:text-white fill-current" />
+                  </span>
+                  <span className="absolute left-5 md:left-6 top-1.5 md:top-2 z-20 bg-white dark:bg-zinc-900 p-2 md:p-2.5 rounded-2xl shadow-[0_8px_16px_-4px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_16px_-4px_rgba(0,0,0,0.3)] border border-gray-100 dark:border-zinc-800 rotate-12 transform hover:rotate-6 transition-transform duration-300 block">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10" alt="figma" />
+                  </span>
+                  <div className="w-12 md:w-16 lg:w-20 inline-block"></div>
                 </span>
-                <span className="absolute left-6 top-2 z-20 bg-white dark:bg-zinc-900 p-2.5 rounded-2xl shadow-[0_8px_16px_-4px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_16px_-4px_rgba(0,0,0,0.3)] border border-gray-100 dark:border-zinc-800 rotate-12 transform hover:rotate-6 transition-transform duration-300 block">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" className="w-8 h-8 md:w-10 md:h-10" alt="figma" />
-                </span>
-                <div className="w-16 md:w-20 inline-block"></div> {/* Spacer for stacked icons */}
               </span>
-              <br className="hidden lg:block"/>
-              Meets Strategic Engineering
-              <span className="inline-block align-middle bg-white dark:bg-zinc-900 p-3 rounded-2xl mx-3 -rotate-3 hover:rotate-0 transition-transform shadow-[0_8px_16px_-4px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_16px_-4px_rgba(0,0,0,0.3)] border border-gray-100 dark:border-zinc-800 relative -top-1">
-                <Zap className="w-8 h-8 md:w-10 md:h-10 text-orange-500 fill-orange-500" />
+              {/* Break: Always on mobile, hidden on md, shown on lg */}
+              <br className="md:hidden lg:block"/>
+              {/* Second Line */}
+              <span className="inline-block">
+                Meets Strategic Engineering
+                <span className="inline-block align-middle bg-white dark:bg-zinc-900 p-2 md:p-3 rounded-2xl mx-2 md:mx-3 -rotate-3 hover:rotate-0 transition-transform shadow-[0_8px_16px_-4px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_16px_-4px_rgba(0,0,0,0.3)] border border-gray-100 dark:border-zinc-800 relative -top-1">
+                  <Zap className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 text-orange-500 fill-orange-500" />
+                </span>
               </span>
             </span>
           </div>
@@ -1558,7 +1565,7 @@ const Hero = ({
             </div>
 
             {/* Text */}
-            <span className="text-xl font-medium tracking-normal pl-4 group-hover:pl-0 transition-all duration-300 text-white dark:text-zinc-900">Book a 30-Min call</span>
+            <span className="text-lg font-medium tracking-normal pl-4 group-hover:pl-0 transition-all duration-300 text-white dark:text-zinc-900">Book a 30-Min call</span>
           </a>
         </div>
       </FadeIn>
