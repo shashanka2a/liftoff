@@ -1502,7 +1502,22 @@ const Hero = ({
         <FadeIn delay={200}>
           <div className="block">
             <span className="bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 dark:from-white dark:via-zinc-100 dark:to-white bg-clip-text text-transparent">
-              Where Premium Design Meets Strategic Engineering
+              Where Premium Design
+              {/* Icons Group */}
+              <span className="inline-flex align-middle relative mx-4 -top-2">
+                <span className="relative z-10 bg-white dark:bg-zinc-900 p-2.5 rounded-2xl shadow-[0_8px_16px_-4px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_16px_-4px_rgba(0,0,0,0.3)] border border-gray-100 dark:border-zinc-800 -rotate-6 transform hover:-rotate-12 transition-transform duration-300 block">
+                  <Box className="w-8 h-8 md:w-10 md:h-10 text-gray-800 dark:text-white fill-current" />
+                </span>
+                <span className="absolute left-6 top-2 z-20 bg-white dark:bg-zinc-900 p-2.5 rounded-2xl shadow-[0_8px_16px_-4px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_16px_-4px_rgba(0,0,0,0.3)] border border-gray-100 dark:border-zinc-800 rotate-12 transform hover:rotate-6 transition-transform duration-300 block">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" className="w-8 h-8 md:w-10 md:h-10" alt="figma" />
+                </span>
+                <div className="w-16 md:w-20 inline-block"></div> {/* Spacer for stacked icons */}
+              </span>
+              <br className="hidden lg:block"/>
+              Meets Strategic Engineering
+              <span className="inline-block align-middle bg-white dark:bg-zinc-900 p-3 rounded-2xl mx-3 -rotate-3 hover:rotate-0 transition-transform shadow-[0_8px_16px_-4px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_16px_-4px_rgba(0,0,0,0.3)] border border-gray-100 dark:border-zinc-800 relative -top-1">
+                <Zap className="w-8 h-8 md:w-10 md:h-10 text-orange-500 fill-orange-500" />
+              </span>
             </span>
           </div>
         </FadeIn>
@@ -1517,54 +1532,70 @@ const Hero = ({
 
       {/* CTA Button */}
       <FadeIn delay={800}>
-        <a 
-          href="https://calendly.com/5ha5hank/availability" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="h-16 px-12 rounded-full bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 font-semibold text-base hover:scale-105 active:scale-95 transition-all shadow-2xl flex items-center gap-3 group mx-auto mb-10 inline-flex justify-center"
-        >
-          Start a Project
-          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-        </a>
+        <div className="flex justify-center mb-16 relative z-10 h-24 items-center">
+          <a 
+            href="https://calendly.com/5ha5hank/availability" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="group relative flex items-center bg-zinc-900 dark:bg-white hover:bg-black dark:hover:bg-zinc-100 text-white dark:text-zinc-900 rounded-full p-2.5 pr-8 transition-all duration-500 hover:scale-105 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.3)] dark:hover:shadow-[0_20px_40px_-12px_rgba(255,255,255,0.2)] shadow-2xl"
+          >
+            <div className="flex items-center">
+              {/* Circle 1: LIFTOFF Icon (Always Visible) */}
+              <div className="w-12 h-12 rounded-full bg-white dark:bg-zinc-900 flex items-center justify-center z-20 relative shadow-sm">
+                <img src="/icon.svg" alt="LIFTOFF" className="w-7 h-7" />
+              </div>
+
+              {/* Hidden Part: + You (Reveals on Hover) */}
+              <div className="flex items-center overflow-hidden max-w-0 opacity-0 group-hover:max-w-[120px] group-hover:opacity-100 transition-all duration-500 ease-in-out">
+                <span className="text-white dark:text-zinc-900 mx-3 font-medium text-lg">+</span>
+                {/* Circle 2: You */}
+                <div className="w-12 h-12 rounded-full bg-blue-600 dark:bg-blue-500 flex items-center justify-center text-sm font-bold text-white shadow-inner whitespace-nowrap">
+                  You
+                </div>
+                {/* Spacer to push text */}
+                <div className="w-4"></div>
+              </div>
+            </div>
+
+            {/* Text */}
+            <span className="text-xl font-medium tracking-normal pl-4 group-hover:pl-0 transition-all duration-300 text-white dark:text-zinc-900">Book a 30-Min call</span>
+          </a>
+        </div>
       </FadeIn>
 
-      {/* Trust Indicators */}
+      {/* Social Proof */}
       <FadeIn delay={1000}>
-        <div className="flex items-center justify-center gap-4">
-          {/* Avatar circles */}
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4 text-sm">
           <div className="flex -space-x-3">
-            {[
-              "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah&backgroundColor=b6e3f4,c0aede,ffd5dc",
-              "https://api.dicebear.com/7.x/avataaars/svg?seed=Michael&backgroundColor=b6e3f4,c0aede,ffd5dc",
-              "https://api.dicebear.com/7.x/avataaars/svg?seed=Emma&backgroundColor=b6e3f4,c0aede,ffd5dc"
-            ].map((avatarUrl, i) => (
-              <img
-                key={i}
-                src={avatarUrl}
-                alt={`Reviewer ${i + 1}`}
-                className="w-10 h-10 rounded-full border-2 border-white dark:border-zinc-900 object-cover"
+            {[1, 2, 3].map(i => (
+              <img 
+                key={i} 
+                src={`https://i.pravatar.cc/100?img=${i+10}`} 
+                alt="User" 
+                className="w-10 h-10 rounded-full border-[3px] border-white dark:border-zinc-900" 
               />
             ))}
+            <div className="w-10 h-10 rounded-full border-[3px] border-white dark:border-zinc-900 bg-gray-100 dark:bg-zinc-800 flex items-center justify-center text-xs font-bold text-gray-600 dark:text-zinc-400">+30</div>
           </div>
-          <div className="flex items-center gap-1">
-            {[1, 2, 3, 4, 5].map((i) => {
-              if (i <= 4) {
-                // Full stars for first 4
-                return <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />;
-              } else {
-                // 5th star: 80% filled (4.8/5 visual representation)
-                return (
-                  <div key={i} className="relative w-4 h-4 inline-block">
-                    <Star className="w-4 h-4 fill-yellow-400/20 text-yellow-400/20 absolute inset-0" />
-                    <div className="absolute inset-0 overflow-hidden" style={{ width: '80%' }}>
-                      <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+          <div className="flex items-center gap-2 ml-2">
+            <div className="flex text-yellow-400 gap-0.5">
+              {[1, 2, 3, 4, 5].map(i => {
+                if (i <= 4) {
+                  return <Star key={i} size={18} fill="currentColor" className="text-yellow-400" />;
+                } else {
+                  return (
+                    <div key={i} className="relative w-[18px] h-[18px] inline-block">
+                      <Star size={18} fill="currentColor" className="text-yellow-400/20 absolute inset-0" />
+                      <div className="absolute inset-0 overflow-hidden" style={{ width: '80%' }}>
+                        <Star size={18} fill="currentColor" className="text-yellow-400" />
+                      </div>
                     </div>
-                  </div>
-                );
-              }
-            })}
+                  );
+                }
+              })}
+            </div>
+            <span className="text-gray-500 dark:text-zinc-400 font-medium">From 30+ reviews</span>
           </div>
-          <span className="text-sm text-zinc-600 dark:text-zinc-400">From 30+ reviews</span>
         </div>
       </FadeIn>
     </div>
@@ -2399,8 +2430,6 @@ const Features = () => (
               </h3>
               <p className="text-[16px] text-zinc-500 dark:text-zinc-400 leading-[1.6] max-w-lg mb-8">
                 Intuitive interfaces that connect users with your product.
-                <br />
-                Design systems and prototypes that turn vision into reality.
               </p>
               <div className="flex flex-wrap gap-3">
                 {["UI/UX", "Design Systems", "Prototyping", "User Research"].map((tag) => (
@@ -2524,7 +2553,8 @@ const Footer = () => (
     <div className="max-w-[1600px] mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
         <div className="col-span-1 md:col-span-2">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6 tracking-wide">
+          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6 tracking-wide flex items-center gap-2">
+            <img src="/icon.svg" alt="LIFTOFF" className="w-6 h-6" />
             LIFTOFF
           </h2>
           <p className="text-zinc-500 max-w-sm mb-8">
