@@ -251,48 +251,6 @@ const liveCategories: Category[] = [
         tags: ["AI", "Trading", "Coming Soon"]
       }
     ]
-  },
-  {
-    name: "Decor & Events",
-    count: "03",
-    size: "+150% Growth",
-    images: [
-      "https://www.elegantwedding.ca/wp-content/uploads/2017/09/elegant-wedding-26-outdoor-wedding-decoration-ideas-featured-1.jpg",
-      "https://www.elegantwedding.ca/wp-content/uploads/2017/09/elegant-wedding-26-outdoor-wedding-decoration-ideas-featured-1.jpg",
-      "https://www.elegantwedding.ca/wp-content/uploads/2017/09/elegant-wedding-26-outdoor-wedding-decoration-ideas-featured-1.jpg"
-    ],
-    projects: [
-      {
-        name: "Elegant Wedding",
-        url: "https://www.elegantwedding.ca/",
-        image: "https://www.elegantwedding.ca/wp-content/uploads/2017/09/elegant-wedding-26-outdoor-wedding-decoration-ideas-featured-1.jpg",
-        scope: "Wedding decoration & events",
-        year: "2025",
-        impact: "Premium events delivered",
-        meta: "Outdoor wedding decoration and elegant event design services.",
-        tags: ["Events", "Decor", "Live"]
-      },
-      {
-        name: "Event Design Studio",
-        url: "#",
-        image: "https://www.elegantwedding.ca/wp-content/uploads/2017/09/elegant-wedding-26-outdoor-wedding-decoration-ideas-featured-1.jpg",
-        scope: "Premium event decoration",
-        year: "2025",
-        impact: "Active projects",
-        meta: "Custom event decoration and design services for special occasions.",
-        tags: ["Events", "Design", "Live"]
-      },
-      {
-        name: "Decorative Solutions",
-        url: "#",
-        image: "https://www.elegantwedding.ca/wp-content/uploads/2017/09/elegant-wedding-26-outdoor-wedding-decoration-ideas-featured-1.jpg",
-        scope: "Interior & event decor",
-        year: "2025",
-        impact: "Coming soon",
-        meta: "Comprehensive decoration services for events and spaces.",
-        tags: ["Decor", "Interior", "Coming Soon"]
-      }
-    ]
   }
 ];
 
@@ -1710,299 +1668,155 @@ const WorkSection = ({ onOpenFolder }: { onOpenFolder: (category: Category) => v
 };
 
 // SVG Animation Components
-const ProductDesignAnimation = () => (
-  <svg
-    viewBox="0 0 200 150"
-    className="w-full h-full"
-    xmlns="http://www.w3.org/2000/svg"
-    style={{ willChange: 'transform' }}
-  >
-    <style>
-      {`
-        @keyframes fadeInScale {
-          0% { opacity: 0; transform: scale(0.96); }
-          100% { opacity: 1; transform: scale(1); }
-        }
-        @keyframes drawPath {
-          0% { stroke-dashoffset: 100; opacity: 0; }
-          10% { opacity: 1; }
-          100% { stroke-dashoffset: 0; opacity: 1; }
-        }
-        @keyframes selectElement {
-          0% { opacity: 0; transform: scale(0.9); stroke-dasharray: 0; }
-          20% { opacity: 1; transform: scale(1); }
-          40% { stroke-dasharray: 4 2; }
-          60% { stroke-dasharray: 4 2; }
-          100% { opacity: 1; transform: scale(1); stroke-dasharray: 4 2; }
-        }
-        @keyframes moveElement {
-          0% { transform: translate(0, 0); }
-          50% { transform: translate(15px, -10px); }
-          100% { transform: translate(0, 0); }
-        }
-        @keyframes resizeHandle {
-          0%, 100% { opacity: 0.6; }
-          50% { opacity: 1; }
-        }
-        @keyframes cursorMove {
-          0% { transform: translate(45px, 55px); opacity: 0; }
-          10% { opacity: 1; }
-          30% { transform: translate(85px, 55px); }
-          50% { transform: translate(85px, 75px); }
-          70% { transform: translate(120px, 75px); }
-          90% { opacity: 1; }
-          100% { transform: translate(120px, 95px); opacity: 0.8; }
-        }
-        @keyframes layerHighlight {
-          0%, 100% { fill: rgb(255 16 240 / 0.1); }
-          50% { fill: rgb(255 16 240 / 0.3); }
-        }
-        .fade-in {
-          animation: fadeInScale 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-          opacity: 0;
-        }
-        .draw-path {
-          stroke-dasharray: 100;
-          animation: drawPath 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-        .select-element {
-          animation: selectElement 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-          opacity: 0;
-        }
-        .move-element {
-          animation: moveElement 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-          animation-delay: 2s;
-        }
-        .resize-handle {
-          animation: resizeHandle 1.5s ease-in-out infinite;
-          animation-delay: 2.5s;
-        }
-        .cursor {
-          animation: cursorMove 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-          animation-delay: 1s;
-        }
-        .layer-highlight {
-          animation: layerHighlight 3s ease-in-out infinite;
-          animation-delay: 1.5s;
-        }
-      `}
-    </style>
-    {/* Figma Canvas Background */}
-    <rect
-      x="0"
-      y="0"
-      width="200"
-      height="150"
-      rx="6"
-      fill="rgb(250 250 250)"
-    />
-    
-    {/* Figma Top Toolbar */}
-    <rect
-      x="0"
-      y="0"
-      width="200"
-      height="24"
-      fill="rgb(255 255 255)"
-      className="fade-in"
-      style={{ animationDelay: "0s" }}
-    />
-    <rect
-      x="0"
-      y="24"
-      width="200"
-      height="1"
-      fill="rgb(228 228 231 / 0.5)"
-    />
-    
-    {/* Toolbar Icons */}
-    <circle cx="12" cy="12" r="3" fill="rgb(113 113 122 / 0.3)" className="fade-in" style={{ animationDelay: "0.1s" }} />
-    <rect x="20" y="9" width="12" height="6" rx="1" fill="rgb(113 113 122 / 0.3)" className="fade-in" style={{ animationDelay: "0.15s" }} />
-    <rect x="36" y="9" width="8" height="6" rx="1" fill="rgb(113 113 122 / 0.3)" className="fade-in" style={{ animationDelay: "0.2s" }} />
-    
-    {/* Left Layers Panel */}
-    <rect
-      x="0"
-      y="25"
-      width="50"
-      height="125"
-      fill="rgb(255 255 255)"
-      className="fade-in"
-      style={{ animationDelay: "0.25s" }}
-    />
-    <rect
-      x="50"
-      y="25"
-      width="1"
-      height="125"
-      fill="rgb(228 228 231 / 0.5)"
-    />
-    
-    {/* Layer Items */}
-    <rect x="8" y="35" width="34" height="8" rx="1" fill="rgb(113 113 122 / 0.15)" className="fade-in layer-highlight" style={{ animationDelay: "0.3s" }} />
-    <rect x="8" y="47" width="28" height="8" rx="1" fill="rgb(113 113 122 / 0.1)" className="fade-in" style={{ animationDelay: "0.35s" }} />
-    <rect x="8" y="59" width="32" height="8" rx="1" fill="rgb(113 113 122 / 0.1)" className="fade-in" style={{ animationDelay: "0.4s" }} />
-    <rect x="8" y="71" width="24" height="8" rx="1" fill="rgb(113 113 122 / 0.1)" className="fade-in" style={{ animationDelay: "0.45s" }} />
-    
-    {/* Active Layer Indicator - using neon pink for highlight */}
-    <rect x="4" y="35" width="2" height="8" rx="1" fill="#FF10F0" className="fade-in" style={{ animationDelay: "0.5s" }} />
-    
-    {/* Main Canvas Area */}
-    <rect
-      x="51"
-      y="25"
-      width="149"
-      height="125"
-      fill="rgb(250 250 250)"
-      className="fade-in"
-      style={{ animationDelay: "0.3s" }}
-    />
-    
-    {/* Design Mockup - Card Component */}
-    <g className="fade-in move-element" style={{ animationDelay: "0.6s" }}>
-      {/* Card Container */}
-      <rect
-        x="65"
-        y="45"
-        width="80"
-        height="60"
-        rx="6"
-        fill="rgb(255 255 255)"
-        stroke="rgb(228 228 231)"
-        strokeWidth="1"
-        className="select-element"
-        style={{ animationDelay: "1s" }}
-      />
-      
-      {/* Card Header */}
-      <rect
-        x="70"
-        y="50"
-        width="70"
-        height="12"
-        rx="2"
-        fill="rgb(113 113 122 / 0.2)"
-      />
-      
-      {/* Card Content */}
-      <rect
-        x="70"
-        y="68"
-        width="50"
-        height="8"
-        rx="1"
-        fill="rgb(113 113 122 / 0.15)"
-      />
-      <rect
-        x="70"
-        y="80"
-        width="60"
-        height="8"
-        rx="1"
-        fill="rgb(113 113 122 / 0.1)"
-      />
-      
-      {/* Card Button - using neon pink for highlight */}
-      <rect
-        x="70"
-        y="92"
-        width="35"
-        height="8"
-        rx="4"
-        fill="#FF10F0"
-        className="select-element"
-        style={{ animationDelay: "1.5s" }}
-      />
-      
-      {/* Selection Handles - using neon pink for highlights */}
-      <circle cx="65" cy="45" r="3" fill="#FF10F0" className="resize-handle" />
-      <circle cx="145" cy="45" r="3" fill="#FF10F0" className="resize-handle" />
-      <circle cx="65" cy="105" r="3" fill="#FF10F0" className="resize-handle" />
-      <circle cx="145" cy="105" r="3" fill="#FF10F0" className="resize-handle" />
-    </g>
-    
-    {/* Design Mockup - Button Component - using neon pink */}
-    <g className="fade-in" style={{ animationDelay: "0.8s" }}>
-      <rect
-        x="155"
-        y="50"
-        width="35"
-        height="20"
-        rx="4"
-        fill="#FF10F0"
-        className="select-element"
-        style={{ animationDelay: "2s" }}
-      />
-      <text
-        x="172.5"
-        y="63"
-        textAnchor="middle"
-        fontSize="8"
-        fill="rgb(255 255 255)"
-        fontFamily="system-ui"
-        fontWeight="500"
-      >
-        Button
-      </text>
-    </g>
-    
-    {/* Design Mockup - Input Field */}
-    <g className="fade-in" style={{ animationDelay: "1s" }}>
-      <rect
-        x="65"
-        y="115"
-        width="70"
-        height="20"
-        rx="4"
-        fill="rgb(255 255 255)"
-        stroke="rgb(228 228 231)"
-        strokeWidth="1"
-        className="select-element"
-        style={{ animationDelay: "2.5s" }}
-      />
-      <rect
-        x="70"
-        y="120"
-        width="40"
-        height="6"
-        rx="1"
-        fill="rgb(113 113 122 / 0.2)"
-      />
-    </g>
-    
-    {/* Figma Cursor - using neon pink for highlight */}
-    <g className="cursor">
-      <defs>
-        <filter id="cursorShadow">
-          <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
-          <feMerge>
-            <feMergeNode in="coloredBlur"/>
-            <feMergeNode in="SourceGraphic"/>
-          </feMerge>
-        </filter>
-      </defs>
-      <path
-        d="M 45 55 L 45 65 L 50 62 L 45 59 Z"
-        fill="#FF10F0"
-        filter="url(#cursorShadow)"
-      />
-    </g>
-    
-    {/* Connection Lines (Design Flow) - using neon pink */}
-    <line
-      x1="105"
-      y1="105"
-      x2="105"
-      y2="115"
-      stroke="#FF10F0"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeDasharray="3 3"
-      className="draw-path"
-      style={{ animationDelay: "3s" }}
-    />
-  </svg>
-);
+const ProductDesignAnimation = () => {
+  const [step, setStep] = useState(0);
+
+  // Animation sequence controller
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    switch (step) {
+      case 0: timeout = setTimeout(() => setStep(1), 500); break; // Start
+      case 1: timeout = setTimeout(() => setStep(2), 1000); break; // Move to sidebar
+      case 2: timeout = setTimeout(() => setStep(3), 400); break; // Click
+      case 3: timeout = setTimeout(() => setStep(4), 800); break; // Items appear -> Move to button
+      case 4: timeout = setTimeout(() => setStep(5), 1000); break; // Hover button spot
+      case 5: timeout = setTimeout(() => setStep(6), 600); break; // Button appears -> Move to selection
+      case 6: timeout = setTimeout(() => setStep(7), 1000); break; // Hover selection spot
+      case 7: timeout = setTimeout(() => setStep(8), 500); break; // Box appears small
+      case 8: timeout = setTimeout(() => setStep(9), 1200); break; // Dragging...
+      case 9: timeout = setTimeout(() => setStep(0), 3000); break; // Finished, hold then reset
+      default: break;
+    }
+
+    return () => clearTimeout(timeout);
+  }, [step]);
+
+  // Cursor Position Logic
+  const getCursorPos = () => {
+    switch (step) {
+      case 0: return { x: '110%', y: '110%' }; // Off screen
+      case 1: return { x: '15%', y: '25%' };   // Sidebar top
+      case 2: return { x: '15%', y: '25%' };   // Click sidebar
+      case 3: return { x: '15%', y: '40%' };   // Move down slightly
+      case 4: return { x: '80%', y: '40%' };   // Button position
+      case 5: return { x: '80%', y: '40%' };   // Click button
+      case 6: return { x: '30%', y: '75%' };   // Start of selection box
+      case 7: return { x: '30%', y: '75%' };   // Click start
+      case 8: return { x: '60%', y: '75%' };   // Dragging right
+      case 9: return { x: '65%', y: '80%' };   // End drag position (slightly offset)
+      default: return { x: '110%', y: '110%' };
+    }
+  };
+
+  const cursorPos = getCursorPos();
+  const isClicking = step === 2 || step === 5 || step === 7 || step === 8;
+
+  return (
+    <div className="relative w-full h-full flex items-center justify-center">
+      {/* The "Browser/App" Window Frame */}
+      <div className="relative w-full max-w-lg aspect-[4/3] bg-white dark:bg-zinc-900 rounded-xl shadow-lg border border-zinc-200/60 dark:border-zinc-700/60 overflow-hidden flex flex-col">
+        
+        {/* Window Header */}
+        <div className="h-10 border-b border-zinc-100 dark:border-zinc-800 flex items-center px-4 space-x-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-zinc-200 dark:bg-zinc-700"></div>
+          <div className="w-2.5 h-2.5 rounded-full bg-zinc-200 dark:bg-zinc-700"></div>
+          <div className="w-2.5 h-2.5 rounded-full bg-zinc-200 dark:bg-zinc-700"></div>
+        </div>
+
+        {/* Window Content */}
+        <div className="flex-1 flex relative">
+          
+          {/* Sidebar */}
+          <div className={`w-24 border-r border-zinc-100 dark:border-zinc-800 h-full p-4 flex flex-col gap-3 transition-opacity duration-500 ${step >= 2 ? 'opacity-100' : 'opacity-0'}`}>
+            {/* Skeleton Sidebar items */}
+            <div className={`h-4 w-3 bg-[#FF10F0] rounded-sm mb-4 transition-all duration-500 delay-100 ${step >= 3 ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'}`}></div>
+            <div className={`h-3 w-full bg-zinc-100 dark:bg-zinc-800 rounded-full transition-all duration-500 delay-200 ${step >= 3 ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'}`}></div>
+            <div className={`h-3 w-4/5 bg-zinc-100 dark:bg-zinc-800 rounded-full transition-all duration-500 delay-300 ${step >= 3 ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'}`}></div>
+            <div className={`h-3 w-3/4 bg-zinc-100 dark:bg-zinc-800 rounded-full transition-all duration-500 delay-400 ${step >= 3 ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'}`}></div>
+          </div>
+
+          {/* Main Canvas Area */}
+          <div className="flex-1 relative p-8">
+            
+            {/* Blinking Cursor (Text) - Decorative */}
+            <div className="absolute top-8 left-8 w-0.5 h-5 bg-zinc-900 dark:bg-white animate-pulse"></div>
+
+            {/* Floating Button */}
+            <div 
+              className={`absolute top-[35%] right-[10%] bg-[#FF10F0] text-white px-6 py-2.5 rounded-lg shadow-sm font-medium transform transition-all duration-500 ease-out
+                ${step >= 5 ? 'scale-100 opacity-100 translate-y-0' : 'scale-75 opacity-0 translate-y-4'}
+              `}
+            >
+              Button
+            </div>
+
+            {/* Dashed Selection Box */}
+            <div 
+              className={`absolute bottom-[20%] left-[20%] border-2 border-dashed border-[#FF10F0] rounded-lg bg-[#FF10F0]/10 transition-all duration-700 ease-out
+                ${step >= 7 ? 'opacity-100' : 'opacity-0'}
+              `}
+              style={{
+                width: step >= 9 ? '180px' : (step >= 7 ? '40px' : '0px'),
+                height: '40px',
+              }}
+            >
+                {/* Inner content of selection (fades in late) */}
+                <div className={`w-full h-full flex items-center justify-center transition-opacity duration-300 ${step >= 9 ? 'opacity-100' : 'opacity-0'}`}>
+                    <div className="w-3/4 h-2 bg-[#FF10F0]/30 rounded-full"></div>
+                </div>
+
+                {/* Resize Handle */}
+                <div className={`absolute -right-1 -bottom-1 w-2 h-2 bg-white dark:bg-zinc-900 border border-[#FF10F0] rounded-full shadow-sm z-20 ${step >= 7 ? 'scale-100' : 'scale-0'}`}></div>
+                
+                {/* Figma-style Selection Label/Tooltip */}
+                <div className={`absolute -top-6 left-1/2 -translate-x-1/2 bg-[#FF10F0] text-white text-[10px] px-1.5 py-0.5 rounded shadow-sm opacity-0 transition-opacity duration-300 ${step === 8 || step === 9 ? 'opacity-100' : ''}`}>
+                    {step >= 9 ? '180px' : 'Dragging...'}
+                </div>
+            </div>
+
+          </div>
+        </div>
+
+        {/* Animated Cursor Overlay */}
+        <div 
+          className="absolute pointer-events-none z-50 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"
+          style={{
+            left: cursorPos.x,
+            top: cursorPos.y,
+          }}
+        >
+          <div className={`relative transition-transform duration-150 ${isClicking ? 'scale-90' : 'scale-100'}`}>
+            {/* Cursor Body */}
+            <svg 
+              width="24" 
+              height="24" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              xmlns="http://www.w3.org/2000/svg"
+              className="drop-shadow-lg"
+            >
+              <path 
+                d="M3 3L10.07 19.97L12.58 12.58L19.97 10.07L3 3Z" 
+                fill="#FF10F0" 
+                stroke="white" 
+                strokeWidth="2" 
+                strokeLinejoin="round"
+              />
+            </svg>
+            
+            {/* Username Tag (Figma style) */}
+            <div 
+                className="absolute top-5 left-4 bg-[#FF10F0] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-br-md rounded-bl-md rounded-tr-md shadow-sm whitespace-nowrap"
+            >
+                Designer
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  );
+};
 
 const BrandIdentityAnimation = () => (
   <div className="relative w-full h-full flex items-center justify-center overflow-hidden p-4">
@@ -2509,8 +2323,8 @@ const Features = () => (
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-zinc-300/15 dark:bg-zinc-600/8 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/3 group-hover:bg-zinc-300/25 dark:group-hover:bg-zinc-600/12 group-hover:scale-110 transition-all duration-700" />
 
             <div className="relative z-10 flex-1 flex flex-col justify-center">
-              <div className="w-16 h-16 rounded-2xl bg-pink-50 dark:bg-pink-500/20 border border-pink-200 dark:border-pink-500/30 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-pink-100/80 dark:group-hover:bg-pink-500/30 group-hover:rotate-3 transition-all duration-500">
-                <LayoutGrid className="w-8 h-8 text-[#FF10F0] dark:text-pink-400 group-hover:scale-110 transition-transform duration-500" />
+              <div className="w-16 h-16 rounded-2xl bg-zinc-100 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700/50 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-zinc-200/80 dark:group-hover:bg-zinc-700/70 group-hover:rotate-3 transition-all duration-500">
+                <LayoutGrid className="w-8 h-8 text-zinc-700 dark:text-zinc-300 group-hover:scale-110 transition-transform duration-500" />
               </div>
               <h3 className="text-[24px] font-semibold text-zinc-900 dark:text-white mb-6">
                 Product Design
@@ -2544,12 +2358,10 @@ const Features = () => (
       <div className="col-span-1 md:col-span-2">
         <FadeIn delay={200} className="h-full">
           <GlassCard className="h-full p-10 flex flex-col md:flex-row items-center relative group overflow-hidden min-h-[300px] hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_20px_60px_-12px_rgba(255,255,255,0.15)] hover:border-zinc-300/40 dark:hover:border-zinc-600/30 transition-all duration-500 ease-out hover:-translate-y-1 hover:bg-white/95 dark:hover:bg-white/[0.08]">
-            <div className="absolute inset-0 bg-gradient-to-r from-amber-100/30 to-transparent dark:from-amber-500/5 dark:to-transparent group-hover:from-amber-100/40 group-hover:dark:from-amber-500/8 transition-all duration-500" />
-
             <div className="flex-1 z-10">
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-500/20 border border-amber-100 dark:border-amber-500/30 flex items-center justify-center group-hover:scale-110 group-hover:bg-amber-100/80 dark:group-hover:bg-amber-500/30 group-hover:rotate-3 transition-all duration-500">
-                  <Briefcase className="w-6 h-6 text-amber-600 dark:text-amber-400 group-hover:scale-110 transition-transform duration-500" />
+                <div className="w-12 h-12 rounded-xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-700/50 flex items-center justify-center group-hover:scale-110 group-hover:bg-zinc-100/80 dark:group-hover:bg-zinc-700/70 group-hover:rotate-3 transition-all duration-500">
+                  <Briefcase className="w-6 h-6 text-zinc-600 dark:text-zinc-300 group-hover:scale-110 transition-transform duration-500" />
                 </div>
                 <h3 className="text-[24px] font-semibold text-zinc-900 dark:text-white">
                   Brand Identity
@@ -2571,8 +2383,8 @@ const Features = () => (
         <FadeIn delay={400} className="h-full">
           <GlassCard className="h-full p-10 flex flex-col justify-between hover:bg-white/90 dark:hover:bg-white/[0.08] hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_20px_60px_-12px_rgba(255,255,255,0.15)] hover:border-zinc-300/40 dark:hover:border-zinc-600/30 transition-all duration-500 ease-out hover:-translate-y-1 min-h-[300px] group">
             <div>
-              <div className="w-12 h-12 rounded-xl bg-green-50 dark:bg-green-500/20 border border-green-100 dark:border-green-500/30 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-green-100/80 dark:group-hover:bg-green-500/30 group-hover:rotate-3 transition-all duration-500">
-                <Terminal className="w-6 h-6 text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform duration-500" />
+              <div className="w-12 h-12 rounded-xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-700/50 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-zinc-100/80 dark:group-hover:bg-zinc-700/70 group-hover:rotate-3 transition-all duration-500">
+                <Terminal className="w-6 h-6 text-zinc-600 dark:text-zinc-300 group-hover:scale-110 transition-transform duration-500" />
               </div>
               <h4 className="text-[24px] text-zinc-900 dark:text-white font-semibold mb-2">
                 Development
@@ -2600,8 +2412,8 @@ const Features = () => (
         <FadeIn delay={500} className="h-full">
           <GlassCard className="h-full p-10 flex flex-col justify-between hover:bg-white/90 dark:hover:bg-white/[0.08] hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_20px_60px_-12px_rgba(255,255,255,0.15)] hover:border-zinc-300/40 dark:hover:border-zinc-600/30 transition-all duration-500 ease-out hover:-translate-y-1 min-h-[300px] group">
             <div>
-              <div className="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-500/20 border border-amber-100 dark:border-amber-500/30 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-amber-100/80 dark:group-hover:bg-amber-500/30 group-hover:rotate-3 transition-all duration-500">
-                <BarChart3 className="w-6 h-6 text-amber-600 dark:text-amber-400 group-hover:scale-110 transition-transform duration-500" />
+              <div className="w-12 h-12 rounded-xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-700/50 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-zinc-100/80 dark:group-hover:bg-zinc-700/70 group-hover:rotate-3 transition-all duration-500">
+                <BarChart3 className="w-6 h-6 text-zinc-600 dark:text-zinc-300 group-hover:scale-110 transition-transform duration-500" />
               </div>
               <h4 className="text-[24px] text-zinc-900 dark:text-white font-semibold mb-2">Growth</h4>
               <p className="text-[16px] text-zinc-600 dark:text-zinc-400 leading-[1.6] mb-6">Data-driven strategies for user acquisition.</p>
