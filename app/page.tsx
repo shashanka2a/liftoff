@@ -1456,159 +1456,308 @@ const Hero = ({
 }: {
   windowState: WindowState;
   setWindowState: (state: WindowState) => void;
-}) => (
-  <section
-    id="hero"
-    className="relative min-h-screen flex items-center justify-center px-4 md:px-8 py-[120px] overflow-hidden"
-  >
-    {/* Clean background with subtle gradient */}
-    <div className="absolute inset-0 bg-gradient-to-b from-[#FAFAF8] via-white to-[#F5F5F3] dark:from-[#0A0A0A] dark:via-[#050505] dark:to-[#0A0A0A]" />
-    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0.015),transparent_70%)] dark:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.008),transparent_70%)]" />
+}) => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [windowSize, setWindowSize] = useState({ width: 1920, height: 1080 });
+  const [isButtonHovered, setIsButtonHovered] = useState(false);
+  const [ripples, setRipples] = useState<Array<{ x: number; y: number; id: number }>>([]);
+  const rippleIdRef = useRef(0);
+  const buttonRef = useRef<HTMLAnchorElement>(null);
 
-    {/* Subtle floating testimonial cards - with enhanced contrast animation */}
-    <div className="absolute left-4 xl:left-8 top-1/2 -translate-y-1/2 w-72 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-xl rounded-xl border border-black/5 dark:border-white/5 shadow-lg p-5 -rotate-2 opacity-60 hover:opacity-100 hover:scale-110 hover:-rotate-3 hover:shadow-2xl hover:bg-white dark:hover:bg-zinc-900 transition-all duration-500 ease-out hidden xl:block group">
-      <Quote className="w-5 h-5 text-zinc-400 dark:text-zinc-500 mb-2 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors duration-500" />
-      <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-2 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 transition-colors duration-500">
-        "LIFTOFF transformed our vision into a product that exceeded expectations."
-      </p>
-      <p className="text-[10px] text-zinc-500 dark:text-zinc-500 font-medium group-hover:text-zinc-700 dark:group-hover:text-zinc-300 transition-colors duration-500">
-        — CEO, Grogate
-      </p>
-    </div>
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+      const handleResize = () => {
+        setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+      };
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }
+  }, []);
 
-    <div className="absolute right-4 xl:right-8 top-1/2 -translate-y-1/2 w-72 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-xl rounded-xl border border-black/5 dark:border-white/5 shadow-lg p-5 rotate-2 opacity-60 hover:opacity-100 hover:scale-110 hover:rotate-3 hover:shadow-2xl hover:bg-white dark:hover:bg-zinc-900 transition-all duration-500 ease-out hidden xl:block group">
-      <Quote className="w-5 h-5 text-zinc-400 dark:text-zinc-500 mb-2 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors duration-500" />
-      <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-2 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 transition-colors duration-500">
-        "Working with LIFTOFF was seamless. They delivered a world-class product."
-      </p>
-      <p className="text-[10px] text-zinc-500 dark:text-zinc-500 font-medium group-hover:text-zinc-700 dark:group-hover:text-zinc-300 transition-colors duration-500">
-        — Founder, Homevisor
-      </p>
-    </div>
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const handleMouseMove = (e: MouseEvent) => {
+        setMousePosition({ x: e.clientX, y: e.clientY });
+      };
+      window.addEventListener('mousemove', handleMouseMove);
+      return () => window.removeEventListener('mousemove', handleMouseMove);
+    }
+  }, []);
 
-    <div className="relative z-10 max-w-6xl mx-auto w-full text-center">
-      {/* Urgency Banner */}
-      <FadeIn delay={0}>
-        <div className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-full border border-black/5 dark:border-white/5 shadow-sm mb-10 md:mb-12">
-          <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse flex-shrink-0" />
-          <span className="text-xs font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wide">
-            Only 2 open slots available!
-          </span>
-          <ArrowRight className="w-3 h-3 text-zinc-500 flex-shrink-0" />
-        </div>
-      </FadeIn>
+  const handleButtonClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!buttonRef.current) return;
+    const rect = buttonRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const id = rippleIdRef.current++;
+    setRipples(prev => [...prev, { x, y, id }]);
+    setTimeout(() => setRipples(prev => prev.filter(r => r.id !== id)), 600);
+  };
 
-      {/* Main Headline */}
-      <h1 className="text-[32px] md:text-[48px] lg:text-[56px] font-bold mb-8 leading-[1.1] tracking-[-0.02em] text-center text-balance">
-        <FadeIn delay={200}>
-          <div className="block bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 dark:from-white dark:via-zinc-100 dark:to-white bg-clip-text text-transparent">
-            {/* Mobile: simple two-line text to avoid wrap issues */}
-            <span className="block md:hidden">
-              Where Premium Design
-              <br />
-              Meets Strategic Engineering
+  // Calculate parallax offset for testimonial cards
+  const parallaxOffset = (baseY: number, intensity: number = 0.02) => {
+    return (mousePosition.y - baseY) * intensity;
+  };
+
+  // Calculate magnetic effect offset
+  const magneticOffset = (multiplier: number = 0.01) => {
+    if (typeof window === 'undefined') return { x: 0, y: 0 };
+    return {
+      x: (mousePosition.x - windowSize.width / 2) * multiplier,
+      y: (mousePosition.y - windowSize.height / 2) * multiplier
+    };
+  };
+
+  return (
+    <section
+      id="hero"
+      className="relative min-h-screen flex items-center justify-center px-4 md:px-8 py-[120px] overflow-hidden"
+    >
+      {/* Animated gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#FAFAF8] via-white to-[#F5F5F3] dark:from-[#0A0A0A] dark:via-[#050505] dark:to-[#0A0A0A]" />
+      <div 
+        className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0.015),transparent_70%)] dark:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.008),transparent_70%)] transition-all duration-1000 ease-out"
+        style={{
+          backgroundPosition: `${50 + (mousePosition.x - windowSize.width / 2) * 0.01}% ${50 + (mousePosition.y - windowSize.height / 2) * 0.01}%`
+        }}
+      />
+      
+      {/* Subtle animated particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(20)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-zinc-300/20 dark:bg-zinc-600/20 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animation: `float ${8 + Math.random() * 4}s ease-in-out infinite`,
+              animationDelay: `${Math.random() * 2}s`
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Floating testimonial cards with parallax */}
+      <div 
+        className="absolute left-4 xl:left-8 top-1/2 -translate-y-1/2 w-72 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-xl rounded-xl border border-black/5 dark:border-white/5 shadow-lg p-5 -rotate-2 opacity-60 hover:opacity-100 hover:scale-110 hover:-rotate-3 hover:shadow-2xl hover:bg-white dark:hover:bg-zinc-900 transition-all duration-500 ease-out hidden xl:block group cursor-pointer"
+        style={{
+          transform: `translateY(${parallaxOffset(windowSize.height / 2, 0.03)}px) rotate(-2deg)`,
+          transition: 'transform 0.1s ease-out, opacity 0.5s ease-out, scale 0.5s ease-out'
+        }}
+      >
+        <Quote className="w-5 h-5 text-zinc-400 dark:text-zinc-500 mb-2 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors duration-500 group-hover:scale-110" />
+        <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-2 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 transition-colors duration-500">
+          "LIFTOFF transformed our vision into a product that exceeded expectations."
+        </p>
+        <p className="text-[10px] text-zinc-500 dark:text-zinc-500 font-medium group-hover:text-zinc-700 dark:group-hover:text-zinc-300 transition-colors duration-500">
+          — CEO, Grogate
+        </p>
+      </div>
+
+      <div 
+        className="absolute right-4 xl:right-8 top-1/2 -translate-y-1/2 w-72 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-xl rounded-xl border border-black/5 dark:border-white/5 shadow-lg p-5 rotate-2 opacity-60 hover:opacity-100 hover:scale-110 hover:rotate-3 hover:shadow-2xl hover:bg-white dark:hover:bg-zinc-900 transition-all duration-500 ease-out hidden xl:block group cursor-pointer"
+        style={{
+          transform: `translateY(${parallaxOffset(windowSize.height / 2, -0.03)}px) rotate(2deg)`,
+          transition: 'transform 0.1s ease-out, opacity 0.5s ease-out, scale 0.5s ease-out'
+        }}
+      >
+        <Quote className="w-5 h-5 text-zinc-400 dark:text-zinc-500 mb-2 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors duration-500 group-hover:scale-110" />
+        <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-2 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 transition-colors duration-500">
+          "Working with LIFTOFF was seamless. They delivered a world-class product."
+        </p>
+        <p className="text-[10px] text-zinc-500 dark:text-zinc-500 font-medium group-hover:text-zinc-700 dark:group-hover:text-zinc-300 transition-colors duration-500">
+          — Founder, Homevisor
+        </p>
+      </div>
+
+      <div className="relative z-10 max-w-6xl mx-auto w-full text-center">
+        {/* Urgency Banner with enhanced animations */}
+        <FadeIn delay={0}>
+          <div className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-full border border-black/5 dark:border-white/5 shadow-sm mb-10 md:mb-12 group hover:shadow-md transition-all duration-300 hover:scale-105">
+            <div className="w-2 h-2 rounded-full bg-green-500 flex-shrink-0 relative">
+              <div className="absolute inset-0 rounded-full bg-green-500 animate-ping opacity-75" />
+            </div>
+            <span className="text-xs font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wide">
+              Only 2 open slots available!
             </span>
-
-            {/* Desktop/Tablet: text with icons */}
-            <span className="hidden md:inline-block">
-              Where Premium Design
-              <span className="inline-flex align-middle relative mx-3 -top-2">
-                <span className="relative z-10 bg-white dark:bg-zinc-900 p-2.5 rounded-2xl shadow-[0_8px_16px_-4px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_16px_-4px_rgba(0,0,0,0.3)] border border-gray-100 dark:border-zinc-800 -rotate-6 transform hover:-rotate-12 transition-transform duration-300 block">
-                  <Box className="w-8 h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 text-gray-800 dark:text-white fill-current" />
-                </span>
-                <span className="absolute left-6 top-2 z-20 bg-white dark:bg-zinc-900 p-2.5 rounded-2xl shadow-[0_8px_16px_-4px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_16px_-4px_rgba(0,0,0,0.3)] border border-gray-100 dark:border-zinc-800 rotate-12 transform hover:rotate-6 transition-transform duration-300 block">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" className="w-8 h-8 md:w-9 md:h-9 lg:w-10 lg:h-10" alt="figma" />
-                </span>
-                <div className="w-16 md:w-20 inline-block"></div>
-              </span>
-              <br className="lg:block" />
-              Meets Strategic Engineering
-              <span className="inline-block align-middle bg-white dark:bg-zinc-900 p-3 rounded-2xl mx-3 -rotate-3 hover:rotate-0 transition-transform shadow-[0_8px_16px_-4px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_16px_-4px_rgba(0,0,0,0.3)] border border-gray-100 dark:border-zinc-800 relative -top-1">
-                <Zap className="w-8 h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 text-orange-500 fill-orange-500" />
-              </span>
-            </span>
+            <ArrowRight className="w-3 h-3 text-zinc-500 flex-shrink-0 group-hover:translate-x-1 transition-transform duration-300" />
           </div>
         </FadeIn>
-      </h1>
 
-      {/* Description */}
-      <FadeIn delay={600}>
-        <p className="text-[18px] md:text-[20px] text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto leading-relaxed mb-12 font-normal">
-          UI/UX, web, and product engineering for startups and growing companies.
-        </p>
-      </FadeIn>
+        {/* Main Headline with magnetic icon effects */}
+        <h1 className="text-[32px] md:text-[48px] lg:text-[56px] font-bold mb-8 leading-[1.1] tracking-[-0.02em] text-center text-balance">
+          <FadeIn delay={200}>
+            <div className="block bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 dark:from-white dark:via-zinc-100 dark:to-white bg-clip-text text-transparent hover:from-zinc-800 hover:via-zinc-700 hover:to-zinc-800 dark:hover:from-zinc-200 dark:hover:via-white dark:hover:to-zinc-200 transition-all duration-1000">
+              {/* Mobile: simple two-line text */}
+              <span className="block md:hidden">
+                Where Premium Design
+                <br />
+                Meets Strategic Engineering
+              </span>
 
-      {/* CTA Button */}
-      <FadeIn delay={800}>
-        <div className="flex justify-center mb-16 relative z-10 h-24 items-center">
-          <a 
-            href="https://calendly.com/5ha5hank/availability" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="group relative flex items-center bg-zinc-900 dark:bg-white hover:bg-black dark:hover:bg-zinc-100 text-white dark:text-zinc-900 rounded-full p-2.5 pr-8 transition-all duration-500 hover:scale-105 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.3)] dark:hover:shadow-[0_20px_40px_-12px_rgba(255,255,255,0.2)] shadow-2xl"
-          >
-            <div className="flex items-center">
-              {/* Circle 1: LIFTOFF Icon (Always Visible) */}
-              <div className="w-12 h-12 rounded-full bg-white dark:bg-zinc-900 flex items-center justify-center z-20 relative shadow-sm">
-                <img src="/icon.svg" alt="LIFTOFF" className="w-7 h-7" />
-              </div>
+              {/* Desktop/Tablet: text with icons */}
+              <span className="hidden md:inline-block">
+                Where Premium Design
+                <span className="inline-flex align-middle relative mx-3 -top-2">
+                  <span 
+                    className="relative z-10 bg-white dark:bg-zinc-900 p-2.5 rounded-2xl shadow-[0_8px_16px_-4px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_16px_-4px_rgba(0,0,0,0.3)] border border-gray-100 dark:border-zinc-800 -rotate-6 transform hover:-rotate-12 hover:scale-110 transition-all duration-300 ease-out cursor-pointer group/icon"
+                    style={{
+                      transform: `rotate(-6deg) scale(${isButtonHovered ? 1.05 : 1}) translate(${isButtonHovered ? magneticOffset(0.01).x : 0}px, ${isButtonHovered ? magneticOffset(0.01).y : 0}px)`
+                    }}
+                  >
+                    <Box className="w-8 h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 text-gray-800 dark:text-white fill-current group-hover/icon:scale-110 transition-transform duration-300" />
+                  </span>
+                  <span 
+                    className="absolute left-6 top-2 z-20 bg-white dark:bg-zinc-900 p-2.5 rounded-2xl shadow-[0_8px_16px_-4px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_16px_-4px_rgba(0,0,0,0.3)] border border-gray-100 dark:border-zinc-800 rotate-12 transform hover:rotate-6 hover:scale-110 transition-all duration-300 ease-out cursor-pointer group/icon"
+                    style={{
+                      transform: `rotate(12deg) scale(${isButtonHovered ? 1.05 : 1}) translate(${isButtonHovered ? magneticOffset(0.01).x : 0}px, ${isButtonHovered ? magneticOffset(0.01).y : 0}px)`
+                    }}
+                  >
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" className="w-8 h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 group-hover/icon:scale-110 transition-transform duration-300" alt="figma" />
+                  </span>
+                  <div className="w-16 md:w-20 inline-block"></div>
+                </span>
+                <br className="lg:block" />
+                Meets Strategic Engineering
+                <span 
+                  className="inline-block align-middle bg-white dark:bg-zinc-900 p-3 rounded-2xl mx-3 -rotate-3 hover:rotate-0 hover:scale-110 transition-all duration-300 ease-out shadow-[0_8px_16px_-4px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_16px_-4px_rgba(0,0,0,0.3)] border border-gray-100 dark:border-zinc-800 relative -top-1 cursor-pointer group/icon"
+                  style={{
+                    transform: `rotate(-3deg) scale(${isButtonHovered ? 1.05 : 1}) translate(${isButtonHovered ? magneticOffset(0.01).x : 0}px, ${isButtonHovered ? magneticOffset(0.01).y : 0}px)`
+                  }}
+                >
+                  <Zap className="w-8 h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 text-orange-500 fill-orange-500 group-hover/icon:scale-110 group-hover/icon:rotate-12 transition-all duration-300" />
+                </span>
+              </span>
+            </div>
+          </FadeIn>
+        </h1>
 
-              {/* Hidden Part: + You (Reveals on Hover) */}
-              <div className="flex items-center overflow-hidden max-w-0 opacity-0 group-hover:max-w-[120px] group-hover:opacity-100 transition-all duration-500 ease-in-out">
-                <span className="text-white dark:text-zinc-900 mx-3 font-medium text-lg">+</span>
-                {/* Circle 2: You */}
-                <div className="w-12 h-12 rounded-full bg-blue-600 dark:bg-blue-500 flex items-center justify-center text-sm font-bold text-white shadow-inner whitespace-nowrap">
-                  You
+        {/* Description with subtle fade */}
+        <FadeIn delay={600}>
+          <p className="text-[18px] md:text-[20px] text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto leading-relaxed mb-12 font-normal hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors duration-500">
+            UI/UX, web, and product engineering for startups and growing companies.
+          </p>
+        </FadeIn>
+
+        {/* CTA Button with ripple effect and magnetic hover */}
+        <FadeIn delay={800}>
+          <div className="flex justify-center mb-16 relative z-10 h-24 items-center">
+            <a 
+              ref={buttonRef}
+              href="https://calendly.com/5ha5hank/availability" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              onClick={handleButtonClick}
+              onMouseEnter={() => setIsButtonHovered(true)}
+              onMouseLeave={() => setIsButtonHovered(false)}
+              className="group relative flex items-center bg-zinc-900 dark:bg-white hover:bg-black dark:hover:bg-zinc-100 text-white dark:text-zinc-900 rounded-full p-2.5 pr-8 transition-all duration-500 hover:scale-105 active:scale-95 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.3)] dark:hover:shadow-[0_20px_40px_-12px_rgba(255,255,255,0.2)] shadow-2xl overflow-hidden"
+              style={{
+                transform: `translate(${isButtonHovered ? magneticOffset(0.02).x : 0}px, ${isButtonHovered ? magneticOffset(0.02).y : 0}px) scale(${isButtonHovered ? 1.05 : 1})`,
+                transition: 'transform 0.1s ease-out, background-color 0.5s ease-out, box-shadow 0.5s ease-out'
+              }}
+            >
+              {/* Ripple effects */}
+              {ripples.map(ripple => (
+                <span
+                  key={ripple.id}
+                  className="absolute rounded-full bg-white/30 dark:bg-zinc-900/30 pointer-events-none"
+                  style={{
+                    left: ripple.x,
+                    top: ripple.y,
+                    width: 0,
+                    height: 0,
+                    transform: 'translate(-50%, -50%)',
+                    animation: 'ripple 0.6s ease-out'
+                  }}
+                />
+              ))}
+              
+              <div className="flex items-center relative z-10">
+                {/* Circle 1: LIFTOFF Icon */}
+                <div className="w-12 h-12 rounded-full bg-white dark:bg-zinc-900 flex items-center justify-center relative shadow-sm group-hover:scale-110 transition-transform duration-300">
+                  <img src="/icon.svg" alt="LIFTOFF" className="w-7 h-7 group-hover:rotate-12 transition-transform duration-500" />
                 </div>
-                {/* Spacer to push text */}
-                <div className="w-4"></div>
+
+                {/* Hidden Part: + You */}
+                <div className="flex items-center overflow-hidden max-w-0 opacity-0 group-hover:max-w-[120px] group-hover:opacity-100 transition-all duration-500 ease-in-out">
+                  <span className="text-white dark:text-zinc-900 mx-3 font-medium text-lg group-hover:scale-110 transition-transform duration-300">+</span>
+                  <div className="w-12 h-12 rounded-full bg-blue-600 dark:bg-blue-500 flex items-center justify-center text-sm font-bold text-white shadow-inner whitespace-nowrap group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                    You
+                  </div>
+                  <div className="w-4"></div>
+                </div>
               </div>
-            </div>
 
-            {/* Text */}
-            <span className="text-lg font-medium tracking-normal pl-4 group-hover:pl-0 transition-all duration-300 text-white dark:text-zinc-900">Book a 30-Min call</span>
-          </a>
-        </div>
-      </FadeIn>
-
-      {/* Social Proof */}
-      <FadeIn delay={1000}>
-        <div className="flex flex-col md:flex-row items-center justify-center gap-4 text-sm">
-          <div className="flex -space-x-3">
-            {[1, 2, 3].map(i => (
-              <img 
-                key={i} 
-                src={`https://i.pravatar.cc/100?img=${i+10}`} 
-                alt="User" 
-                className="w-10 h-10 rounded-full border-[3px] border-white dark:border-zinc-900" 
-              />
-            ))}
-            <div className="w-10 h-10 rounded-full border-[3px] border-white dark:border-zinc-900 bg-gray-100 dark:bg-zinc-800 flex items-center justify-center text-xs font-bold text-gray-600 dark:text-zinc-400">+30</div>
+              {/* Text */}
+              <span className="text-lg font-medium tracking-normal pl-4 group-hover:pl-0 transition-all duration-300 text-white dark:text-zinc-900 relative z-10">Book a 30-Min call</span>
+            </a>
           </div>
-          <div className="flex items-center gap-2 ml-2">
-            <div className="flex text-yellow-400 gap-0.5">
-              {[1, 2, 3, 4, 5].map(i => {
-                if (i <= 4) {
-                  return <Star key={i} size={18} fill="currentColor" className="text-yellow-400" />;
-                } else {
-                  return (
-                    <div key={i} className="relative w-[18px] h-[18px] inline-block">
-                      <Star size={18} fill="currentColor" className="text-yellow-400/20 absolute inset-0" />
-                      <div className="absolute inset-0 overflow-hidden" style={{ width: '80%' }}>
-                        <Star size={18} fill="currentColor" className="text-yellow-400" />
+        </FadeIn>
+
+        {/* Social Proof with hover effects */}
+        <FadeIn delay={1000}>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 text-sm">
+            <div className="flex -space-x-3">
+              {[1, 2, 3].map(i => (
+                <img 
+                  key={i} 
+                  src={`https://i.pravatar.cc/100?img=${i+10}`} 
+                  alt="User" 
+                  className="w-10 h-10 rounded-full border-[3px] border-white dark:border-zinc-900 hover:scale-110 hover:z-10 relative transition-all duration-300 cursor-pointer hover:shadow-lg" 
+                  style={{ zIndex: i }}
+                />
+              ))}
+              <div className="w-10 h-10 rounded-full border-[3px] border-white dark:border-zinc-900 bg-gray-100 dark:bg-zinc-800 flex items-center justify-center text-xs font-bold text-gray-600 dark:text-zinc-400 hover:scale-110 hover:bg-gray-200 dark:hover:bg-zinc-700 transition-all duration-300 cursor-pointer hover:shadow-lg">+30</div>
+            </div>
+            <div className="flex items-center gap-2 ml-2">
+              <div className="flex text-yellow-400 gap-0.5">
+                {[1, 2, 3, 4, 5].map(i => {
+                  if (i <= 4) {
+                    return (
+                      <Star 
+                        key={i} 
+                        size={18} 
+                        fill="currentColor" 
+                        className="text-yellow-400 hover:scale-125 hover:text-yellow-300 transition-all duration-300 cursor-pointer" 
+                      />
+                    );
+                  } else {
+                    return (
+                      <div key={i} className="relative w-[18px] h-[18px] inline-block hover:scale-125 transition-transform duration-300 cursor-pointer">
+                        <Star size={18} fill="currentColor" className="text-yellow-400/20 absolute inset-0" />
+                        <div className="absolute inset-0 overflow-hidden" style={{ width: '80%' }}>
+                          <Star size={18} fill="currentColor" className="text-yellow-400" />
+                        </div>
                       </div>
-                    </div>
-                  );
-                }
-              })}
+                    );
+                  }
+                })}
+              </div>
+              <span className="text-gray-500 dark:text-zinc-400 font-medium hover:text-gray-700 dark:hover:text-zinc-200 transition-colors duration-300">rated 4.8</span>
             </div>
-            <span className="text-gray-500 dark:text-zinc-400 font-medium">rated 4.8</span>
           </div>
-        </div>
-      </FadeIn>
-    </div>
-  </section>
-);
+        </FadeIn>
+      </div>
+
+      {/* CSS for animations */}
+      <style jsx>{`
+        @keyframes ripple {
+          to {
+            width: 200px;
+            height: 200px;
+            opacity: 0;
+          }
+        }
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); opacity: 0.3; }
+          50% { transform: translateY(-20px); opacity: 0.6; }
+        }
+      `}</style>
+    </section>
+  );
+};
 
 const StatCard = ({
   label,
@@ -2430,11 +2579,8 @@ const Features = () => (
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-zinc-300/15 dark:bg-zinc-600/8 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/3 group-hover:bg-zinc-300/25 dark:group-hover:bg-zinc-600/12 group-hover:scale-110 transition-all duration-700" />
 
             <div className="relative z-10 flex-1 flex flex-col justify-center">
-              <div className="w-16 h-16 rounded-2xl bg-zinc-100 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700/50 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-zinc-200/80 dark:group-hover:bg-zinc-700/70 group-hover:rotate-3 transition-all duration-500">
-                <Icon
-                  icon="solar:pen-new-round-bold-duotone"
-                  className="w-8 h-8 text-zinc-800 dark:text-zinc-100 group-hover:scale-110 transition-transform duration-500"
-                />
+              <div className="w-16 h-16 rounded-2xl bg-zinc-100 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700/50 flex items-center justify-center mb-8 group-hover:bg-zinc-200/80 dark:group-hover:bg-zinc-700/70 group-hover:rotate-3 transition-all duration-500">
+                <LayoutGrid className="w-8 h-8 text-zinc-700 dark:text-zinc-300 transition-transform duration-500" />
               </div>
               <h3 className="text-[24px] font-semibold text-zinc-900 dark:text-white mb-6">
                 Product Design
@@ -2468,11 +2614,8 @@ const Features = () => (
           <GlassCard className="h-full p-10 flex flex-col md:flex-row items-center relative group overflow-hidden min-h-[300px] hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_20px_60px_-12px_rgba(255,255,255,0.15)] hover:border-zinc-300/40 dark:hover:border-zinc-600/30 transition-all duration-500 ease-out hover:-translate-y-1 hover:bg-white/95 dark:hover:bg-white/[0.08]">
             <div className="flex-1 z-10">
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-700/50 flex items-center justify-center group-hover:scale-110 group-hover:bg-zinc-100/80 dark:group-hover:bg-zinc-700/70 group-hover:rotate-3 transition-all duration-500">
-                  <Icon
-                    icon="solar:briefcase-tag-bold-duotone"
-                    className="w-7 h-7 text-zinc-800 dark:text-zinc-100 group-hover:scale-110 transition-transform duration-500"
-                  />
+                <div className="w-12 h-12 rounded-xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-700/50 flex items-center justify-center group-hover:bg-zinc-100/80 dark:group-hover:bg-zinc-700/70 group-hover:rotate-3 transition-all duration-500">
+                  <Briefcase className="w-6 h-6 text-zinc-600 dark:text-zinc-300 transition-transform duration-500" />
                 </div>
                 <h3 className="text-[24px] font-semibold text-zinc-900 dark:text-white">
                   Brand Identity
@@ -2504,11 +2647,8 @@ const Features = () => (
         <FadeIn delay={400} className="h-full">
           <GlassCard className="h-full p-10 flex flex-col justify-between hover:bg-white/90 dark:hover:bg-white/[0.08] hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_20px_60px_-12px_rgba(255,255,255,0.15)] hover:border-zinc-300/40 dark:hover:border-zinc-600/30 transition-all duration-500 ease-out hover:-translate-y-1 min-h-[450px] group">
             <div>
-              <div className="w-12 h-12 rounded-xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-700/50 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-zinc-100/80 dark:group-hover:bg-zinc-700/70 group-hover:rotate-3 transition-all duration-500">
-                <Icon
-                  icon="solar:programming-bold-duotone"
-                  className="w-7 h-7 text-zinc-800 dark:text-zinc-100 group-hover:scale-110 transition-transform duration-500"
-                />
+              <div className="w-12 h-12 rounded-xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-700/50 flex items-center justify-center mb-6 group-hover:bg-zinc-100/80 dark:group-hover:bg-zinc-700/70 group-hover:rotate-3 transition-all duration-500">
+                <Terminal className="w-6 h-6 text-zinc-600 dark:text-zinc-300 transition-transform duration-500" />
               </div>
               <h4 className="text-[24px] text-zinc-900 dark:text-white font-semibold mb-2">
                 Development
@@ -2536,11 +2676,8 @@ const Features = () => (
         <FadeIn delay={500} className="h-full">
           <GlassCard className="h-full p-10 flex flex-col justify-between hover:bg-white/90 dark:hover:bg-white/[0.08] hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_20px_60px_-12px_rgba(255,255,255,0.15)] hover:border-zinc-300/40 dark:hover:border-zinc-600/30 transition-all duration-500 ease-out hover:-translate-y-1 min-h-[450px] group">
             <div>
-              <div className="w-12 h-12 rounded-xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-700/50 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-zinc-100/80 dark:group-hover:bg-zinc-700/70 group-hover:rotate-3 transition-all duration-500">
-                <Icon
-                  icon="solar:chart-up-bold-duotone"
-                  className="w-7 h-7 text-zinc-800 dark:text-zinc-100 group-hover:scale-110 transition-transform duration-500"
-                />
+              <div className="w-12 h-12 rounded-xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-700/50 flex items-center justify-center mb-6 group-hover:bg-zinc-100/80 dark:group-hover:bg-zinc-700/70 group-hover:rotate-3 transition-all duration-500">
+                <BarChart3 className="w-6 h-6 text-zinc-600 dark:text-zinc-300 transition-transform duration-500" />
               </div>
               <h4 className="text-[24px] text-zinc-900 dark:text-white font-semibold mb-2">Growth</h4>
               <p className="text-[16px] text-zinc-600 dark:text-zinc-400 leading-[1.6] mb-6">Data-driven strategies for user acquisition.</p>
@@ -2684,7 +2821,7 @@ const Dock = ({
       {[
         { icon: Home, label: "Home", action: () => scrollToSection("hero") },
         { icon: Briefcase, label: "Work", action: () => scrollToSection("work") },
-        { icon: Sparkles, label: "Capabilities", action: () => scrollToSection("features") },
+        { icon: LayoutGrid, label: "Capabilities", action: () => scrollToSection("features") },
         { icon: MessageSquare, label: "Contact", action: () => scrollToSection("footer") },
         { icon: Settings, label: "Settings", action: onSettings }
       ].map((item) => (
@@ -2694,14 +2831,7 @@ const Dock = ({
             className="p-3 rounded-xl transition-all duration-300 hover:-translate-y-3 hover:scale-110 hover:bg-black/5 dark:hover:bg-white/15 active:scale-95"
             aria-label={item.label}
           >
-            {item.label === "Capabilities" ? (
-              <Icon
-                icon="solar:magic-stick-3-bold-duotone"
-                className="w-6 h-6 text-zinc-800 dark:text-white drop-shadow-md"
-              />
-            ) : (
-              <item.icon className="w-6 h-6 text-zinc-800 dark:text-white drop-shadow-md" strokeWidth={1.5} />
-            )}
+            <item.icon className="w-6 h-6 text-zinc-800 dark:text-white drop-shadow-md" strokeWidth={1.5} />
           </button>
 
           <div className="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-white dark:bg-[#1a1a1a] border border-black/10 dark:border-white/10 rounded-lg text-xs font-medium text-zinc-900 dark:text-white opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap shadow-lg">
