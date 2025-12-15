@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     siteName: "LIFTOFF",
     images: [
       {
-        url: "https://liftoff.design/og.png",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
         alt: "LIFTOFF Strategic Digital Product Design Studio"
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     title: "LIFTOFF Strategic Digital Product Design and Development Studio",
     description:
       "Strategic design and engineering studio crafting premium digital products, systems, and growth platforms. Expert UI/UX design, web development, and product strategy.",
-    images: ["https://liftoff.design/og.png"]
+    images: ["/opengraph-image"]
   },
   robots: {
     index: true,

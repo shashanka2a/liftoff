@@ -214,8 +214,8 @@ The "10 years" lifecycle tracking example provides concrete value quantification
 
 ---
 
-### 4. ShaadiVerse
-**URL:** https://shaadiverse.app/
+### 4. WedNest
+**URL:** https://www.wednest.in/
 **Status:** Live
 **Tags:** Marketplace, Services, Booking
 
@@ -223,7 +223,7 @@ The "10 years" lifecycle tracking example provides concrete value quantification
 The page employs a clean, modern aesthetic with professional imagery of weddings and couples. High-quality photography establishes credibility, though the design feels somewhat template-like rather than distinctively branded.
 
 #### Value Proposition
-Three core promises are explicitly stated: "Transparent Pricing," "Verified Vendors," and "Shaadiverse Trust" (escrow payments). The messaging directly addresses pain points: "Vendors often quote random prices, add hidden charges, or don't serve specific localities."
+Three core promises are explicitly stated: "Transparent Pricing," "Verified Vendors," and "WedNest Trust" (escrow payments). The messaging directly addresses pain points: "Vendors often quote random prices, add hidden charges, or don't serve specific localities."
 
 #### Target Audience
 Explicitly targets couples planning weddings in Tier-2 and Tier-3 Indian cities, primarily in Telangana region. Positioning suggests middle-income families seeking budget-conscious solutions.
@@ -1165,7 +1165,7 @@ The emphasis on explainability and transparency distinguishes this offering in a
 ## Portfolio-Level Insights
 
 ### Stage Distribution
-- **Live Products (8):** Kampus, MenuOS, Homevisor, ShaadiVerse, DistroHQ, LetsVibe, Liftoff, WorkfloAI
+- **Live Products (8):** Kampus, MenuOS, Homevisor, WedNest, DistroHQ, LetsVibe, Liftoff, WorkfloAI
 - **Coming Soon (12):** Grogate, Threadz, Layr, Markit, Hackr, Payd, StayLinq, Momint, WhatIfStudio, Aura Art, OmniTrix, BlueBeetle
 
 ### Common Patterns
@@ -1178,7 +1178,7 @@ The emphasis on explainability and transparency distinguishes this offering in a
 
 **Market Approach:** Diverse mix of:
 - B2B SaaS (MenuOS, Homevisor, StayLinq, Layr, DistroHQ, WorkfloAI)
-- B2C marketplaces (Kampus, ShaadiVerse, Grogate)
+- B2C marketplaces (Kampus, WedNest, Grogate)
 - Creative services (Liftoff, DistroHQ)
 - Education platforms (LetsVibe)
 
@@ -1186,7 +1186,7 @@ The emphasis on explainability and transparency distinguishes this offering in a
 
 ### Differentiation Strategies
 
-1. **Geographic Focus:** Kampus (single university), ShaadiVerse (Tier-2/3 Indian cities), MenuOS (Gainesville)
+1. **Geographic Focus:** Kampus (single university), WedNest (Tier-2/3 Indian cities), MenuOS (Gainesville)
 2. **Niche Targeting:** Campus students, vacation rental managers, gated communities, hackathon organizers, AI-native developers, premium design clients, Built World operators (real estate, construction, hospitality)
 3. **Technology Integration:**
    - IoT+AI+Blockchain (OmniTrix)

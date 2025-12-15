@@ -94,7 +94,7 @@ const liveCategories: Category[] = [
     size: "+245% Growth",
     images: [
       "https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.kampus.fun/",
-      "https://image.thum.io/get/width/1200/crop/900/noanimate/https://shaadiverse.app/",
+      "https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.wednest.in/",
       "https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.grogate.com/"
     ],
     projects: [
@@ -109,9 +109,9 @@ const liveCategories: Category[] = [
         tags: ["Campus", "Marketplace", "Live"]
       },
       {
-        name: "ShaadiVerse",
-        url: "https://shaadiverse.app/",
-        image: "https://image.thum.io/get/width/1400/crop/900/noanimate/https://shaadiverse.app/",
+        name: "WedNest",
+        url: "https://www.wednest.in/",
+        image: "https://image.thum.io/get/width/1400/crop/900/noanimate/https://www.wednest.in/",
         scope: "Wedding vendor marketplace",
         year: "2025",
         impact: "10k+ verified vendors",
