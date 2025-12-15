@@ -1657,7 +1657,7 @@ const Widgets = () => (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       <StatCard
         label="Products Built"
-        value="200+"
+        value="50+"
         icon={Box}
         delay={200}
       />
@@ -1669,7 +1669,7 @@ const Widgets = () => (
       />
       <StatCard
         label="Total VC investments in our clients"
-        value="80+"
+        value="10+"
         icon={Briefcase}
         delay={400}
       />
@@ -2556,7 +2556,7 @@ const Features = () => (
                 </h3>
               </div>
               <p className="text-[16px] text-zinc-500 dark:text-zinc-400 leading-[1.6] max-w-md">
-                Strategy, logo design, and art direction that cuts through the noise.
+                Strategy and logo design that cuts through the noise.
               </p>
             </div>
 
