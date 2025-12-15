@@ -1498,32 +1498,32 @@ const Hero = ({
       </FadeIn>
 
       {/* Main Headline */}
-      <h1 className="text-[32px] md:text-[48px] lg:text-[56px] font-bold mb-8 leading-[1.15] tracking-[-0.02em] text-center">
+      <h1 className="text-[32px] md:text-[48px] lg:text-[56px] font-bold mb-8 leading-[1.1] tracking-[-0.02em] text-center text-balance">
         <FadeIn delay={200}>
-          <div className="block">
-            <span className="bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 dark:from-white dark:via-zinc-100 dark:to-white bg-clip-text text-transparent">
-              {/* First Line */}
-              <span className="inline-block">
-                Where Premium Design
-                {/* Icons Group */}
-                <span className="inline-flex align-middle relative mx-2 md:mx-4 -top-2">
-                  <span className="relative z-10 bg-white dark:bg-zinc-900 p-2 md:p-2.5 rounded-2xl shadow-[0_8px_16px_-4px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_16px_-4px_rgba(0,0,0,0.3)] border border-gray-100 dark:border-zinc-800 -rotate-6 transform hover:-rotate-12 transition-transform duration-300 block">
-                    <Box className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 text-gray-800 dark:text-white fill-current" />
-                  </span>
-                  <span className="absolute left-5 md:left-6 top-1.5 md:top-2 z-20 bg-white dark:bg-zinc-900 p-2 md:p-2.5 rounded-2xl shadow-[0_8px_16px_-4px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_16px_-4px_rgba(0,0,0,0.3)] border border-gray-100 dark:border-zinc-800 rotate-12 transform hover:rotate-6 transition-transform duration-300 block">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10" alt="figma" />
-                  </span>
-                  <div className="w-12 md:w-16 lg:w-20 inline-block"></div>
+          <div className="block bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 dark:from-white dark:via-zinc-100 dark:to-white bg-clip-text text-transparent">
+            {/* Mobile: simple two-line text to avoid wrap issues */}
+            <span className="block md:hidden">
+              Where Premium Design
+              <br />
+              Meets Strategic Engineering
+            </span>
+
+            {/* Desktop/Tablet: text with icons */}
+            <span className="hidden md:inline-block">
+              Where Premium Design
+              <span className="inline-flex align-middle relative mx-3 -top-2">
+                <span className="relative z-10 bg-white dark:bg-zinc-900 p-2.5 rounded-2xl shadow-[0_8px_16px_-4px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_16px_-4px_rgba(0,0,0,0.3)] border border-gray-100 dark:border-zinc-800 -rotate-6 transform hover:-rotate-12 transition-transform duration-300 block">
+                  <Box className="w-8 h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 text-gray-800 dark:text-white fill-current" />
                 </span>
+                <span className="absolute left-6 top-2 z-20 bg-white dark:bg-zinc-900 p-2.5 rounded-2xl shadow-[0_8px_16px_-4px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_16px_-4px_rgba(0,0,0,0.3)] border border-gray-100 dark:border-zinc-800 rotate-12 transform hover:rotate-6 transition-transform duration-300 block">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" className="w-8 h-8 md:w-9 md:h-9 lg:w-10 lg:h-10" alt="figma" />
+                </span>
+                <div className="w-16 md:w-20 inline-block"></div>
               </span>
-              {/* Break: Always on mobile, hidden on md, shown on lg */}
-              <br className="md:hidden lg:block"/>
-              {/* Second Line */}
-              <span className="inline-block">
-                Meets Strategic Engineering
-                <span className="inline-block align-middle bg-white dark:bg-zinc-900 p-2 md:p-3 rounded-2xl mx-2 md:mx-3 -rotate-3 hover:rotate-0 transition-transform shadow-[0_8px_16px_-4px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_16px_-4px_rgba(0,0,0,0.3)] border border-gray-100 dark:border-zinc-800 relative -top-1">
-                  <Zap className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 text-orange-500 fill-orange-500" />
-                </span>
+              <br className="lg:block" />
+              Meets Strategic Engineering
+              <span className="inline-block align-middle bg-white dark:bg-zinc-900 p-3 rounded-2xl mx-3 -rotate-3 hover:rotate-0 transition-transform shadow-[0_8px_16px_-4px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_16px_-4px_rgba(0,0,0,0.3)] border border-gray-100 dark:border-zinc-800 relative -top-1">
+                <Zap className="w-8 h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 text-orange-500 fill-orange-500" />
               </span>
             </span>
           </div>
