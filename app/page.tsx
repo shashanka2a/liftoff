@@ -251,6 +251,48 @@ const liveCategories: Category[] = [
         tags: ["AI", "Trading", "Coming Soon"]
       }
     ]
+  },
+  {
+    name: "Decor & Events",
+    count: "03",
+    size: "+150% Growth",
+    images: [
+      "https://www.elegantwedding.ca/wp-content/uploads/2017/09/elegant-wedding-26-outdoor-wedding-decoration-ideas-featured-1.jpg",
+      "https://www.elegantwedding.ca/wp-content/uploads/2017/09/elegant-wedding-26-outdoor-wedding-decoration-ideas-featured-1.jpg",
+      "https://www.elegantwedding.ca/wp-content/uploads/2017/09/elegant-wedding-26-outdoor-wedding-decoration-ideas-featured-1.jpg"
+    ],
+    projects: [
+      {
+        name: "Elegant Wedding",
+        url: "https://www.elegantwedding.ca/",
+        image: "https://www.elegantwedding.ca/wp-content/uploads/2017/09/elegant-wedding-26-outdoor-wedding-decoration-ideas-featured-1.jpg",
+        scope: "Wedding decoration & events",
+        year: "2025",
+        impact: "Premium events delivered",
+        meta: "Outdoor wedding decoration and elegant event design services.",
+        tags: ["Events", "Decor", "Live"]
+      },
+      {
+        name: "Event Design Studio",
+        url: "#",
+        image: "https://www.elegantwedding.ca/wp-content/uploads/2017/09/elegant-wedding-26-outdoor-wedding-decoration-ideas-featured-1.jpg",
+        scope: "Premium event decoration",
+        year: "2025",
+        impact: "Active projects",
+        meta: "Custom event decoration and design services for special occasions.",
+        tags: ["Events", "Design", "Live"]
+      },
+      {
+        name: "Decorative Solutions",
+        url: "#",
+        image: "https://www.elegantwedding.ca/wp-content/uploads/2017/09/elegant-wedding-26-outdoor-wedding-decoration-ideas-featured-1.jpg",
+        scope: "Interior & event decor",
+        year: "2025",
+        impact: "Coming soon",
+        meta: "Comprehensive decoration services for events and spaces.",
+        tags: ["Decor", "Interior", "Coming Soon"]
+      }
+    ]
   }
 ];
 
