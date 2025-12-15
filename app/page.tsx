@@ -1818,126 +1818,164 @@ const ProductDesignAnimation = () => {
   );
 };
 
-const BrandIdentityAnimation = () => (
-  <div className="relative w-full h-full flex items-center justify-center overflow-hidden p-4">
-    <svg
-      viewBox="0 0 120 80"
-      className="w-full h-full max-w-[180px]"
-      xmlns="http://www.w3.org/2000/svg"
-      style={{ willChange: 'transform' }}
-      preserveAspectRatio="xMidYMid meet"
-    >
-      <style>
-        {`
-          @keyframes morphLetter {
-            0% { 
-              font-weight: 100; 
-              letter-spacing: -0.05em; 
-              transform: scale(0.95);
-            }
-            25% { 
-              font-weight: 400; 
-              letter-spacing: 0em; 
-              transform: scale(1);
-            }
-            50% { 
-              font-weight: 700; 
-              letter-spacing: 0.02em; 
-              transform: scale(1.05);
-            }
-            75% { 
-              font-weight: 900; 
-              letter-spacing: 0.05em; 
-              transform: scale(1);
-            }
-            100% { 
-              font-weight: 100; 
-              letter-spacing: -0.05em; 
-              transform: scale(0.95);
-            }
-          }
-          @keyframes rotateColor {
-            0% { 
-              fill: rgb(217 119 6 / 0.5); 
-              transform: scale(1);
-            }
-            25% { 
-              fill: rgb(245 158 11 / 0.6); 
-              transform: scale(1.1);
-            }
-            50% { 
-              fill: rgb(251 191 36 / 0.7); 
-              transform: scale(1.15);
-            }
-            75% { 
-              fill: rgb(245 158 11 / 0.6); 
-              transform: scale(1.1);
-            }
-            100% { 
-              fill: rgb(217 119 6 / 0.5); 
-              transform: scale(1);
-            }
-          }
-          @keyframes floatCircle {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-3px); }
-          }
-          .morph-text {
-            animation: morphLetter 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-            transform-origin: center;
-          }
-          .color-swatch {
-            animation: rotateColor 5s cubic-bezier(0.4, 0, 0.2, 1) infinite, floatCircle 3s ease-in-out infinite;
-            transform-origin: center;
-          }
-        `}
-      </style>
-      <text
-        x="40"
-        y="45"
-        textAnchor="middle"
-        fontSize="42"
-        fill="currentColor"
-        className="morph-text"
-        style={{
-          color: "rgb(217 119 6 / 0.4)",
-          fontFamily: "system-ui, -apple-system, sans-serif",
-          transformOrigin: "center"
-        }}
-      >
-        Aa
-      </text>
-      <circle
-        cx="85"
-        cy="25"
-        r="8"
-        className="color-swatch"
-        style={{ animationDelay: "0s" } as React.CSSProperties}
-      />
-      <circle
-        cx="98"
-        cy="25"
-        r="8"
-        className="color-swatch"
-        style={{ animationDelay: "1.25s" } as React.CSSProperties}
-      />
-      <circle
-        cx="85"
-        cy="40"
-        r="8"
-        className="color-swatch"
-        style={{ animationDelay: "2.5s" } as React.CSSProperties}
-      />
-      <circle
-        cx="98"
-        cy="40"
-        r="8"
-        className="color-swatch"
-        style={{ animationDelay: "3.75s" } as React.CSSProperties}
-      />
-    </svg>
-  </div>
-);
+const BrandIdentityAnimation = () => {
+  const [step, setStep] = useState(0);
+
+  // Animation sequence controller
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    
+    const next = (s: number, ms: number) => {
+      timeout = setTimeout(() => setStep(s), ms);
+    };
+
+    switch (step) {
+      case 0: next(1, 1000); break;  // Start -> Move to center
+      case 1: next(2, 600); break;   // Hover -> Start Drag
+      case 2: next(3, 800); break;   // Dragging -> Text Appears
+      case 3: next(4, 800); break;   // Text Done -> Move to Palette 1
+      case 4: next(5, 500); break;   // Hover 1 -> Click
+      case 5: next(6, 400); break;   // Click 1 -> Move to 2
+      case 6: next(7, 500); break;   // Hover 2 -> Click
+      case 7: next(8, 400); break;   // Click 2 -> Move to 3
+      case 8: next(9, 500); break;   // Hover 3 -> Click
+      case 9: next(10, 400); break;  // Click 3 -> Move to 4
+      case 10: next(11, 500); break; // Hover 4 -> Click
+      case 11: next(0, 3000); break; // Finished -> Reset
+      default: break;
+    }
+
+    return () => clearTimeout(timeout);
+  }, [step]);
+
+  // Cursor Position Logic
+  const getCursorPos = () => {
+    switch (step) {
+      case 0: return { x: '110%', y: '110%' }; // Off screen
+      case 1: return { x: '25%', y: '40%' };   // Center-left (Text start)
+      case 2: return { x: '45%', y: '55%' };   // Center-right (Text drag end)
+      case 3: return { x: '45%', y: '55%' };   // Hold
+      case 4: return { x: '65%', y: '35%' };   // Color 1 position
+      case 5: return { x: '65%', y: '35%' };   // Click
+      case 6: return { x: '75%', y: '35%' };   // Color 2 position
+      case 7: return { x: '75%', y: '35%' };   // Click
+      case 8: return { x: '65%', y: '55%' };   // Color 3 position
+      case 9: return { x: '65%', y: '55%' };   // Click
+      case 10: return { x: '75%', y: '55%' };  // Color 4 position
+      case 11: return { x: '75%', y: '55%' };  // Click
+      default: return { x: '110%', y: '110%' };
+    }
+  };
+
+  const cursorPos = getCursorPos();
+  // Steps where click animation happens
+  const isClicking = [2, 5, 7, 9, 11].includes(step);
+  // Specific states for drag selection visualization
+  const isDragging = step === 2;
+
+  return (
+    <div className="relative w-full h-full flex items-center justify-center">
+      {/* The "Artboard" Frame */}
+      <div className="relative w-full max-w-lg aspect-[4/3] bg-white dark:bg-zinc-900 rounded-xl shadow-lg border border-zinc-200/60 dark:border-zinc-700/60 overflow-hidden flex flex-col">
+        
+        {/* Artboard Header */}
+        <div className="h-8 border-b border-zinc-50 dark:border-zinc-800 flex items-center justify-between px-4 bg-white dark:bg-zinc-900">
+          <span className="text-[10px] font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider">Artboard 1</span>
+          <div className="flex space-x-1.5">
+            <div className="w-2 h-2 rounded-full bg-zinc-100 dark:bg-zinc-700"></div>
+            <div className="w-2 h-2 rounded-full bg-zinc-100 dark:bg-zinc-700"></div>
+          </div>
+        </div>
+
+        {/* Artboard Content */}
+        <div className="flex-1 relative p-8">
+          
+          {/* 1. Typography Element "Aa" */}
+          <div 
+            className={`absolute top-[30%] left-[20%] transition-all duration-700 ease-out flex flex-col items-center justify-center
+              ${step >= 3 ? 'opacity-100 scale-100 blur-0' : 'opacity-0 scale-95 blur-sm'}
+            `}
+          >
+            <div className="text-8xl font-serif text-zinc-900 dark:text-white leading-none">
+              Aa
+            </div>
+            {/* Font info tag */}
+            <div className={`mt-4 bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 text-[10px] px-2 py-1 rounded opacity-0 transition-opacity duration-500 delay-500 ${step >= 3 ? 'opacity-100' : ''}`}>
+              Garamond Premier Pro
+            </div>
+          </div>
+
+          {/* Selection Box for Text (Appears while dragging) */}
+          <div 
+            className={`absolute top-[30%] left-[20%] border border-zinc-400 dark:border-zinc-500 bg-zinc-100/50 dark:bg-zinc-800/50 pointer-events-none transition-all duration-75
+              ${isDragging ? 'opacity-100' : 'opacity-0'}
+            `}
+            style={{
+              width: isDragging ? '140px' : '0px',
+              height: isDragging ? '140px' : '0px',
+            }}
+          />
+
+          {/* 2. Color Palette Elements */}
+          <div className="absolute top-[30%] right-[20%] grid grid-cols-2 gap-3">
+            {/* Color 1 */}
+            <div className={`w-12 h-12 rounded-full bg-zinc-700 dark:bg-zinc-600 shadow-sm transition-all duration-500 ease-spring ${step >= 5 ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
+            {/* Color 2 */}
+            <div className={`w-12 h-12 rounded-full bg-zinc-500 dark:bg-zinc-500 shadow-sm transition-all duration-500 ease-spring ${step >= 7 ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
+            {/* Color 3 */}
+            <div className={`w-12 h-12 rounded-full bg-zinc-400 dark:bg-zinc-400 shadow-sm transition-all duration-500 ease-spring ${step >= 9 ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
+            {/* Color 4 */}
+            <div className={`w-12 h-12 rounded-full bg-zinc-300 dark:bg-zinc-300 shadow-sm transition-all duration-500 ease-spring ${step >= 11 ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
+          </div>
+
+          {/* Decorative Guides (Faint) */}
+          <div className="absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05]">
+             <div className="absolute left-1/2 top-0 bottom-0 w-px bg-black dark:bg-white"></div>
+             <div className="absolute top-1/2 left-0 right-0 h-px bg-black dark:bg-white"></div>
+          </div>
+
+        </div>
+
+        {/* Animated Cursor Overlay */}
+        <div 
+          className="absolute pointer-events-none z-50 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
+          style={{
+            left: cursorPos.x,
+            top: cursorPos.y,
+          }}
+        >
+          <div className={`relative transition-transform duration-150 ${isClicking ? 'scale-90' : 'scale-100'}`}>
+            {/* Cursor Body */}
+            <svg 
+              width="24" 
+              height="24" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              xmlns="http://www.w3.org/2000/svg"
+              className="drop-shadow-xl"
+            >
+              <path 
+                d="M3 3L10.07 19.97L12.58 12.58L19.97 10.07L3 3Z" 
+                fill="black" 
+                stroke="white" 
+                strokeWidth="2" 
+                strokeLinejoin="round"
+              />
+            </svg>
+            
+            {/* Username Tag */}
+            <div 
+                className="absolute top-5 left-4 bg-zinc-700 dark:bg-zinc-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-br-md rounded-bl-md rounded-tr-md shadow-sm whitespace-nowrap"
+            >
+                Brand Lead
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  );
+};
 
 const DevelopmentAnimation = () => (
   <svg
