@@ -6,6 +6,7 @@ import HeroIllustration from "./components/HeroIllustration";
 import {
   ArrowRight,
   BarChart3,
+  BarChart2,
   Battery,
   Cloud,
   CreditCard,
@@ -1717,7 +1718,7 @@ const ProductDesignAnimation = () => {
   return (
     <div className="relative w-full h-full flex items-center justify-center">
       {/* The "Browser/App" Window Frame */}
-      <div className="relative w-full max-w-lg aspect-[4/3] bg-white dark:bg-zinc-900 rounded-xl shadow-lg border border-zinc-200/60 dark:border-zinc-700/60 overflow-hidden flex flex-col">
+      <div className="relative w-full max-w-lg aspect-[4/3] bg-white dark:bg-zinc-900 overflow-hidden flex flex-col">
         
         {/* Window Header */}
         <div className="h-10 border-b border-zinc-100 dark:border-zinc-800 flex items-center px-4 space-x-2">
@@ -1732,7 +1733,7 @@ const ProductDesignAnimation = () => {
           {/* Sidebar */}
           <div className={`w-24 border-r border-zinc-100 dark:border-zinc-800 h-full p-4 flex flex-col gap-3 transition-opacity duration-500 ${step >= 2 ? 'opacity-100' : 'opacity-0'}`}>
             {/* Skeleton Sidebar items */}
-            <div className={`h-4 w-3 bg-[#FF10F0] rounded-sm mb-4 transition-all duration-500 delay-100 ${step >= 3 ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'}`}></div>
+            <div className={`h-4 w-3 bg-zinc-900 dark:bg-zinc-700 rounded-sm mb-4 transition-all duration-500 delay-100 ${step >= 3 ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'}`}></div>
             <div className={`h-3 w-full bg-zinc-100 dark:bg-zinc-800 rounded-full transition-all duration-500 delay-200 ${step >= 3 ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'}`}></div>
             <div className={`h-3 w-4/5 bg-zinc-100 dark:bg-zinc-800 rounded-full transition-all duration-500 delay-300 ${step >= 3 ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'}`}></div>
             <div className={`h-3 w-3/4 bg-zinc-100 dark:bg-zinc-800 rounded-full transition-all duration-500 delay-400 ${step >= 3 ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'}`}></div>
@@ -1746,7 +1747,7 @@ const ProductDesignAnimation = () => {
 
             {/* Floating Button */}
             <div 
-              className={`absolute top-[35%] right-[10%] bg-[#FF10F0] text-white px-6 py-2.5 rounded-lg shadow-sm font-medium transform transition-all duration-500 ease-out
+              className={`absolute top-[35%] right-[10%] bg-zinc-900 dark:bg-zinc-700 text-white px-6 py-2.5 rounded-lg shadow-sm font-medium transform transition-all duration-500 ease-out
                 ${step >= 5 ? 'scale-100 opacity-100 translate-y-0' : 'scale-75 opacity-0 translate-y-4'}
               `}
             >
@@ -1755,7 +1756,7 @@ const ProductDesignAnimation = () => {
 
             {/* Dashed Selection Box */}
             <div 
-              className={`absolute bottom-[20%] left-[20%] border-2 border-dashed border-[#FF10F0] rounded-lg bg-[#FF10F0]/10 transition-all duration-700 ease-out
+              className={`absolute bottom-[20%] left-[20%] border-2 border-dashed border-zinc-400 dark:border-zinc-500 rounded-lg bg-zinc-100/50 dark:bg-zinc-800/50 transition-all duration-700 ease-out
                 ${step >= 7 ? 'opacity-100' : 'opacity-0'}
               `}
               style={{
@@ -1765,14 +1766,14 @@ const ProductDesignAnimation = () => {
             >
                 {/* Inner content of selection (fades in late) */}
                 <div className={`w-full h-full flex items-center justify-center transition-opacity duration-300 ${step >= 9 ? 'opacity-100' : 'opacity-0'}`}>
-                    <div className="w-3/4 h-2 bg-[#FF10F0]/30 rounded-full"></div>
+                    <div className="w-3/4 h-2 bg-zinc-300 dark:bg-zinc-600 rounded-full"></div>
                 </div>
 
                 {/* Resize Handle */}
-                <div className={`absolute -right-1 -bottom-1 w-2 h-2 bg-white dark:bg-zinc-900 border border-[#FF10F0] rounded-full shadow-sm z-20 ${step >= 7 ? 'scale-100' : 'scale-0'}`}></div>
+                <div className={`absolute -right-1 -bottom-1 w-2 h-2 bg-white dark:bg-zinc-900 border border-zinc-400 dark:border-zinc-500 rounded-full shadow-sm z-20 ${step >= 7 ? 'scale-100' : 'scale-0'}`}></div>
                 
                 {/* Figma-style Selection Label/Tooltip */}
-                <div className={`absolute -top-6 left-1/2 -translate-x-1/2 bg-[#FF10F0] text-white text-[10px] px-1.5 py-0.5 rounded shadow-sm opacity-0 transition-opacity duration-300 ${step === 8 || step === 9 ? 'opacity-100' : ''}`}>
+                <div className={`absolute -top-6 left-1/2 -translate-x-1/2 bg-zinc-900 dark:bg-zinc-700 text-white text-[10px] px-1.5 py-0.5 rounded shadow-sm opacity-0 transition-opacity duration-300 ${step === 8 || step === 9 ? 'opacity-100' : ''}`}>
                     {step >= 9 ? '180px' : 'Dragging...'}
                 </div>
             </div>
@@ -1800,7 +1801,7 @@ const ProductDesignAnimation = () => {
             >
               <path 
                 d="M3 3L10.07 19.97L12.58 12.58L19.97 10.07L3 3Z" 
-                fill="#FF10F0" 
+                fill="black" 
                 stroke="white" 
                 strokeWidth="2" 
                 strokeLinejoin="round"
@@ -1809,7 +1810,7 @@ const ProductDesignAnimation = () => {
             
             {/* Username Tag (Figma style) */}
             <div 
-                className="absolute top-5 left-4 bg-[#FF10F0] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-br-md rounded-bl-md rounded-tr-md shadow-sm whitespace-nowrap"
+                className="absolute top-5 left-4 bg-zinc-900 dark:bg-zinc-700 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-br-md rounded-bl-md rounded-tr-md shadow-sm whitespace-nowrap"
             >
                 Designer
             </div>
@@ -1879,7 +1880,7 @@ const BrandIdentityAnimation = () => {
   return (
     <div className="relative w-full h-full flex items-center justify-center">
       {/* The "Artboard" Frame */}
-      <div className="relative w-full max-w-lg aspect-[4/3] bg-white dark:bg-zinc-900 rounded-xl shadow-lg border border-zinc-200/60 dark:border-zinc-700/60 overflow-hidden flex flex-col">
+      <div className="relative w-full max-w-lg aspect-[4/3] bg-white dark:bg-zinc-900 overflow-hidden flex flex-col">
         
         {/* Artboard Header */}
         <div className="h-8 border-b border-zinc-50 dark:border-zinc-800 flex items-center justify-between px-4 bg-white dark:bg-zinc-900">
@@ -2028,7 +2029,7 @@ const DevelopmentAnimation = () => {
   return (
     <div className="relative w-full h-full flex items-center justify-center">
       {/* Code Editor Window */}
-      <div className="relative w-full max-w-lg aspect-[4/3] bg-[#1e1e2e] dark:bg-zinc-900 rounded-xl shadow-2xl overflow-hidden flex flex-col border border-zinc-700/50 dark:border-zinc-700/50">
+      <div className="relative w-full max-w-lg aspect-[4/3] bg-[#1e1e2e] dark:bg-zinc-900 overflow-hidden flex flex-col">
         
         {/* Window Header */}
         <div className="h-9 bg-[#252535] dark:bg-zinc-800 border-b border-white/5 dark:border-zinc-700/50 flex items-center px-4 space-x-2">
@@ -2163,217 +2164,207 @@ const DevelopmentAnimation = () => {
   );
 };
 
-const GrowthAnimation = () => (
-  <svg
-    viewBox="0 0 200 120"
-    className="w-full h-full"
-    xmlns="http://www.w3.org/2000/svg"
-    style={{ willChange: 'transform' }}
-    preserveAspectRatio="xMidYMid meet"
-  >
-    <style>
-      {`
-        @keyframes growBar {
-          0% { 
-            height: 0; 
-            opacity: 0.8;
-            transform: scaleY(0);
-          }
-          10% { opacity: 1; }
-          100% { 
-            height: var(--target-height); 
-            opacity: 1;
-            transform: scaleY(1);
-          }
-        }
-        @keyframes drawLine {
-          0% { 
-            stroke-dashoffset: 200; 
-            opacity: 0;
-          }
-          10% { opacity: 1; }
-          100% { 
-            stroke-dashoffset: 0; 
-            opacity: 1;
-          }
-        }
-        @keyframes pulse {
-          0%, 100% { 
-            opacity: 0.7; 
-            transform: scale(1);
-          }
-          50% { 
-            opacity: 1; 
-            transform: scale(1.2);
-          }
-        }
-        @keyframes floatUp {
-          0% { 
-            transform: translateY(0) scale(0.8); 
-            opacity: 0; 
-          }
-          15% { opacity: 1; }
-          50% { transform: translateY(-20px) scale(1); }
-          100% { 
-            transform: translateY(-40px) scale(0.8); 
-            opacity: 0; 
-          }
-        }
-        @keyframes shimmer {
-          0% { opacity: 0.3; }
-          50% { opacity: 0.6; }
-          100% { opacity: 0.3; }
-        }
-        .grow-bar {
-          animation: growBar 1.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-          transform-origin: bottom;
-        }
-        .draw-line {
-          animation: drawLine 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-        .pulse-dot {
-          animation: pulse 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-          transform-origin: center;
-        }
-        .float-arrow {
-          animation: floatUp 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-          transform-origin: center;
-        }
-        .shimmer {
-          animation: shimmer 2s ease-in-out infinite;
-        }
-      `}
-    </style>
-    {/* Chart background with subtle shimmer */}
-    <rect
-      x="20"
-      y="20"
-      width="160"
-      height="75"
-      rx="4"
-      fill="rgb(250 250 250 / 0.6)"
-      stroke="rgb(113 113 122 / 0.15)"
-      strokeWidth="1.5"
-      className="shimmer"
-    />
-    {/* Grid lines */}
-    <line
-      x1="20"
-      y1="60"
-      x2="180"
-      y2="60"
-      stroke="rgb(113 113 122 / 0.1)"
-      strokeWidth="1"
-      strokeDasharray="4 4"
-    />
-    <line
-      x1="20"
-      y1="40"
-      x2="180"
-      y2="40"
-      stroke="rgb(113 113 122 / 0.1)"
-      strokeWidth="1"
-      strokeDasharray="4 4"
-    />
-    {/* Bars with enhanced styling - fixed boundaries */}
-    <rect
-      x="40"
-      y="85"
-      width="18"
-      height="0"
-      fill="rgb(113 113 122 / 0.35)"
-      className="grow-bar"
-      rx="2"
-      style={{ "--target-height": "20px", animationDelay: "0.2s" } as React.CSSProperties}
-    />
-    <rect
-      x="70"
-      y="85"
-      width="18"
-      height="0"
-      fill="rgb(113 113 122 / 0.35)"
-      className="grow-bar"
-      rx="2"
-      style={{ "--target-height": "40px", animationDelay: "0.35s" } as React.CSSProperties}
-    />
-    <rect
-      x="100"
-      y="85"
-      width="18"
-      height="0"
-      fill="rgb(63 63 70 / 0.5)"
-      className="grow-bar"
-      rx="2"
-      style={{ "--target-height": "55px", animationDelay: "0.5s" } as React.CSSProperties}
-    />
-    <rect
-      x="130"
-      y="85"
-      width="18"
-      height="0"
-      fill="rgb(39 39 42 / 0.6)"
-      className="grow-bar"
-      rx="2"
-      style={{ "--target-height": "50px", animationDelay: "0.65s" } as React.CSSProperties}
-    />
-    {/* Data points - adjusted to fit within chart */}
-    <circle
-      cx="49"
-      cy="75"
-      r="2.5"
-      fill="rgb(63 63 70 / 0.6)"
-      className="pulse-dot"
-      style={{ animationDelay: "1.8s" }}
-    />
-    <circle
-      cx="79"
-      cy="55"
-      r="2.5"
-      fill="rgb(63 63 70 / 0.6)"
-      className="pulse-dot"
-      style={{ animationDelay: "2s" }}
-    />
-    <circle
-      cx="109"
-      cy="35"
-      r="2.5"
-      fill="rgb(39 39 42 / 0.8)"
-      className="pulse-dot"
-      style={{ animationDelay: "2.2s" }}
-    />
-    <circle
-      cx="139"
-      cy="45"
-      r="2.5"
-      fill="rgb(63 63 70 / 0.6)"
-      className="pulse-dot"
-      style={{ animationDelay: "2.4s" }}
-    />
-    {/* Floating arrows */}
-    <path
-      d="M 109 30 L 109 20 L 106 23 L 109 20 L 112 23 Z"
-      fill="rgb(39 39 42 / 0.6)"
-      className="float-arrow"
-      style={{ animationDelay: "2.5s" }}
-    />
-    <path
-      d="M 115 25 L 115 15 L 112 18 L 115 15 L 118 18 Z"
-      fill="rgb(39 39 42 / 0.5)"
-      className="float-arrow"
-      style={{ animationDelay: "3.5s" }}
-    />
-    {/* Line connecting points - adjusted to fit within chart */}
-    <polyline
-      points="49,75 79,55 109,35 139,45"
-      fill="none"
-      stroke="rgb(39 39 42 / 0.4)"
-      strokeWidth="2"
-      strokeDasharray="200"
-      className="draw-line"
-      style={{ animationDelay: "2.5s", animationDuration: "1.5s" } as React.CSSProperties}
-    />
-  </svg>
-);
+const GrowthAnimation = () => {
+  const [step, setStep] = useState(0);
+
+  // Animation sequence controller
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    
+    const next = (s: number, ms: number) => {
+      timeout = setTimeout(() => setStep(s), ms);
+    };
+
+    switch (step) {
+      case 0: next(1, 1000); break;  // Start -> Move to Button
+      case 1: next(2, 600); break;   // Hover
+      case 2: next(3, 400); break;   // Click
+      case 3: next(4, 300); break;   // Start Growth Animation
+      case 4: next(5, 800); break;   // Bars done -> Line Chart
+      case 5: next(6, 1000); break;  // Line done -> Move to Peak
+      case 6: next(7, 500); break;   // Hover Peak
+      case 7: next(8, 2000); break;  // Hold tooltip -> Reset
+      case 8: next(0, 1000); break;  // Reset
+      default: break;
+    }
+
+    return () => clearTimeout(timeout);
+  }, [step]);
+
+  // Cursor Position Logic
+  const getCursorPos = () => {
+    switch (step) {
+      case 0: return { x: '110%', y: '110%' };
+      case 1: return { x: '80%', y: '20%' };   // Button Position
+      case 2: return { x: '80%', y: '20%' };
+      case 3: return { x: '80%', y: '20%' };
+      case 4: return { x: '90%', y: '50%' };   // Move away slightly
+      case 5: return { x: '75%', y: '45%' };   // Move towards peak
+      case 6: return { x: '72%', y: '42%' };   // On Peak
+      case 7: return { x: '72%', y: '42%' };   // Hold
+      default: return { x: '110%', y: '110%' };
+    }
+  };
+
+  const cursorPos = getCursorPos();
+  const isClicking = step === 3;
+  const isGrowthActive = step >= 4;
+
+  return (
+    <div className="relative w-full h-full flex items-center justify-center">
+      {/* Dashboard Window */}
+      <div className="relative w-full max-w-lg aspect-[4/3] bg-white dark:bg-zinc-900 overflow-hidden flex flex-col">
+        
+        {/* Dashboard Header */}
+        <div className="h-12 border-b border-zinc-100 dark:border-zinc-800 flex items-center justify-between px-5 bg-white dark:bg-zinc-900">
+          <div className="flex items-center gap-2">
+             <div className="w-6 h-6 rounded bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-600 dark:text-zinc-400">
+                <TrendingUp size={14} />
+             </div>
+             <span className="text-xs font-bold text-zinc-700 dark:text-zinc-300">Analytics Pro</span>
+          </div>
+          
+          {/* The Action Button */}
+          <div 
+            className={`px-3 py-1.5 rounded-md text-[10px] font-bold transition-all duration-200 flex items-center gap-1
+              ${isClicking ? 'bg-zinc-700 dark:bg-zinc-600 scale-95' : 'bg-zinc-600 dark:bg-zinc-700 hover:bg-zinc-700 dark:hover:bg-zinc-600'} 
+              text-white shadow-sm ring-2 ring-transparent ${step === 2 ? 'ring-zinc-200 dark:ring-zinc-700' : ''}
+            `}
+          >
+            {isGrowthActive ? 'Running Test...' : 'Run A/B Test'}
+          </div>
+        </div>
+
+        {/* Dashboard Content */}
+        <div className="flex-1 p-6 relative flex flex-col">
+          
+          {/* Stat Cards Row */}
+          <div className="flex gap-4 mb-8">
+            <div className="flex-1 p-3 bg-zinc-50 dark:bg-zinc-800/50 rounded-lg border border-zinc-100 dark:border-zinc-700/50">
+               <div className="text-[10px] text-zinc-400 dark:text-zinc-500 uppercase font-bold mb-1">Users</div>
+               <div className="text-xl font-bold text-zinc-800 dark:text-zinc-200 flex items-end gap-2">
+                 {isGrowthActive ? '12.5k' : '4.2k'}
+                 <span className={`text-[10px] mb-1 transition-colors duration-500 ${isGrowthActive ? 'text-zinc-600 dark:text-zinc-400' : 'text-zinc-400 dark:text-zinc-500'}`}>
+                    {isGrowthActive ? '+128%' : '+2%'}
+                 </span>
+               </div>
+            </div>
+            <div className="flex-1 p-3 bg-zinc-50 dark:bg-zinc-800/50 rounded-lg border border-zinc-100 dark:border-zinc-700/50">
+               <div className="text-[10px] text-zinc-400 dark:text-zinc-500 uppercase font-bold mb-1">Conv. Rate</div>
+               <div className="text-xl font-bold text-zinc-800 dark:text-zinc-200 flex items-end gap-2">
+                 {isGrowthActive ? '4.8%' : '1.2%'}
+                 <span className={`text-[10px] mb-1 transition-colors duration-500 ${isGrowthActive ? 'text-zinc-600 dark:text-zinc-400' : 'text-zinc-400 dark:text-zinc-500'}`}>
+                    {isGrowthActive ? '+300%' : '0%'}
+                 </span>
+               </div>
+            </div>
+          </div>
+
+          {/* Chart Area */}
+          <div className="flex-1 relative flex items-end justify-between px-2 pb-2 gap-4">
+             
+             {/* Grid Lines (Background) */}
+             <div className="absolute inset-0 flex flex-col justify-between pointer-events-none">
+                {[1,2,3,4].map(i => (
+                    <div key={i} className="w-full h-px bg-zinc-100 dark:bg-zinc-800 border-t border-dashed border-zinc-200 dark:border-zinc-700"></div>
+                ))}
+             </div>
+
+             {/* Bar 1 */}
+             <div className="w-full bg-zinc-300 dark:bg-zinc-600 rounded-t-sm relative transition-all duration-700 ease-out" 
+                  style={{ height: isGrowthActive ? '45%' : '30%' }}></div>
+             
+             {/* Bar 2 */}
+             <div className="w-full bg-zinc-400 dark:bg-zinc-500 rounded-t-sm relative transition-all duration-700 ease-out delay-75" 
+                  style={{ height: isGrowthActive ? '55%' : '35%' }}></div>
+             
+             {/* Bar 3 */}
+             <div className="w-full bg-zinc-500 dark:bg-zinc-400 rounded-t-sm relative transition-all duration-700 ease-out delay-100" 
+                  style={{ height: isGrowthActive ? '75%' : '25%' }}></div>
+             
+             {/* Bar 4 (The Big One) */}
+             <div className="w-full bg-zinc-600 dark:bg-zinc-300 rounded-t-sm relative transition-all duration-700 ease-out delay-150" 
+                  style={{ height: isGrowthActive ? '92%' : '40%' }}>
+                    
+                    {/* Peak Point Dot */}
+                    <div className={`absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-zinc-700 dark:bg-zinc-500 border-2 border-white dark:border-zinc-900 rounded-full shadow-md z-10 transition-all duration-500 delay-500
+                         ${step >= 5 ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}
+                    `}></div>
+
+                    {/* Tooltip */}
+                    <div className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-3 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-[10px] py-1 px-2 rounded shadow-xl whitespace-nowrap transition-all duration-300
+                        ${step >= 7 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}
+                    `}>
+                        <div className="font-bold">Record High</div>
+                        <div className="text-zinc-400 dark:text-zinc-600">+145% vs last week</div>
+                        {/* Little triangle arrow */}
+                        <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-zinc-900 dark:border-t-zinc-100"></div>
+                    </div>
+             </div>
+
+             {/* Trend Line (SVG Overlay) */}
+             <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible z-0" preserveAspectRatio="none">
+                <path 
+                    d={isGrowthActive 
+                        ? "M 10 90 L 80 75 L 150 45 L 220 15" // High path
+                        : "M 10 115 L 80 110 L 150 120 L 220 100" // Low path
+                    }
+                    fill="none"
+                    stroke="rgb(113 113 122)"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="transition-all duration-1000 ease-out"
+                    style={{
+                        opacity: step >= 5 ? 0.5 : 0,
+                        strokeDasharray: '300',
+                        strokeDashoffset: step >= 5 ? '0' : '300' // Draw animation
+                    }}
+                />
+             </svg>
+
+          </div>
+        </div>
+
+        {/* Animated Cursor Overlay */}
+        <div 
+          className="absolute pointer-events-none z-50 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
+          style={{
+            left: cursorPos.x,
+            top: cursorPos.y,
+          }}
+        >
+          <div className={`relative transition-transform duration-150 ${isClicking ? 'scale-90' : 'scale-100'}`}>
+            <svg 
+              width="24" 
+              height="24" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              xmlns="http://www.w3.org/2000/svg"
+              className="drop-shadow-xl"
+            >
+              <path 
+                d="M3 3L10.07 19.97L12.58 12.58L19.97 10.07L3 3Z" 
+                fill="black" 
+                stroke="white" 
+                strokeWidth="2" 
+                strokeLinejoin="round"
+              />
+            </svg>
+            
+            {/* Tag */}
+            <div 
+                className="absolute top-5 left-4 bg-zinc-700 dark:bg-zinc-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-br-md rounded-bl-md rounded-tr-md shadow-sm whitespace-nowrap"
+            >
+                Growth PM
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  );
+};
 
 const Features = () => (
   <section id="features" className="px-4 md:px-8 pb-32 max-w-[1600px] mx-auto">
@@ -2435,9 +2426,19 @@ const Features = () => (
                   Brand Identity
                 </h3>
               </div>
-              <p className="text-[16px] text-zinc-500 dark:text-zinc-400 leading-[1.6] max-w-md">
+              <p className="text-[16px] text-zinc-500 dark:text-zinc-400 leading-[1.6] max-w-md mb-6">
                 Strategy and logo design that cuts through the noise.
               </p>
+              <div className="flex flex-wrap gap-3">
+                {["Logo Design", "Visual Identity", "Typography", "Color Theory"].map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-4 py-2 rounded-full bg-white/60 dark:bg-white/5 border border-black/5 dark:border-white/10 text-sm text-zinc-800 dark:text-zinc-200 font-mono"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
 
             <div className="flex-1 flex items-center justify-center h-40 md:h-auto w-full mt-8 md:mt-0 relative overflow-hidden">
@@ -2449,7 +2450,7 @@ const Features = () => (
 
       <div className="col-span-1 md:col-span-1">
         <FadeIn delay={400} className="h-full">
-          <GlassCard className="h-full p-10 flex flex-col justify-between hover:bg-white/90 dark:hover:bg-white/[0.08] hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_20px_60px_-12px_rgba(255,255,255,0.15)] hover:border-zinc-300/40 dark:hover:border-zinc-600/30 transition-all duration-500 ease-out hover:-translate-y-1 min-h-[300px] group">
+          <GlassCard className="h-full p-10 flex flex-col justify-between hover:bg-white/90 dark:hover:bg-white/[0.08] hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_20px_60px_-12px_rgba(255,255,255,0.15)] hover:border-zinc-300/40 dark:hover:border-zinc-600/30 transition-all duration-500 ease-out hover:-translate-y-1 min-h-[450px] group">
             <div>
               <div className="w-12 h-12 rounded-xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-700/50 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-zinc-100/80 dark:group-hover:bg-zinc-700/70 group-hover:rotate-3 transition-all duration-500">
                 <Terminal className="w-6 h-6 text-zinc-600 dark:text-zinc-300 group-hover:scale-110 transition-transform duration-500" />
@@ -2458,7 +2459,7 @@ const Features = () => (
                 Development
               </h4>
               <p className="text-[16px] text-zinc-600 dark:text-zinc-400 leading-[1.6] mb-6">Robust engineering for scalable applications.</p>
-              <div className="h-24 w-full rounded-lg overflow-hidden bg-zinc-900/5 dark:bg-zinc-800/30 border border-black/5 dark:border-white/5">
+              <div className="h-64 w-full rounded-lg overflow-hidden bg-zinc-900/5 dark:bg-zinc-800/30 border border-black/5 dark:border-white/5">
                 <DevelopmentAnimation />
               </div>
             </div>
@@ -2478,14 +2479,14 @@ const Features = () => (
 
       <div className="col-span-1 md:col-span-1">
         <FadeIn delay={500} className="h-full">
-          <GlassCard className="h-full p-10 flex flex-col justify-between hover:bg-white/90 dark:hover:bg-white/[0.08] hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_20px_60px_-12px_rgba(255,255,255,0.15)] hover:border-zinc-300/40 dark:hover:border-zinc-600/30 transition-all duration-500 ease-out hover:-translate-y-1 min-h-[300px] group">
+          <GlassCard className="h-full p-10 flex flex-col justify-between hover:bg-white/90 dark:hover:bg-white/[0.08] hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_20px_60px_-12px_rgba(255,255,255,0.15)] hover:border-zinc-300/40 dark:hover:border-zinc-600/30 transition-all duration-500 ease-out hover:-translate-y-1 min-h-[450px] group">
             <div>
               <div className="w-12 h-12 rounded-xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-700/50 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-zinc-100/80 dark:group-hover:bg-zinc-700/70 group-hover:rotate-3 transition-all duration-500">
                 <BarChart3 className="w-6 h-6 text-zinc-600 dark:text-zinc-300 group-hover:scale-110 transition-transform duration-500" />
               </div>
               <h4 className="text-[24px] text-zinc-900 dark:text-white font-semibold mb-2">Growth</h4>
               <p className="text-[16px] text-zinc-600 dark:text-zinc-400 leading-[1.6] mb-6">Data-driven strategies for user acquisition.</p>
-              <div className="h-24 w-full rounded-lg overflow-hidden bg-white/40 dark:bg-white/5 border border-black/5 dark:border-white/5 p-2">
+              <div className="h-64 w-full rounded-lg overflow-hidden bg-white/40 dark:bg-white/5 border border-black/5 dark:border-white/5 p-2">
                 <GrowthAnimation />
               </div>
             </div>
