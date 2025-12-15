@@ -69,6 +69,7 @@ type FileItem = {
   year: string;
   impact: string;
   meta: string;
+  url?: string;
 };
 
 type Project = {
@@ -768,9 +769,14 @@ const FilePreviewWindow = ({
             </div>
 
             <div className="pt-4">
-              <button className="w-full py-3 bg-zinc-900 dark:bg-white text-white dark:text-black rounded-xl font-medium text-sm hover:scale-[1.02] active:scale-[0.98] transition-transform flex items-center justify-center gap-2 shadow-lg shadow-black/5 dark:shadow-white/5">
+              <a
+                href={file.url || "#"}
+                target={file.url ? "_blank" : undefined}
+                rel={file.url ? "noopener noreferrer" : undefined}
+                className="w-full py-3 bg-zinc-900 dark:bg-white text-white dark:text-black rounded-xl font-medium text-sm hover:scale-[1.02] active:scale-[0.98] transition-transform flex items-center justify-center gap-2 shadow-lg shadow-black/5 dark:shadow-white/5"
+              >
                 View Case Study <ArrowRight className="w-4 h-4" />
-              </button>
+              </a>
               <button className="w-full py-3 mt-3 bg-white border border-black/10 dark:bg-white/5 dark:border-white/10 text-zinc-900 dark:text-white rounded-xl font-medium text-sm hover:bg-zinc-50 dark:hover:bg-white/10 transition-colors">
                 Download Assets
               </button>
@@ -1067,7 +1073,8 @@ const FolderWindow = ({
                         scope: project.scope,
                         year: project.year,
                         impact: project.impact,
-                        meta: project.meta
+                        meta: project.meta,
+                        url: project.url
                       })
                     }
                     onKeyDown={(e) => {
@@ -1081,7 +1088,8 @@ const FolderWindow = ({
                           scope: project.scope,
                           year: project.year,
                           impact: project.impact,
-                          meta: project.meta
+                          meta: project.meta,
+                          url: project.url
                         });
                       }
                     }}
@@ -1110,11 +1118,17 @@ const FolderWindow = ({
                               decoding="async"
                               onError={() => handleImageError(project.name)}
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-150 flex items-end p-4">
+                            <a
+                              href={project.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-150 flex items-end p-4"
+                            >
                               <span className="text-white text-sm font-medium flex items-center gap-2">
                                 View Case Study <ArrowRight className="w-4 h-4" />
                               </span>
-                            </div>
+                            </a>
                           </>
                         )}
                       </div>
@@ -1175,7 +1189,8 @@ const FolderWindow = ({
                         scope: project.scope,
                         year: project.year,
                         impact: project.impact,
-                        meta: project.meta
+                        meta: project.meta,
+                        url: project.url
                       })
                     }
                     onKeyDown={(e) => {
@@ -1189,7 +1204,8 @@ const FolderWindow = ({
                           scope: project.scope,
                           year: project.year,
                           impact: project.impact,
-                          meta: project.meta
+                          meta: project.meta,
+                          url: project.url
                         });
                       }
                     }}
@@ -1451,7 +1467,7 @@ const Hero = ({
         "LIFTOFF transformed our vision into a product that exceeded expectations."
       </p>
       <p className="text-[10px] text-zinc-500 dark:text-zinc-500 font-medium">
-        — CEO, Tech Startup
+        — CEO, Grogate
       </p>
     </div>
 
@@ -1461,7 +1477,7 @@ const Hero = ({
         "Working with LIFTOFF was seamless. They delivered a world-class product."
       </p>
       <p className="text-[10px] text-zinc-500 dark:text-zinc-500 font-medium">
-        — Founder, SaaS Platform
+        — Founder, Homevisor
       </p>
     </div>
 
@@ -1531,9 +1547,10 @@ const Hero = ({
           </div>
           <div className="flex items-center gap-1">
             {[1, 2, 3, 4, 5].map((i) => (
-              <Star key={i} className="w-4 h-4 fill-zinc-900 dark:fill-white text-zinc-900 dark:text-white" />
+              <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
             ))}
           </div>
+          <span className="text-sm font-medium text-zinc-900 dark:text-white">4.8</span>
           <span className="text-sm text-zinc-600 dark:text-zinc-400">From 30+ reviews</span>
         </div>
       </FadeIn>
@@ -1695,8 +1712,8 @@ const ProductDesignAnimation = () => (
           100% { transform: translate(120px, 95px); opacity: 0.8; }
         }
         @keyframes layerHighlight {
-          0%, 100% { fill: rgb(113 113 122 / 0.1); }
-          50% { fill: rgb(63 63 70 / 0.3); }
+          0%, 100% { fill: rgb(255 16 240 / 0.1); }
+          50% { fill: rgb(255 16 240 / 0.3); }
         }
         .fade-in {
           animation: fadeInScale 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
@@ -1785,8 +1802,8 @@ const ProductDesignAnimation = () => (
     <rect x="8" y="59" width="32" height="8" rx="1" fill="rgb(113 113 122 / 0.1)" className="fade-in" style={{ animationDelay: "0.4s" }} />
     <rect x="8" y="71" width="24" height="8" rx="1" fill="rgb(113 113 122 / 0.1)" className="fade-in" style={{ animationDelay: "0.45s" }} />
     
-    {/* Active Layer Indicator - using black for highlight */}
-    <rect x="4" y="35" width="2" height="8" rx="1" fill="rgb(9 9 11)" className="fade-in" style={{ animationDelay: "0.5s" }} />
+    {/* Active Layer Indicator - using neon pink for highlight */}
+    <rect x="4" y="35" width="2" height="8" rx="1" fill="#FF10F0" className="fade-in" style={{ animationDelay: "0.5s" }} />
     
     {/* Main Canvas Area */}
     <rect
@@ -1843,26 +1860,26 @@ const ProductDesignAnimation = () => (
         fill="rgb(113 113 122 / 0.1)"
       />
       
-      {/* Card Button - using black/grey for highlight */}
+      {/* Card Button - using neon pink for highlight */}
       <rect
         x="70"
         y="92"
         width="35"
         height="8"
         rx="4"
-        fill="rgb(9 9 11 / 0.5)"
+        fill="#FF10F0"
         className="select-element"
         style={{ animationDelay: "1.5s" }}
       />
       
-      {/* Selection Handles - using black for highlights */}
-      <circle cx="65" cy="45" r="3" fill="rgb(9 9 11)" className="resize-handle" />
-      <circle cx="145" cy="45" r="3" fill="rgb(9 9 11)" className="resize-handle" />
-      <circle cx="65" cy="105" r="3" fill="rgb(9 9 11)" className="resize-handle" />
-      <circle cx="145" cy="105" r="3" fill="rgb(9 9 11)" className="resize-handle" />
+      {/* Selection Handles - using neon pink for highlights */}
+      <circle cx="65" cy="45" r="3" fill="#FF10F0" className="resize-handle" />
+      <circle cx="145" cy="45" r="3" fill="#FF10F0" className="resize-handle" />
+      <circle cx="65" cy="105" r="3" fill="#FF10F0" className="resize-handle" />
+      <circle cx="145" cy="105" r="3" fill="#FF10F0" className="resize-handle" />
     </g>
     
-    {/* Design Mockup - Button Component - using black/grey */}
+    {/* Design Mockup - Button Component - using neon pink */}
     <g className="fade-in" style={{ animationDelay: "0.8s" }}>
       <rect
         x="155"
@@ -1870,7 +1887,7 @@ const ProductDesignAnimation = () => (
         width="35"
         height="20"
         rx="4"
-        fill="rgb(9 9 11 / 0.6)"
+        fill="#FF10F0"
         className="select-element"
         style={{ animationDelay: "2s" }}
       />
@@ -1911,7 +1928,7 @@ const ProductDesignAnimation = () => (
       />
     </g>
     
-    {/* Figma Cursor - using black for highlight */}
+    {/* Figma Cursor - using neon pink for highlight */}
     <g className="cursor">
       <defs>
         <filter id="cursorShadow">
@@ -1924,18 +1941,18 @@ const ProductDesignAnimation = () => (
       </defs>
       <path
         d="M 45 55 L 45 65 L 50 62 L 45 59 Z"
-        fill="rgb(9 9 11)"
+        fill="#FF10F0"
         filter="url(#cursorShadow)"
       />
     </g>
     
-    {/* Connection Lines (Design Flow) - using grey */}
+    {/* Connection Lines (Design Flow) - using neon pink */}
     <line
       x1="105"
       y1="105"
       x2="105"
       y2="115"
-      stroke="rgb(63 63 70 / 0.5)"
+      stroke="#FF10F0"
       strokeWidth="1.5"
       strokeLinecap="round"
       strokeDasharray="3 3"
@@ -1985,23 +2002,23 @@ const BrandIdentityAnimation = () => (
           }
           @keyframes rotateColor {
             0% { 
-              fill: rgb(63 63 70 / 0.4); 
+              fill: rgb(217 119 6 / 0.5); 
               transform: scale(1);
             }
             25% { 
-              fill: rgb(82 82 91 / 0.5); 
+              fill: rgb(245 158 11 / 0.6); 
               transform: scale(1.1);
             }
             50% { 
-              fill: rgb(113 113 122 / 0.6); 
+              fill: rgb(251 191 36 / 0.7); 
               transform: scale(1.15);
             }
             75% { 
-              fill: rgb(82 82 91 / 0.5); 
+              fill: rgb(245 158 11 / 0.6); 
               transform: scale(1.1);
             }
             100% { 
-              fill: rgb(63 63 70 / 0.4); 
+              fill: rgb(217 119 6 / 0.5); 
               transform: scale(1);
             }
           }
@@ -2027,7 +2044,7 @@ const BrandIdentityAnimation = () => (
         fill="currentColor"
         className="morph-text"
         style={{
-          color: "rgb(113 113 122 / 0.35)",
+          color: "rgb(217 119 6 / 0.4)",
           fontFamily: "system-ui, -apple-system, sans-serif",
           transformOrigin: "center"
         }}
@@ -2094,8 +2111,8 @@ const DevelopmentAnimation = () => (
           100% { opacity: 0; transform: scale(0.8) rotate(180deg); }
         }
         @keyframes highlightSyntax {
-          0%, 100% { fill: rgb(113 113 122 / 0.5); }
-          50% { fill: rgb(63 63 70 / 0.7); }
+          0%, 100% { fill: rgb(34 197 94 / 0.5); }
+          50% { fill: rgb(22 163 74 / 0.7); }
         }
         @keyframes terminalGlow {
           0%, 100% { opacity: 0.3; }
@@ -2130,7 +2147,7 @@ const DevelopmentAnimation = () => (
       height="100"
       rx="4"
       fill="rgb(9 9 11 / 0.85)"
-      stroke="rgb(113 113 122 / 0.25)"
+      stroke="rgb(34 197 94 / 0.3)"
       strokeWidth="1.5"
       className="terminal-glow"
     />
@@ -2151,7 +2168,7 @@ const DevelopmentAnimation = () => (
       x="20"
       y="45"
       fontSize="10"
-      fill="rgb(39 39 42 / 0.8)"
+      fill="rgb(34 197 94 / 0.9)"
       fontFamily="monospace"
       className="type-text"
       style={{ animationDelay: "0s", animationDuration: "1.2s" } as React.CSSProperties}
@@ -2162,7 +2179,7 @@ const DevelopmentAnimation = () => (
       x="20"
       y="60"
       fontSize="10"
-      fill="rgb(113 113 122 / 0.6)"
+      fill="rgb(34 197 94 / 0.7)"
       fontFamily="monospace"
       className="type-text"
       style={{ animationDelay: "1.5s", animationDuration: "1.2s" } as React.CSSProperties}
@@ -2173,7 +2190,7 @@ const DevelopmentAnimation = () => (
       x="20"
       y="75"
       fontSize="10"
-      fill="rgb(113 113 122 / 0.6)"
+      fill="rgb(34 197 94 / 0.7)"
       fontFamily="monospace"
       className="type-text"
       style={{ animationDelay: "3s", animationDuration: "0.8s" } as React.CSSProperties}
@@ -2206,12 +2223,12 @@ const DevelopmentAnimation = () => (
         cx="170"
         cy="70"
         r="14"
-        fill="rgb(113 113 122 / 0.3)"
+        fill="rgb(34 197 94 / 0.3)"
         filter="url(#checkGlow)"
       />
       <path
         d="M 164 70 L 168 74 L 176 66"
-        stroke="rgb(39 39 42)"
+        stroke="rgb(34 197 94)"
         strokeWidth="2.5"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -2450,8 +2467,8 @@ const Features = () => (
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-zinc-300/15 dark:bg-zinc-600/8 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/3 group-hover:bg-zinc-300/25 dark:group-hover:bg-zinc-600/12 group-hover:scale-110 transition-all duration-700" />
 
             <div className="relative z-10 flex-1 flex flex-col justify-center">
-              <div className="w-16 h-16 rounded-2xl bg-zinc-100 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700/50 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-zinc-200/80 dark:group-hover:bg-zinc-700/70 group-hover:rotate-3 transition-all duration-500">
-                <LayoutGrid className="w-8 h-8 text-zinc-700 dark:text-zinc-300 group-hover:scale-110 transition-transform duration-500" />
+              <div className="w-16 h-16 rounded-2xl bg-pink-50 dark:bg-pink-500/20 border border-pink-200 dark:border-pink-500/30 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-pink-100/80 dark:group-hover:bg-pink-500/30 group-hover:rotate-3 transition-all duration-500">
+                <LayoutGrid className="w-8 h-8 text-[#FF10F0] dark:text-pink-400 group-hover:scale-110 transition-transform duration-500" />
               </div>
               <h3 className="text-[24px] font-semibold text-zinc-900 dark:text-white mb-6">
                 Product Design
@@ -2485,12 +2502,12 @@ const Features = () => (
       <div className="col-span-1 md:col-span-2">
         <FadeIn delay={200} className="h-full">
           <GlassCard className="h-full p-10 flex flex-col md:flex-row items-center relative group overflow-hidden min-h-[300px] hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_20px_60px_-12px_rgba(255,255,255,0.15)] hover:border-zinc-300/40 dark:hover:border-zinc-600/30 transition-all duration-500 ease-out hover:-translate-y-1 hover:bg-white/95 dark:hover:bg-white/[0.08]">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-100/30 to-transparent dark:from-blue-500/5 dark:to-transparent group-hover:from-blue-100/40 group-hover:dark:from-blue-500/8 transition-all duration-500" />
+            <div className="absolute inset-0 bg-gradient-to-r from-amber-100/30 to-transparent dark:from-amber-500/5 dark:to-transparent group-hover:from-amber-100/40 group-hover:dark:from-amber-500/8 transition-all duration-500" />
 
             <div className="flex-1 z-10">
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-500/20 border border-blue-100 dark:border-blue-500/30 flex items-center justify-center group-hover:scale-110 group-hover:bg-blue-100/80 dark:group-hover:bg-blue-500/30 group-hover:rotate-3 transition-all duration-500">
-                  <Zap className="w-6 h-6 text-blue-500 dark:text-blue-400 group-hover:scale-110 transition-transform duration-500" />
+                <div className="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-500/20 border border-amber-100 dark:border-amber-500/30 flex items-center justify-center group-hover:scale-110 group-hover:bg-amber-100/80 dark:group-hover:bg-amber-500/30 group-hover:rotate-3 transition-all duration-500">
+                  <Briefcase className="w-6 h-6 text-amber-600 dark:text-amber-400 group-hover:scale-110 transition-transform duration-500" />
                 </div>
                 <h3 className="text-[24px] font-semibold text-zinc-900 dark:text-white">
                   Brand Identity
@@ -2512,8 +2529,8 @@ const Features = () => (
         <FadeIn delay={400} className="h-full">
           <GlassCard className="h-full p-10 flex flex-col justify-between hover:bg-white/90 dark:hover:bg-white/[0.08] hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_20px_60px_-12px_rgba(255,255,255,0.15)] hover:border-zinc-300/40 dark:hover:border-zinc-600/30 transition-all duration-500 ease-out hover:-translate-y-1 min-h-[300px] group">
             <div>
-              <div className="w-12 h-12 rounded-xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-700/50 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-zinc-100/80 dark:group-hover:bg-zinc-700/70 group-hover:rotate-3 transition-all duration-500">
-                <Terminal className="w-6 h-6 text-zinc-600 dark:text-zinc-300 group-hover:scale-110 transition-transform duration-500" />
+              <div className="w-12 h-12 rounded-xl bg-green-50 dark:bg-green-500/20 border border-green-100 dark:border-green-500/30 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-green-100/80 dark:group-hover:bg-green-500/30 group-hover:rotate-3 transition-all duration-500">
+                <Terminal className="w-6 h-6 text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform duration-500" />
               </div>
               <h4 className="text-[24px] text-zinc-900 dark:text-white font-semibold mb-2">
                 Development
@@ -2570,7 +2587,7 @@ const Features = () => (
 const Footer = () => (
   <footer
     id="footer"
-    className="bg-[#FAFAFA] dark:bg-[#0A0A0A] pt-24 pb-12 px-6"
+    className="bg-white dark:bg-white pt-24 pb-12 px-6"
   >
     <div className="max-w-[1600px] mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
@@ -2630,8 +2647,8 @@ const Footer = () => (
         </div>
       </div>
 
-      <div className="flex justify-center items-center pt-8">
-        <span className="text-zinc-500 text-xs">© 2024 LIFTOFF. All rights reserved.</span>
+      <div className="flex justify-start items-center pt-8">
+        <span className="text-zinc-500 text-xs whitespace-nowrap">© 2024 LIFTOFF. All rights reserved.</span>
       </div>
     </div>
   </footer>
