@@ -3,6 +3,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import HeroIllustration from "./components/HeroIllustration";
+import { Icon } from "@iconify/react";
 import {
   ArrowRight,
   BarChart3,
@@ -2430,7 +2431,10 @@ const Features = () => (
 
             <div className="relative z-10 flex-1 flex flex-col justify-center">
               <div className="w-16 h-16 rounded-2xl bg-zinc-100 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700/50 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-zinc-200/80 dark:group-hover:bg-zinc-700/70 group-hover:rotate-3 transition-all duration-500">
-                <LayoutGrid className="w-8 h-8 text-zinc-700 dark:text-zinc-300 group-hover:scale-110 transition-transform duration-500" />
+                <Icon
+                  icon="solar:pen-new-round-bold-duotone"
+                  className="w-8 h-8 text-zinc-800 dark:text-zinc-100 group-hover:scale-110 transition-transform duration-500"
+                />
               </div>
               <h3 className="text-[24px] font-semibold text-zinc-900 dark:text-white mb-6">
                 Product Design
@@ -2465,7 +2469,10 @@ const Features = () => (
             <div className="flex-1 z-10">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 rounded-xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-700/50 flex items-center justify-center group-hover:scale-110 group-hover:bg-zinc-100/80 dark:group-hover:bg-zinc-700/70 group-hover:rotate-3 transition-all duration-500">
-                  <Briefcase className="w-6 h-6 text-zinc-600 dark:text-zinc-300 group-hover:scale-110 transition-transform duration-500" />
+                  <Icon
+                    icon="solar:briefcase-tag-bold-duotone"
+                    className="w-7 h-7 text-zinc-800 dark:text-zinc-100 group-hover:scale-110 transition-transform duration-500"
+                  />
                 </div>
                 <h3 className="text-[24px] font-semibold text-zinc-900 dark:text-white">
                   Brand Identity
@@ -2498,7 +2505,10 @@ const Features = () => (
           <GlassCard className="h-full p-10 flex flex-col justify-between hover:bg-white/90 dark:hover:bg-white/[0.08] hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_20px_60px_-12px_rgba(255,255,255,0.15)] hover:border-zinc-300/40 dark:hover:border-zinc-600/30 transition-all duration-500 ease-out hover:-translate-y-1 min-h-[450px] group">
             <div>
               <div className="w-12 h-12 rounded-xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-700/50 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-zinc-100/80 dark:group-hover:bg-zinc-700/70 group-hover:rotate-3 transition-all duration-500">
-                <Terminal className="w-6 h-6 text-zinc-600 dark:text-zinc-300 group-hover:scale-110 transition-transform duration-500" />
+                <Icon
+                  icon="solar:programming-bold-duotone"
+                  className="w-7 h-7 text-zinc-800 dark:text-zinc-100 group-hover:scale-110 transition-transform duration-500"
+                />
               </div>
               <h4 className="text-[24px] text-zinc-900 dark:text-white font-semibold mb-2">
                 Development
@@ -2527,7 +2537,10 @@ const Features = () => (
           <GlassCard className="h-full p-10 flex flex-col justify-between hover:bg-white/90 dark:hover:bg-white/[0.08] hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_20px_60px_-12px_rgba(255,255,255,0.15)] hover:border-zinc-300/40 dark:hover:border-zinc-600/30 transition-all duration-500 ease-out hover:-translate-y-1 min-h-[450px] group">
             <div>
               <div className="w-12 h-12 rounded-xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-700/50 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-zinc-100/80 dark:group-hover:bg-zinc-700/70 group-hover:rotate-3 transition-all duration-500">
-                <BarChart3 className="w-6 h-6 text-zinc-600 dark:text-zinc-300 group-hover:scale-110 transition-transform duration-500" />
+                <Icon
+                  icon="solar:chart-up-bold-duotone"
+                  className="w-7 h-7 text-zinc-800 dark:text-zinc-100 group-hover:scale-110 transition-transform duration-500"
+                />
               </div>
               <h4 className="text-[24px] text-zinc-900 dark:text-white font-semibold mb-2">Growth</h4>
               <p className="text-[16px] text-zinc-600 dark:text-zinc-400 leading-[1.6] mb-6">Data-driven strategies for user acquisition.</p>
@@ -2681,7 +2694,14 @@ const Dock = ({
             className="p-3 rounded-xl transition-all duration-300 hover:-translate-y-3 hover:scale-110 hover:bg-black/5 dark:hover:bg-white/15 active:scale-95"
             aria-label={item.label}
           >
-            <item.icon className="w-6 h-6 text-zinc-800 dark:text-white drop-shadow-md" strokeWidth={1.5} />
+            {item.label === "Capabilities" ? (
+              <Icon
+                icon="solar:magic-stick-3-bold-duotone"
+                className="w-6 h-6 text-zinc-800 dark:text-white drop-shadow-md"
+              />
+            ) : (
+              <item.icon className="w-6 h-6 text-zinc-800 dark:text-white drop-shadow-md" strokeWidth={1.5} />
+            )}
           </button>
 
           <div className="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-white dark:bg-[#1a1a1a] border border-black/10 dark:border-white/10 rounded-lg text-xs font-medium text-zinc-900 dark:text-white opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap shadow-lg">
