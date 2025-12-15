@@ -2608,7 +2608,8 @@ const StatusBar = () => {
   return (
     <div className="fixed top-0 left-0 right-0 h-10 px-6 flex items-center justify-between z-[60] text-xs font-medium select-none pointer-events-none">
       <div className="flex items-center gap-4 pointer-events-auto">
-        <span className="font-bold tracking-wide text-zinc-900 dark:text-white bg-white/90 dark:bg-zinc-900/90 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-black/5 dark:border-white/5 shadow-sm">
+        <span className="font-bold tracking-wide text-zinc-900 dark:text-white bg-white/90 dark:bg-zinc-900/90 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-black/5 dark:border-white/5 shadow-sm flex items-center gap-2">
+          <img src="/icon.svg" alt="LIFTOFF" className="w-4 h-4" />
           LIFTOFF
         </span>
       </div>
