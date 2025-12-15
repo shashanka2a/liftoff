@@ -90,7 +90,7 @@ type Project = {
 
 const liveCategories: Category[] = [
   {
-    name: "Campus & Marketplaces",
+    name: "E-Commerce & Marketplace Solutions",
     count: "03",
     size: "+245% Growth",
     images: [
@@ -132,7 +132,7 @@ const liveCategories: Category[] = [
     ]
   },
   {
-    name: "Commerce & Ops OS",
+    name: "Business Operations Software",
     count: "03",
     size: "$2.4M Revenue",
     images: [
