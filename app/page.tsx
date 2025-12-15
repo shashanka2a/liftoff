@@ -46,7 +46,10 @@ import {
   Rocket,
   Sparkles,
   Star,
-  Quote
+  Quote,
+  CheckCircle2,
+  Code2,
+  Play
 } from "lucide-react";
 
 type WindowState = "maximized" | "minimized" | "closed" | "normal";
@@ -1977,161 +1980,188 @@ const BrandIdentityAnimation = () => {
   );
 };
 
-const DevelopmentAnimation = () => (
-  <svg
-    viewBox="0 0 200 120"
-    className="w-full h-full"
-    xmlns="http://www.w3.org/2000/svg"
-    style={{ willChange: 'transform' }}
-  >
-    <style>
-      {`
-        @keyframes typeText {
-          0% { width: 0; opacity: 0.8; }
-          10% { opacity: 1; }
-          90% { width: 100%; opacity: 1; }
-          100% { width: 100%; opacity: 0.9; }
-        }
-        @keyframes blinkCursor {
-          0%, 40% { opacity: 1; }
-          41%, 49% { opacity: 0.2; }
-          50%, 100% { opacity: 1; }
-        }
-        @keyframes fadeInCheck {
-          0% { opacity: 0; transform: scale(0) rotate(-180deg); }
-          15% { opacity: 1; transform: scale(1.2) rotate(0deg); }
-          25% { transform: scale(1) rotate(0deg); }
-          80% { opacity: 1; transform: scale(1) rotate(0deg); }
-          100% { opacity: 0; transform: scale(0.8) rotate(180deg); }
-        }
-        @keyframes highlightSyntax {
-          0%, 100% { fill: rgb(34 197 94 / 0.5); }
-          50% { fill: rgb(22 163 74 / 0.7); }
-        }
-        @keyframes terminalGlow {
-          0%, 100% { opacity: 0.3; }
-          50% { opacity: 0.5; }
-        }
-        .type-text {
-          overflow: hidden;
-          white-space: nowrap;
-          animation: typeText 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-        }
-        .cursor-blink {
-          animation: blinkCursor 1.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-        .syntax-highlight {
-          animation: highlightSyntax 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-        }
-        .check-mark {
-          animation: fadeInCheck 7s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
-          opacity: 0;
-          transform-origin: center;
-        }
-        .terminal-glow {
-          animation: terminalGlow 3s ease-in-out infinite;
-        }
-      `}
-    </style>
-    {/* Terminal background with subtle glow */}
-    <rect
-      x="10"
-      y="10"
-      width="180"
-      height="100"
-      rx="4"
-      fill="rgb(9 9 11 / 0.85)"
-      stroke="rgb(34 197 94 / 0.3)"
-      strokeWidth="1.5"
-      className="terminal-glow"
-    />
-    {/* Terminal header */}
-    <rect
-      x="10"
-      y="10"
-      width="180"
-      height="20"
-      rx="4"
-      fill="rgb(39 39 42 / 0.95)"
-    />
-    <circle cx="20" cy="20" r="4.5" fill="rgb(113 113 122 / 0.5)" />
-    <circle cx="32" cy="20" r="4.5" fill="rgb(113 113 122 / 0.5)" />
-    <circle cx="44" cy="20" r="4.5" fill="rgb(113 113 122 / 0.5)" />
-    {/* Code lines */}
-    <text
-      x="20"
-      y="45"
-      fontSize="10"
-      fill="rgb(34 197 94 / 0.9)"
-      fontFamily="monospace"
-      className="type-text"
-      style={{ animationDelay: "0s", animationDuration: "1.2s" } as React.CSSProperties}
-    >
-      const app = () =&gt; {"{"}
-    </text>
-    <text
-      x="20"
-      y="60"
-      fontSize="10"
-      fill="rgb(34 197 94 / 0.7)"
-      fontFamily="monospace"
-      className="type-text"
-      style={{ animationDelay: "1.5s", animationDuration: "1.2s" } as React.CSSProperties}
-    >
-      &nbsp;&nbsp;return &lt;App /&gt;
-    </text>
-    <text
-      x="20"
-      y="75"
-      fontSize="10"
-      fill="rgb(34 197 94 / 0.7)"
-      fontFamily="monospace"
-      className="type-text"
-      style={{ animationDelay: "3s", animationDuration: "0.8s" } as React.CSSProperties}
-    >
-      {"}"}
-    </text>
-    {/* Enhanced cursor with glow */}
-    <rect
-      x="20"
-      y="85"
-      width="8"
-      height="12"
-      fill="rgb(250 250 250 / 0.9)"
-      className="cursor-blink"
-      rx="1"
-      style={{ animationDelay: "4.2s" } as React.CSSProperties}
-    />
-    {/* Success checkmark with enhanced animation */}
-    <g className="check-mark" style={{ animationDelay: "4.8s" } as React.CSSProperties}>
-      <defs>
-        <filter id="checkGlow">
-          <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-          <feMerge>
-            <feMergeNode in="coloredBlur"/>
-            <feMergeNode in="SourceGraphic"/>
-          </feMerge>
-        </filter>
-      </defs>
-      <circle
-        cx="170"
-        cy="70"
-        r="14"
-        fill="rgb(34 197 94 / 0.3)"
-        filter="url(#checkGlow)"
-      />
-      <path
-        d="M 164 70 L 168 74 L 176 66"
-        stroke="rgb(34 197 94)"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-        filter="url(#checkGlow)"
-      />
-    </g>
-  </svg>
-);
+const DevelopmentAnimation = () => {
+  const [step, setStep] = useState(0);
+
+  // Animation sequence controller
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    
+    const next = (s: number, ms: number) => {
+      timeout = setTimeout(() => setStep(s), ms);
+    };
+
+    switch (step) {
+      case 0: next(1, 1000); break;  // Start -> Line 1
+      case 1: next(2, 400); break;   // Line 2
+      case 2: next(3, 400); break;   // Line 3
+      case 3: next(4, 400); break;   // Line 4
+      case 4: next(5, 400); break;   // Line 5
+      case 5: next(6, 800); break;   // Code done -> Open Terminal
+      case 6: next(7, 600); break;   // Terminal Open -> Type Command
+      case 7: next(8, 800); break;   // Command Typed -> Running
+      case 8: next(9, 1500); break;  // Running -> Success
+      case 9: next(0, 3000); break;  // Success -> Reset
+      default: break;
+    }
+
+    return () => clearTimeout(timeout);
+  }, [step]);
+
+  // Cursor Position Logic
+  const getCursorPos = () => {
+    switch (step) {
+      case 0: return { x: '110%', y: '110%' };
+      case 1: return { x: '40%', y: '30%' };   // Typing...
+      case 2: return { x: '45%', y: '35%' };
+      case 3: return { x: '50%', y: '40%' };
+      case 4: return { x: '45%', y: '45%' };
+      case 5: return { x: '40%', y: '50%' };   // Code finish
+      case 6: return { x: '90%', y: '90%' };   // Move to terminal area
+      case 7: return { x: '10%', y: '85%' };   // Terminal prompt
+      default: return { x: '100%', y: '100%' }; // Move away
+    }
+  };
+
+  const cursorPos = getCursorPos();
+
+  return (
+    <div className="relative w-full h-full flex items-center justify-center">
+      {/* Code Editor Window */}
+      <div className="relative w-full max-w-lg aspect-[4/3] bg-[#1e1e2e] dark:bg-zinc-900 rounded-xl shadow-2xl overflow-hidden flex flex-col border border-zinc-700/50 dark:border-zinc-700/50">
+        
+        {/* Window Header */}
+        <div className="h-9 bg-[#252535] dark:bg-zinc-800 border-b border-white/5 dark:border-zinc-700/50 flex items-center px-4 space-x-2">
+          <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
+          <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+          <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
+          <div className="ml-4 text-xs text-zinc-400 dark:text-zinc-500 font-mono">App.tsx</div>
+        </div>
+
+        {/* Editor Content */}
+        <div className="flex-1 p-6 font-mono text-sm md:text-base leading-relaxed text-zinc-300 dark:text-zinc-400 relative">
+          
+          {/* Line Numbers */}
+          <div className="absolute left-4 top-6 text-zinc-600 dark:text-zinc-600 select-none text-right w-4 flex flex-col gap-1">
+            <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+          </div>
+
+          {/* Code Lines */}
+          <div className="pl-8 flex flex-col gap-1">
+            
+            <div className={`transition-opacity duration-300 ${step >= 1 ? 'opacity-100' : 'opacity-0'}`}>
+              <span className="text-purple-400 dark:text-purple-400">const</span> <span className="text-blue-400 dark:text-blue-400">App</span> = <span className="text-yellow-400 dark:text-yellow-400">()</span> <span className="text-purple-400 dark:text-purple-400">=&gt;</span> {'{'}
+            </div>
+            
+            <div className={`pl-4 transition-opacity duration-300 ${step >= 2 ? 'opacity-100' : 'opacity-0'}`}>
+              <span className="text-purple-400 dark:text-purple-400">return</span> (
+            </div>
+            
+            <div className={`pl-8 transition-opacity duration-300 ${step >= 3 ? 'opacity-100' : 'opacity-0'}`}>
+              &lt;<span className="text-red-400 dark:text-red-400">h1</span>&gt;
+              <span className="text-green-400 dark:text-green-400">Hello World</span>
+              &lt;/<span className="text-red-400 dark:text-red-400">h1</span>&gt;
+            </div>
+
+            <div className={`pl-4 transition-opacity duration-300 ${step >= 4 ? 'opacity-100' : 'opacity-0'}`}>
+              )
+            </div>
+
+            <div className={`transition-opacity duration-300 ${step >= 5 ? 'opacity-100' : 'opacity-0'}`}>
+              {'}'}
+            </div>
+
+            {/* Blinking Cursor */}
+            <div 
+                className={`w-2 h-5 bg-zinc-500 dark:bg-zinc-400 animate-pulse absolute`}
+                style={{
+                    top: `${(Math.min(step, 5) * 28)}px`,
+                    left: '20px',
+                    transition: 'top 0.2s ease'
+                }} 
+            />
+          </div>
+
+        </div>
+
+        {/* Terminal Panel (Slides up) */}
+        <div className={`absolute bottom-0 left-0 right-0 bg-[#0f0f16] dark:bg-zinc-950 border-t border-white/10 dark:border-zinc-700/50 transition-all duration-500 ease-out flex flex-col
+          ${step >= 6 ? 'h-32' : 'h-0'}
+        `}>
+            <div className="flex items-center justify-between px-4 py-2 border-b border-white/5 dark:border-zinc-700/50 bg-[#181825] dark:bg-zinc-900">
+                <div className="flex items-center gap-2 text-xs text-zinc-400 dark:text-zinc-500 uppercase tracking-wider font-bold">
+                    <Terminal size={12} /> Terminal
+                </div>
+            </div>
+            <div className="p-4 font-mono text-xs md:text-sm text-zinc-300 dark:text-zinc-400">
+                <div className="flex gap-2">
+                    <span className="text-green-400 dark:text-green-500">➜</span>
+                    <span className="text-blue-400 dark:text-blue-400">~/project</span>
+                    {step >= 7 && <span className="text-zinc-100 dark:text-zinc-300">npm run build</span>}
+                </div>
+                
+                {step >= 8 && (
+                    <div className="mt-2 text-zinc-400 dark:text-zinc-500">
+                        Building production bundle...
+                        <div className="w-full bg-zinc-800 dark:bg-zinc-800 h-1 mt-2 rounded-full overflow-hidden">
+                            <div className={`h-full bg-zinc-500 dark:bg-zinc-400 transition-all duration-[1500ms] ease-out ${step >= 9 ? 'w-full' : 'w-[10%]'}`}></div>
+                        </div>
+                    </div>
+                )}
+
+                {step >= 9 && (
+                    <div className="mt-2 flex items-center gap-2 text-green-400 dark:text-green-500 font-bold animate-in fade-in slide-in-from-left-2">
+                        <CheckCircle2 size={14} /> Build Complete (1.2s)
+                    </div>
+                )}
+            </div>
+        </div>
+
+        {/* Success Overlay Badge */}
+         <div 
+            className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-zinc-700 dark:bg-zinc-600 text-white px-6 py-3 rounded-full shadow-2xl shadow-zinc-500/30 flex items-center gap-3 font-bold transform transition-all duration-500 z-20
+            ${step >= 9 ? 'scale-100 opacity-100 translate-y-0' : 'scale-50 opacity-0 translate-y-8'}
+            `}
+        >
+            <CheckCircle2 className="text-white" size={24} />
+            <span>Deployed</span>
+        </div>
+
+        {/* Animated Cursor Overlay */}
+        <div 
+          className="absolute pointer-events-none z-50 transition-all duration-300 ease-out"
+          style={{
+            left: cursorPos.x,
+            top: cursorPos.y,
+          }}
+        >
+          <div className="relative transition-transform duration-150">
+            <svg 
+              width="24" 
+              height="24" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              xmlns="http://www.w3.org/2000/svg"
+              className="drop-shadow-lg"
+            >
+              <path 
+                d="M3 3L10.07 19.97L12.58 12.58L19.97 10.07L3 3Z" 
+                fill="white" 
+                stroke="black" 
+                strokeWidth="1.5" 
+                strokeLinejoin="round"
+              />
+            </svg>
+            <div className="absolute top-5 left-4 bg-zinc-700 dark:bg-zinc-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-br-md rounded-bl-md rounded-tr-md shadow-sm">
+                Engineer
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  );
+};
 
 const GrowthAnimation = () => (
   <svg
