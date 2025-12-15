@@ -2669,10 +2669,10 @@ const Dock = ({
   <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[60]">
     <div className="flex items-center gap-2 px-3 py-2.5 bg-white/80 dark:bg-white/10 backdrop-blur-2xl border border-black/5 dark:border-white/20 rounded-2xl shadow-[0_20px_40px_-4px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_40px_-4px_rgba(0,0,0,0.6)]">
       {[
-        { icon: LayoutGrid, label: "Dashboard", action: () => scrollToSection("hero") },
-        { icon: Layers, label: "Projects", action: () => scrollToSection("work") },
-        { icon: Cpu, label: "Features", action: () => scrollToSection("features") },
-        { icon: Terminal, label: "Contact", action: () => scrollToSection("footer") },
+        { icon: Home, label: "Home", action: () => scrollToSection("hero") },
+        { icon: Briefcase, label: "Work", action: () => scrollToSection("work") },
+        { icon: Sparkles, label: "Capabilities", action: () => scrollToSection("features") },
+        { icon: MessageSquare, label: "Contact", action: () => scrollToSection("footer") },
         { icon: Settings, label: "Settings", action: onSettings }
       ].map((item) => (
         <div key={item.label} className="group relative">
