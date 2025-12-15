@@ -1540,21 +1540,37 @@ const Hero = ({
         <div className="flex items-center justify-center gap-4">
           {/* Avatar circles */}
           <div className="flex -space-x-3">
-            {[1, 2, 3].map((i) => (
-              <div
+            {[
+              "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah&backgroundColor=b6e3f4,c0aede,ffd5dc",
+              "https://api.dicebear.com/7.x/avataaars/svg?seed=Michael&backgroundColor=b6e3f4,c0aede,ffd5dc",
+              "https://api.dicebear.com/7.x/avataaars/svg?seed=Emma&backgroundColor=b6e3f4,c0aede,ffd5dc"
+            ].map((avatarUrl, i) => (
+              <img
                 key={i}
-                className="w-10 h-10 rounded-full bg-gradient-to-br from-zinc-200 to-zinc-300 dark:from-zinc-700 dark:to-zinc-800 border-2 border-white dark:border-zinc-900 flex items-center justify-center text-xs font-semibold text-zinc-700 dark:text-zinc-300"
-              >
-                {i === 1 ? "TH" : i === 2 ? "JD" : "SM"}
-              </div>
+                src={avatarUrl}
+                alt={`Reviewer ${i + 1}`}
+                className="w-10 h-10 rounded-full border-2 border-white dark:border-zinc-900 object-cover"
+              />
             ))}
           </div>
           <div className="flex items-center gap-1">
-            {[1, 2, 3, 4, 5].map((i) => (
-              <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-            ))}
+            {[1, 2, 3, 4, 5].map((i) => {
+              if (i <= 4) {
+                // Full stars for first 4
+                return <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />;
+              } else {
+                // 5th star: 80% filled (4.8/5 visual representation)
+                return (
+                  <div key={i} className="relative w-4 h-4 inline-block">
+                    <Star className="w-4 h-4 fill-yellow-400/20 text-yellow-400/20 absolute inset-0" />
+                    <div className="absolute inset-0 overflow-hidden" style={{ width: '80%' }}>
+                      <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                    </div>
+                  </div>
+                );
+              }
+            })}
           </div>
-          <span className="text-sm font-medium text-zinc-900 dark:text-white">4.8</span>
           <span className="text-sm text-zinc-600 dark:text-zinc-400">From 30+ reviews</span>
         </div>
       </FadeIn>
@@ -1733,7 +1749,7 @@ const ProductDesignAnimation = () => {
           {/* Sidebar */}
           <div className={`w-24 border-r border-zinc-100 dark:border-zinc-800 h-full p-4 flex flex-col gap-3 transition-opacity duration-500 ${step >= 2 ? 'opacity-100' : 'opacity-0'}`}>
             {/* Skeleton Sidebar items */}
-            <div className={`h-4 w-3 bg-zinc-900 dark:bg-zinc-700 rounded-sm mb-4 transition-all duration-500 delay-100 ${step >= 3 ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'}`}></div>
+            <div className={`h-4 w-3 bg-pink-500 dark:bg-pink-400 rounded-sm mb-4 transition-all duration-500 delay-100 ${step >= 3 ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'}`}></div>
             <div className={`h-3 w-full bg-zinc-100 dark:bg-zinc-800 rounded-full transition-all duration-500 delay-200 ${step >= 3 ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'}`}></div>
             <div className={`h-3 w-4/5 bg-zinc-100 dark:bg-zinc-800 rounded-full transition-all duration-500 delay-300 ${step >= 3 ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'}`}></div>
             <div className={`h-3 w-3/4 bg-zinc-100 dark:bg-zinc-800 rounded-full transition-all duration-500 delay-400 ${step >= 3 ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'}`}></div>
@@ -1747,7 +1763,7 @@ const ProductDesignAnimation = () => {
 
             {/* Floating Button */}
             <div 
-              className={`absolute top-[35%] right-[10%] bg-zinc-900 dark:bg-zinc-700 text-white px-6 py-2.5 rounded-lg shadow-sm font-medium transform transition-all duration-500 ease-out
+              className={`absolute top-[35%] right-[10%] bg-pink-500 dark:bg-pink-400 text-white px-6 py-2.5 rounded-lg shadow-sm font-medium transform transition-all duration-500 ease-out
                 ${step >= 5 ? 'scale-100 opacity-100 translate-y-0' : 'scale-75 opacity-0 translate-y-4'}
               `}
             >
@@ -1756,7 +1772,7 @@ const ProductDesignAnimation = () => {
 
             {/* Dashed Selection Box */}
             <div 
-              className={`absolute bottom-[20%] left-[20%] border-2 border-dashed border-zinc-400 dark:border-zinc-500 rounded-lg bg-zinc-100/50 dark:bg-zinc-800/50 transition-all duration-700 ease-out
+              className={`absolute bottom-[20%] left-[20%] border-2 border-dashed border-pink-400 dark:border-pink-500 rounded-lg bg-pink-50/50 dark:bg-pink-900/20 transition-all duration-700 ease-out
                 ${step >= 7 ? 'opacity-100' : 'opacity-0'}
               `}
               style={{
@@ -1766,14 +1782,14 @@ const ProductDesignAnimation = () => {
             >
                 {/* Inner content of selection (fades in late) */}
                 <div className={`w-full h-full flex items-center justify-center transition-opacity duration-300 ${step >= 9 ? 'opacity-100' : 'opacity-0'}`}>
-                    <div className="w-3/4 h-2 bg-zinc-300 dark:bg-zinc-600 rounded-full"></div>
+                    <div className="w-3/4 h-2 bg-pink-300 dark:bg-pink-600 rounded-full"></div>
                 </div>
 
                 {/* Resize Handle */}
-                <div className={`absolute -right-1 -bottom-1 w-2 h-2 bg-white dark:bg-zinc-900 border border-zinc-400 dark:border-zinc-500 rounded-full shadow-sm z-20 ${step >= 7 ? 'scale-100' : 'scale-0'}`}></div>
+                <div className={`absolute -right-1 -bottom-1 w-2 h-2 bg-white dark:bg-zinc-900 border border-pink-400 dark:border-pink-500 rounded-full shadow-sm z-20 ${step >= 7 ? 'scale-100' : 'scale-0'}`}></div>
                 
                 {/* Figma-style Selection Label/Tooltip */}
-                <div className={`absolute -top-6 left-1/2 -translate-x-1/2 bg-zinc-900 dark:bg-zinc-700 text-white text-[10px] px-1.5 py-0.5 rounded shadow-sm opacity-0 transition-opacity duration-300 ${step === 8 || step === 9 ? 'opacity-100' : ''}`}>
+                <div className={`absolute -top-6 left-1/2 -translate-x-1/2 bg-pink-500 dark:bg-pink-400 text-white text-[10px] px-1.5 py-0.5 rounded shadow-sm opacity-0 transition-opacity duration-300 ${step === 8 || step === 9 ? 'opacity-100' : ''}`}>
                     {step >= 9 ? '180px' : 'Dragging...'}
                 </div>
             </div>
@@ -1801,7 +1817,7 @@ const ProductDesignAnimation = () => {
             >
               <path 
                 d="M3 3L10.07 19.97L12.58 12.58L19.97 10.07L3 3Z" 
-                fill="black" 
+                fill="rgb(236 72 153)" 
                 stroke="white" 
                 strokeWidth="2" 
                 strokeLinejoin="round"
@@ -1810,7 +1826,7 @@ const ProductDesignAnimation = () => {
             
             {/* Username Tag (Figma style) */}
             <div 
-                className="absolute top-5 left-4 bg-zinc-900 dark:bg-zinc-700 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-br-md rounded-bl-md rounded-tr-md shadow-sm whitespace-nowrap"
+                className="absolute top-5 left-4 bg-pink-500 dark:bg-pink-400 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-br-md rounded-bl-md rounded-tr-md shadow-sm whitespace-nowrap"
             >
                 Designer
             </div>
@@ -1911,7 +1927,7 @@ const BrandIdentityAnimation = () => {
 
           {/* Selection Box for Text (Appears while dragging) */}
           <div 
-            className={`absolute top-[30%] left-[20%] border border-zinc-400 dark:border-zinc-500 bg-zinc-100/50 dark:bg-zinc-800/50 pointer-events-none transition-all duration-75
+            className={`absolute top-[30%] left-[20%] border border-amber-400 dark:border-amber-500 bg-amber-50/50 dark:bg-amber-900/20 pointer-events-none transition-all duration-75
               ${isDragging ? 'opacity-100' : 'opacity-0'}
             `}
             style={{
@@ -1923,13 +1939,13 @@ const BrandIdentityAnimation = () => {
           {/* 2. Color Palette Elements */}
           <div className="absolute top-[30%] right-[20%] grid grid-cols-2 gap-3">
             {/* Color 1 */}
-            <div className={`w-12 h-12 rounded-full bg-zinc-700 dark:bg-zinc-600 shadow-sm transition-all duration-500 ease-spring ${step >= 5 ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
+            <div className={`w-12 h-12 rounded-full bg-amber-500 dark:bg-amber-400 shadow-sm transition-all duration-500 ease-spring ${step >= 5 ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
             {/* Color 2 */}
-            <div className={`w-12 h-12 rounded-full bg-zinc-500 dark:bg-zinc-500 shadow-sm transition-all duration-500 ease-spring ${step >= 7 ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
+            <div className={`w-12 h-12 rounded-full bg-amber-400 dark:bg-amber-500 shadow-sm transition-all duration-500 ease-spring ${step >= 7 ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
             {/* Color 3 */}
-            <div className={`w-12 h-12 rounded-full bg-zinc-400 dark:bg-zinc-400 shadow-sm transition-all duration-500 ease-spring ${step >= 9 ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
+            <div className={`w-12 h-12 rounded-full bg-amber-300 dark:bg-amber-600 shadow-sm transition-all duration-500 ease-spring ${step >= 9 ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
             {/* Color 4 */}
-            <div className={`w-12 h-12 rounded-full bg-zinc-300 dark:bg-zinc-300 shadow-sm transition-all duration-500 ease-spring ${step >= 11 ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
+            <div className={`w-12 h-12 rounded-full bg-amber-200 dark:bg-amber-700 shadow-sm transition-all duration-500 ease-spring ${step >= 11 ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
           </div>
 
           {/* Decorative Guides (Faint) */}
@@ -1969,7 +1985,7 @@ const BrandIdentityAnimation = () => {
             
             {/* Username Tag */}
             <div 
-                className="absolute top-5 left-4 bg-zinc-700 dark:bg-zinc-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-br-md rounded-bl-md rounded-tr-md shadow-sm whitespace-nowrap"
+                className="absolute top-5 left-4 bg-amber-500 dark:bg-amber-400 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-br-md rounded-bl-md rounded-tr-md shadow-sm whitespace-nowrap"
             >
                 Brand Lead
             </div>
@@ -2227,8 +2243,8 @@ const GrowthAnimation = () => {
           {/* The Action Button */}
           <div 
             className={`px-3 py-1.5 rounded-md text-[10px] font-bold transition-all duration-200 flex items-center gap-1
-              ${isClicking ? 'bg-zinc-700 dark:bg-zinc-600 scale-95' : 'bg-zinc-600 dark:bg-zinc-700 hover:bg-zinc-700 dark:hover:bg-zinc-600'} 
-              text-white shadow-sm ring-2 ring-transparent ${step === 2 ? 'ring-zinc-200 dark:ring-zinc-700' : ''}
+              ${isClicking ? 'bg-blue-600 dark:bg-blue-500 scale-95' : 'bg-blue-500 dark:bg-blue-600 hover:bg-blue-600 dark:hover:bg-blue-500'} 
+              text-white shadow-sm ring-2 ring-transparent ${step === 2 ? 'ring-blue-200 dark:ring-blue-700' : ''}
             `}
           >
             {isGrowthActive ? 'Running Test...' : 'Run A/B Test'}
@@ -2244,7 +2260,7 @@ const GrowthAnimation = () => {
                <div className="text-[10px] text-zinc-400 dark:text-zinc-500 uppercase font-bold mb-1">Users</div>
                <div className="text-xl font-bold text-zinc-800 dark:text-zinc-200 flex items-end gap-2">
                  {isGrowthActive ? '12.5k' : '4.2k'}
-                 <span className={`text-[10px] mb-1 transition-colors duration-500 ${isGrowthActive ? 'text-zinc-600 dark:text-zinc-400' : 'text-zinc-400 dark:text-zinc-500'}`}>
+                 <span className={`text-[10px] mb-1 transition-colors duration-500 ${isGrowthActive ? 'text-blue-600 dark:text-blue-400' : 'text-zinc-400 dark:text-zinc-500'}`}>
                     {isGrowthActive ? '+128%' : '+2%'}
                  </span>
                </div>
@@ -2253,7 +2269,7 @@ const GrowthAnimation = () => {
                <div className="text-[10px] text-zinc-400 dark:text-zinc-500 uppercase font-bold mb-1">Conv. Rate</div>
                <div className="text-xl font-bold text-zinc-800 dark:text-zinc-200 flex items-end gap-2">
                  {isGrowthActive ? '4.8%' : '1.2%'}
-                 <span className={`text-[10px] mb-1 transition-colors duration-500 ${isGrowthActive ? 'text-zinc-600 dark:text-zinc-400' : 'text-zinc-400 dark:text-zinc-500'}`}>
+                 <span className={`text-[10px] mb-1 transition-colors duration-500 ${isGrowthActive ? 'text-blue-600 dark:text-blue-400' : 'text-zinc-400 dark:text-zinc-500'}`}>
                     {isGrowthActive ? '+300%' : '0%'}
                  </span>
                </div>
@@ -2271,23 +2287,23 @@ const GrowthAnimation = () => {
              </div>
 
              {/* Bar 1 */}
-             <div className="w-full bg-zinc-300 dark:bg-zinc-600 rounded-t-sm relative transition-all duration-700 ease-out" 
+             <div className="w-full bg-blue-300 dark:bg-blue-600 rounded-t-sm relative transition-all duration-700 ease-out" 
                   style={{ height: isGrowthActive ? '45%' : '30%' }}></div>
              
              {/* Bar 2 */}
-             <div className="w-full bg-zinc-400 dark:bg-zinc-500 rounded-t-sm relative transition-all duration-700 ease-out delay-75" 
+             <div className="w-full bg-blue-400 dark:bg-blue-500 rounded-t-sm relative transition-all duration-700 ease-out delay-75" 
                   style={{ height: isGrowthActive ? '55%' : '35%' }}></div>
              
              {/* Bar 3 */}
-             <div className="w-full bg-zinc-500 dark:bg-zinc-400 rounded-t-sm relative transition-all duration-700 ease-out delay-100" 
+             <div className="w-full bg-blue-500 dark:bg-blue-400 rounded-t-sm relative transition-all duration-700 ease-out delay-100" 
                   style={{ height: isGrowthActive ? '75%' : '25%' }}></div>
              
              {/* Bar 4 (The Big One) */}
-             <div className="w-full bg-zinc-600 dark:bg-zinc-300 rounded-t-sm relative transition-all duration-700 ease-out delay-150" 
+             <div className="w-full bg-blue-600 dark:bg-blue-300 rounded-t-sm relative transition-all duration-700 ease-out delay-150" 
                   style={{ height: isGrowthActive ? '92%' : '40%' }}>
                     
                     {/* Peak Point Dot */}
-                    <div className={`absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-zinc-700 dark:bg-zinc-500 border-2 border-white dark:border-zinc-900 rounded-full shadow-md z-10 transition-all duration-500 delay-500
+                    <div className={`absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-blue-700 dark:bg-blue-500 border-2 border-white dark:border-zinc-900 rounded-full shadow-md z-10 transition-all duration-500 delay-500
                          ${step >= 5 ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}
                     `}></div>
 
@@ -2296,7 +2312,7 @@ const GrowthAnimation = () => {
                         ${step >= 7 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}
                     `}>
                         <div className="font-bold">Record High</div>
-                        <div className="text-zinc-400 dark:text-zinc-600">+145% vs last week</div>
+                        <div className="text-blue-400 dark:text-blue-500">+145% vs last week</div>
                         {/* Little triangle arrow */}
                         <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-zinc-900 dark:border-t-zinc-100"></div>
                     </div>
@@ -2310,13 +2326,13 @@ const GrowthAnimation = () => {
                         : "M 10 115 L 80 110 L 150 120 L 220 100" // Low path
                     }
                     fill="none"
-                    stroke="rgb(113 113 122)"
+                    stroke="rgb(59 130 246)"
                     strokeWidth="3"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     className="transition-all duration-1000 ease-out"
                     style={{
-                        opacity: step >= 5 ? 0.5 : 0,
+                        opacity: step >= 5 ? 0.6 : 0,
                         strokeDasharray: '300',
                         strokeDashoffset: step >= 5 ? '0' : '300' // Draw animation
                     }}
@@ -2354,7 +2370,7 @@ const GrowthAnimation = () => {
             
             {/* Tag */}
             <div 
-                className="absolute top-5 left-4 bg-zinc-700 dark:bg-zinc-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-br-md rounded-bl-md rounded-tr-md shadow-sm whitespace-nowrap"
+                className="absolute top-5 left-4 bg-blue-500 dark:bg-blue-400 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-br-md rounded-bl-md rounded-tr-md shadow-sm whitespace-nowrap"
             >
                 Growth PM
             </div>
@@ -2702,7 +2718,6 @@ const HomePage = () => {
           <WorkSection onOpenFolder={setActiveFolder} />
           <Features />
           <Footer />
-          <div className="h-12" />
         </main>
 
         <Dock scrollToSection={scrollToSection} onSettings={() => setIsSettingsOpen(true)} />
