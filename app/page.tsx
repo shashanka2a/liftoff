@@ -1652,7 +1652,7 @@ const Hero = ({
               onClick={handleButtonClick}
               onMouseEnter={() => setIsButtonHovered(true)}
               onMouseLeave={() => setIsButtonHovered(false)}
-              className="group relative flex items-center bg-zinc-900 dark:bg-white hover:bg-black dark:hover:bg-zinc-100 text-white dark:text-zinc-900 rounded-full p-2.5 pr-8 transition-all duration-500 hover:scale-105 active:scale-95 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.3)] dark:hover:shadow-[0_20px_40px_-12px_rgba(255,255,255,0.2)] shadow-2xl overflow-hidden"
+              className="group relative flex items-center gap-2 bg-zinc-900 dark:bg-white hover:bg-black dark:hover:bg-zinc-100 text-white dark:text-zinc-900 rounded-full p-2.5 pr-8 transition-all duration-500 hover:scale-105 active:scale-95 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.3)] dark:hover:shadow-[0_20px_40px_-12px_rgba(255,255,255,0.2)] shadow-2xl overflow-visible"
               style={{
                 transform: `translate(${isButtonHovered ? magneticOffset(0.02).x : 0}px, ${isButtonHovered ? magneticOffset(0.02).y : 0}px) scale(${isButtonHovered ? 1.05 : 1})`,
                 transition: 'transform 0.1s ease-out, background-color 0.5s ease-out, box-shadow 0.5s ease-out'
@@ -1674,19 +1674,26 @@ const Hero = ({
                 />
               ))}
               
-              <div className="flex items-center relative z-10">
+              <div className="flex items-center gap-2 relative z-10 overflow-visible">
                 {/* Circle 1: LIFTOFF Icon */}
                 <div className="w-12 h-12 rounded-full bg-white dark:bg-zinc-900 flex items-center justify-center relative shadow-sm group-hover:scale-110 transition-transform duration-300">
-                  <img src="/icon.svg" alt="LIFTOFF" className="w-7 h-7 group-hover:rotate-12 transition-transform duration-500" />
+                  <img src="/icon.svg" alt="LIFTOFF" className="w-7 h-7" style={{ transform: 'none' }} />
                 </div>
 
                 {/* Hidden Part: + You */}
-                <div className="flex items-center overflow-hidden max-w-0 opacity-0 group-hover:max-w-[120px] group-hover:opacity-100 transition-all duration-500 ease-in-out">
-                  <span className="text-white dark:text-zinc-900 mx-3 font-medium text-lg group-hover:scale-110 transition-transform duration-300">+</span>
-                  <div className="w-12 h-12 rounded-full bg-blue-600 dark:bg-blue-500 flex items-center justify-center text-sm font-bold text-white shadow-inner whitespace-nowrap group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                <div className="flex items-center gap-2 overflow-visible max-w-0 opacity-0 group-hover:max-w-[120px] group-hover:opacity-100 transition-all duration-500 ease-in-out">
+                  <span className="text-white dark:text-zinc-900 font-medium text-lg group-hover:scale-110 transition-transform duration-300">+</span>
+                  <div 
+                    className="bg-blue-600 dark:bg-blue-500 flex items-center justify-center text-sm font-bold text-white shadow-inner whitespace-nowrap group-hover:scale-110 transition-transform duration-300"
+                    style={{
+                      width: '36px',
+                      height: '36px',
+                      borderRadius: '50%',
+                      overflow: 'visible'
+                    }}
+                  >
                     You
                   </div>
-                  <div className="w-4"></div>
                 </div>
               </div>
 
