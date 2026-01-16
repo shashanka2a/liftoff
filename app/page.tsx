@@ -1676,8 +1676,14 @@ const Hero = ({
               
               <div className="flex items-center gap-2 relative z-10 overflow-visible">
                 {/* Circle 1: LIFTOFF Icon */}
-                <div className="w-12 h-12 rounded-full bg-white dark:bg-zinc-900 flex items-center justify-center relative shadow-sm group-hover:scale-110 transition-transform duration-300">
-                  <img src="/icon.svg" alt="LIFTOFF" className="w-7 h-7" style={{ transform: 'none' }} />
+                <div 
+                  className="rounded-full bg-white dark:bg-zinc-900 flex items-center justify-center relative shadow-sm group-hover:scale-110 transition-transform duration-300"
+                  style={{
+                    width: '36px',
+                    height: '36px'
+                  }}
+                >
+                  <img src="/icon.svg" alt="LIFTOFF" className="w-6 h-6" style={{ transform: 'none' }} />
                 </div>
 
                 {/* Hidden Part: + You */}
